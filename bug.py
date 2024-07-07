@@ -3,9 +3,10 @@ import Info
 import Options
 import Scan
 import Vuls
+import os
 
 while True:
-    print(""" 
+    print("""
     +---------------------------------------+-----------------------------------------+
     |                Info                   |                  Scan                   |
     +---------------------------------------+-----------------------------------------+
@@ -31,13 +32,28 @@ while True:
     |  26 - Jsql              27 - Sqlmap   | 30 - Order to tools                     |
     | * LFI:                                | 31 - Main                               |
     |           28 - DotDotpwn              | 32 - List                               |
-    |                                       | 33 - Wtf who is this                    | 
-    |               ( •̀ ω •́ )y              | 34 - Sites                              |
-    +---------------------------------------+-----------------------------------------+
-    
-    """)
-    domain = str(input("Domain: "))
-    protocol = str(input("Http or Https: "))
-    decision = int(input("Tools: "))
+    |                                       | 34 - Sites                              | 
+    |              ( •̀ ω •́ )y               |                                         |
+    +---------------------------------------+-----------------------------------------+""")
 
-        
+    domain = str(input("\tDomain: "))
+    protocol = str(input("\thttp or https: "))
+    decision = int(input("\tTools: "))
+
+    os.system("clear")
+
+    if decision == 1:
+        Info.domain_info(domain)
+    elif decision == 2:
+        Info.domain_ip(domain)
+    elif decision == 3:
+        Info.dns_info_1(domain)
+    elif decision == 4:
+        Info.dns_info_2(domain)
+    else:
+        pass
+
+    os.system("pause")
+    os.system("clear")
+
+    break
