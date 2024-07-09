@@ -56,4 +56,11 @@ while True:
     os.system("pause")
     os.system("clear")
 
-    break
+    cont = bool(input("\n\tContinuar?[1/0] "))
+
+    if not cont:
+        os.system("clear")
+        break
+    else:
+        os.system("clear")
+        pass

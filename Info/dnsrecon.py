@@ -14,20 +14,24 @@ def dns_info_2(domain):
      Comandos:
      
      [0] Pré-Pronto (dnsrecon -d <domain>)
-     [1] -j JSON, Salva as informações em um arquivo JSON
-     [2] -t <tipo>, Tipo de enumeração a ser executada. Existem vários tipos possíveis
-     [3] -r <faixa>, Faixa de IP para brute force de pesquisa reversa.
-     [4] --tcp, Usa o protocolo TCP para fazer consultas.
-     [5] --threads <num>, Número de threads a ser usados
-     [6] -n <ns_server>, Servidor de domínio a ser usado. Se nada for passado, o SOA do destino será usado.
+     [1] -j JSON: Salva as informações em um arquivo JSON
+     [2] -t <tipo>: Tipo de enumeração a ser executada. Existem vários tipos possíveis
+     [3] -r <faixa>: Faixa de IP para brute force de pesquisa reversa.
+     [4] --tcp: Usa o protocolo TCP para fazer consultas.
+     [5] --threads <num>: Número de threads a ser usados
+     [6] -n <ns_server>: Servidor de domínio a ser usado. Se nada for passado, o SOA do destino será usado.
      [7] Monte seu comando.\n""")
 
     command = int(input("\tComando: "))
 
     if command == 0:
+        print(f"\n\tComando executado: dnsrecon -d {domain}")
         subprocess.call(f"dnsrecon -d {domain}", shell=True)
+
     elif command == 1:
+        print(f"\n\tComando executado: dnsrecon -j JSON -d {domain}")
         subprocess.call(f"dnsrecon -j JSON -d {domain}", shell=True)
+
     elif command == 2:
         print("""
         • padrão: SOA, NS, A, AAAA, MX e SRV.
@@ -54,20 +58,29 @@ def dns_info_2(domain):
         • zonewalk: Execute uma caminhada na zona DNSSEC usando registros NSEC.\n""")
 
         enum = str(input("\tQual tipo de enumeração você quer fazer? "))
-
+        print(f"\n\tComando executado: dnsrecon -t {enum} -d {domain}")
         subprocess.call(f"dnsrecon -t {enum} -d {domain}", shell=True)
 
     elif command == 3:
         ip_info = float(input("\tIp: "))
+        print(f"\n\tComando executado: dnsrecon -r {ip_info} -d {domain}")
         subprocess.call(f"dnsrecon -r {ip_info} -d {domain}", shell=True)
+
     elif command == 4:
+        print(f"\n\tComando executado: dnsrecon --tcp -d {domain}")
         subprocess.call(f"dnsrecon --tcp -d {domain}", shell=True)
+
     elif command == 5:
         num_tr = int(input(f"\tNúmero de threads: "))
+        print(f"\n\tComando executado: dnsrecon --threads {num_tr} -d {domain}")
         subprocess.call(f"dnsrecon --threads {num_tr} -d {domain}", shell=True)
+
     elif command == 6:
         server = str(input("\tServer: "))
+        print(f"\n\tComando executado: dnsrecon -n {server} -d {domain}")
         subprocess.call(f"dnsrecon -n {server} -d {domain}", shell=True)
+
     else:
         shell = str(input("Shell: "))
+        print(f"\n\tComando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
