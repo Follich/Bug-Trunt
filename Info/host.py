@@ -58,5 +58,4 @@ def domain_ip(domain):
 
     else:
         shell = str(input("\tShell: "))
-        print(f"\n\tComando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)

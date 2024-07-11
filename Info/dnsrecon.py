@@ -4,9 +4,9 @@ def dns_info_2(domain):
     print("""
           _                                    
        __| |_ __  ___ _ __ ___  ___ ___  _ __  
-      / _` | '_ \/ __| '__/ _ \/ __/ _ \| '_ \ 
-     | (_| | | | \__ \ | |  __/ (_| (_) | | | |
-      \__,_|_| |_|___/_|  \___|\___\___/|_| |_|
+      / _` | '_ \\/ __| '__/ _ \\/ __/ _ \\| '_ \\ 
+     | (_| | | | \\__ \\ | |  __/ (_| (_) | | | |
+      \\__,_|_| |_|___/_|  \\___|\\___\\___/|_| |_|
      
      Dsnrecon é um script python simples que permite coletar informações
      orientadas a DNS em um determinado alvo.
@@ -82,5 +82,4 @@ def dns_info_2(domain):
 
     else:
         shell = str(input("Shell: "))
-        print(f"\n\tComando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)

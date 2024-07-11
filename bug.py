@@ -30,14 +30,13 @@ while True:
     +---------------------------------------+-----------------------------------------+
     | * Injection:                          | 29 - Prepare folder                     |
     |  26 - Jsql              27 - Sqlmap   | 30 - Order to tools                     |
-    | * LFI:                                | 31 - Main                               |
-    |           28 - DotDotpwn              | 32 - List                               |
+    | * LFI:                                | 31 - Config Proxychains                 |
+    |           28 - DotDotpwn              | 32 - Main                               |
     |                                       | 34 - Sites                              | 
-    |              ( •̀ ω •́ )y               |                                         |
+    |              ( •̀ ω •́ )y               | 35 - Dorks                              |
     +---------------------------------------+-----------------------------------------+""")
 
     domain = str(input("\tDomain: "))
-    protocol = str(input("\thttp or https: "))
     decision = int(input("\tTools: "))
 
     os.system("clear")
@@ -50,6 +49,8 @@ while True:
         Info.dns_info_1(domain)
     elif decision == 4:
         Info.dns_info_2(domain)
+    elif decision == 5:
+        Info.scan_net(domain)
     else:
         pass
 

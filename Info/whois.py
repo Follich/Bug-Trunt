@@ -49,5 +49,4 @@ def domain_info(domain):
 
     else:
         shell = str(input("\tShell: "))
-        print(f"\n\tComando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)

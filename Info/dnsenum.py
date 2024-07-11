@@ -60,5 +60,4 @@ def dns_info_1(domain):
 
     else:
         shell = str(input("\tShell: "))
-        print(f"\n\tComando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
