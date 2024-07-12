@@ -51,6 +51,8 @@ while True:
         Info.dns_info_2(domain)
     elif decision == 5:
         Info.scan_net(domain)
+    elif decision == 6:
+        Info.firewall_scan(domain)
     else:
         pass
 

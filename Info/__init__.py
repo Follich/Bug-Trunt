@@ -3,3 +3,4 @@ from .host import domain_ip
 from .dnsenum import dns_info_1
 from .dnsrecon import dns_info_2
 from .nmap import scan_net
+from .waf00f import firewall_scan
