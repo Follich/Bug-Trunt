@@ -18,20 +18,20 @@ def firewall_scan(domain):
      [3] -r: Comando para não seguir redirecionamentos de respostas
      [4] Monte seu comando.\n""")
 
-    command = input(input("\tComando: "))
+    command = int(input("Comando: "))
 
     if command == 0:
-        print(f"\n\tComando executado: waf00f {domain}")
-        subprocess.call(f"waf00f {domain}", shell=True)
+        print(f"\nComando executado: wafw00f {domain}")
+        subprocess.call(f"wafw00f {domain}", shell=True)
     elif command == 1:
-        print(f"\n\tComando executado: waf00f -a {domain}")
-        subprocess.call(f"waf00f -a {domain}", shell=True)
+        print(f"\nComando executado: wafw00f -a {domain}")
+        subprocess.call(f"wafw00f -a {domain}", shell=True)
     elif command == 2:
-        print(f"\n\twaf00f.py -p Socks5://hostname:1080 {domain}")
-        subprocess.call(f"waf00f.py -p Socks5://hostname:1080 {domain}", shell=True)
+        print(f"\nwafw00f -p Socks5://hostname:1080 {domain}")
+        subprocess.call(f"wafw00f -p Socks5://hostname:1080 {domain}", shell=True)
     elif command == 3:
-        print(f"\n\tComando executado: wafw00f -r {domain}")
+        print(f"\nComando executado: wafw00f -r {domain}")
         subprocess.call(f"wafw00f -r {domain}", shell=True)
     else:
-        shell = str(input("\tShell: "))
+        shell = str(input("Shell: "))
         subprocess.call(f"{shell}", shell=True)

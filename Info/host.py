@@ -29,33 +29,33 @@ def domain_ip(domain):
     [5] -6: Esta opção especifica que apenas IPv6 deve ser usado para consulta
     [6] Monte seu comando\n""")
 
-    command = int(input("\tComando: "))
+    command = int(input("Comando: "))
 
     if command == 0:
-        print(f"\n\tComando executado: host {domain}")
+        print(f"\nComando executado: host {domain}")
         subprocess.call(f"host {domain}", shell=True)
 
     elif command == 1:
-        port = int(input("\tPorta: "))
-        print(f"\n\tComando executado: host -p {port} {domain}")
+        port = int(input("Porta: "))
+        print(f"\nComando executado: host -p {port} {domain}")
         subprocess.call(f"host -p {port} {domain}", shell=True)
 
     elif command == 2:
-        print(f"\n\tComando executado: host -d {domain}")
+        print(f"\nComando executado: host -d {domain}")
         subprocess.call(f"host -d {domain}", shell=True)
 
     elif command == 3:
-        print(f"\n\tComando executado: host -l -a {domain}")
+        print(f"\nComando executado: host -l -a {domain}")
         subprocess.call(f"host -l -a {domain}", shell=True)
 
     elif command == 4:
-        print(f"\n\tComando executado: host -4 {domain}")
+        print(f"\nComando executado: host -4 {domain}")
         subprocess.call(f"host -4 {domain}", shell=True)
 
     elif command == 5:
-        print(f"\n\tComando executado: host -6 {domain}")
+        print(f"\nComando executado: host -6 {domain}")
         subprocess.call(f"host -6 {domain}", shell=True)
 
     else:
-        shell = str(input("\tShell: "))
+        shell = str(input("Shell: "))
         subprocess.call(f"{shell}", shell=True)

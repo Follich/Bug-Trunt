@@ -25,39 +25,39 @@ def dns_info_1(domain):
      [6] -s: número máximo de subdomínios que será extraído do Google.
      [7] Monte seu comando\n""")
 
-    command = int(input("\tComando: "))
+    command = int(input("Comando: "))
 
     if command == 0:
-        print(f"\n\tComando executado: dnsenum {domain} -f /usr/share/dnsenum/dns.txt")
+        print(f"\nComando executado: dnsenum {domain} -f /usr/share/dnsenum/dns.txt")
         subprocess.call(f"dnsenum {domain} -f /usr/share/dnsenum/dns.txt", shell=True)
 
     elif command == 1:
-        print(f"\n\tComando executado: dnsenum --private {domain}")
+        print(f"\nComando executado: dnsenum --private {domain}")
         subprocess.call(f"dnsenum --private {domain}", shell=True)
 
     elif command == 2:
-        tr = int(input("\tNúmero de threads: "))
-        print(f"\n\tComando executado: dnsenum --threads {tr} {domain}")
+        tr = int(input("Número de threads: "))
+        print(f"\nComando executado: dnsenum --threads {tr} {domain}")
         subprocess.call(f"dnsenum --threads {tr} {domain}", shell=True)
 
     elif command == 3:
-        file = str(input("\tLocal do arquivo: "))
-        print(f"\n\tComando executado: dnsenum {domain} -f {file}")
+        file = str(input("Local do arquivo: "))
+        print(f"\nComando executado: dnsenum {domain} -f {file}")
         subprocess.call(f"dnsenum {domain} -f {file}", shell=True)
 
     elif command == 4:
-        print(f"\n\tComando executado: dnsenum -v {domain}")
+        print(f"\nComando executado: dnsenum -v {domain}")
         subprocess.call(f"dnsenum -v {domain}", shell=True)
 
     elif command == 5:
-        print(f"\n\tComando executado: dnsenum -www site:{domain}")
+        print(f"\nComando executado: dnsenum -www site:{domain}")
         subprocess.call(f"dnsenum -www site:{domain}", shell=True)
 
     elif command == 6:
-        num = int(input("\tNúmero: "))
-        print(f"\n\tComando executado: dnsenum -s {num} {domain}")
+        num = int(input("Número: "))
+        print(f"\nComando executado: dnsenum -s {num} {domain}")
         subprocess.call(f"dnsenum -s {num} {domain}", shell=True)
 
     else:
-        shell = str(input("\tShell: "))
+        shell = str(input("Shell: "))
         subprocess.call(f"{shell}", shell=True)

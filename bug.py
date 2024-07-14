@@ -5,6 +5,7 @@ import Scan
 import Vuls
 import os
 
+
 while True:
     print("""
     +---------------------------------------+-----------------------------------------+
@@ -15,7 +16,7 @@ while True:
     | * DNS:                                | 15 - Wpscan            18 - Waf00f      |
     |     3 - Dnsenum         4 - Dnsrecon  +-----------------------------------------+
     | * Net:                                |                 Subdomain               |
-    |     5 - Nmap            6 - Waf00f    +-----------------------------------------+
+    |     5 - Nmap            6 - Wafw00f   +-----------------------------------------+
     +---------------------------------------+ * Crowlers:                             |
     |             Brute Force               |   19 - Gau   20 - Wayback   21 - Chaos  |
     +---------------------------------------| * Images:                               |
@@ -23,21 +24,21 @@ while True:
     |  7 - Hydra                8 - John    |  * Validação:                           |
     |             9 - Hashcat               |       24  - Htppx    25 - Httprobe      |
     |* - Url:                               |                                         |
-    |  10 - Feroxbuster      11 - Gobuster  |         ＼(((￣(￣(￣▽￣)￣)￣)))／        |
+    |  10 - Feroxbuster      11 - Gobuster  |               \\((-^-)))/                |
     |             12 - Wfuzz                |                                         |
     +---------------------------------------+-----------------------------------------+
     |                Vuls                   |                 Options                 |
     +---------------------------------------+-----------------------------------------+
     | * Injection:                          | 29 - Prepare folder                     |
     |  26 - Jsql              27 - Sqlmap   | 30 - Order to tools                     |
-    | * LFI:                                | 31 - Config Proxychains                 |
-    |           28 - DotDotpwn              | 32 - Main                               |
-    |                                       | 34 - Sites                              | 
-    |              ( •̀ ω •́ )y               | 35 - Dorks                              |
-    +---------------------------------------+-----------------------------------------+""")
+    | * LFI:                                | 31 - Main                               |
+    |           28 - DotDotpwn              | 32 - Sites                              |
+    |                                       | 33 - Dorks                              | 
+    |             ---(0_0)---               |                                         |
+    +---------------------------------------+-----------------------------------------+\n""")
 
-    domain = str(input("\tDomain: "))
-    decision = int(input("\tTools: "))
+    domain = str(input("Domain: "))
+    decision = int(input("Tools: "))
 
     os.system("clear")
 
@@ -56,14 +57,11 @@ while True:
     else:
         pass
 
-    os.system("pause")
-    os.system("clear")
+    cont = int(input("\nContinuar?[1/0] "))
 
-    cont = bool(input("\n\tContinuar?[1/0] "))
-
-    if not cont:
-        os.system("clear")
-        break
-    else:
+    if cont == 1:
         os.system("clear")
         pass
+    else:
+        os.system("clear")
+        break
