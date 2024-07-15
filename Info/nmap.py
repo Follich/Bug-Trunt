@@ -2,24 +2,24 @@ def scan_net(domain):
     import subprocess
 
     print("""
-    .-. .-..-.   .-.  .--.  .----. 
-    |  `| ||  `.'  | / {} \\ | {}  }
-    | |\\  || |\\ /| |/  /\\  \\| .--' 
-    `-' `-'`-' ` `-'`-'  `-'`-'         
-    
-    O nmap é uma ferramenta gratuita que faz uma varredura de rede para
-    trazer uma lista de portas abertas, suas informações, e sistemas operacionais.
-    
-    Dê o comando: "service tor start", Para que os comandos funcionem.
-    
-    [0] Pré-Pronto (proxychains nmap -sS -F -Pn <domain>)
-    [1] -r: Verificação sequencial rápida.
-    [2] -sO: Verificação do IP.
-    [3] -sV: Investiga portas abertas para determinar informações de serviço.
-    [4] -p: Para o scanning de portas especificas.
-    [5] --script: Para o uso de scripts.
-    [6] -oN: Para salvar o scanning em um arquivo.
-    [7] Monte seu comando.\n""")
+.-. .-..-.   .-.  .--.  .----. 
+|  `| ||  `.'  | / {} \\ | {}  }
+| |\\  || |\\ /| |/  /\\  \\| .--' 
+`-' `-'`-' ` `-'`-'  `-'`-'         
+
+O nmap é uma ferramenta gratuita que faz uma varredura de rede para
+trazer uma lista de portas abertas, suas informações, e sistemas operacionais.
+
+Dê o comando: "service tor start", Para que os comandos funcionem.
+
+[0] Pré-Pronto (proxychains nmap -sS -F -Pn <domain>)
+[1] -r: Verificação sequencial rápida.
+[2] -sO: Verificação do IP.
+[3] -sV: Investiga portas abertas para determinar informações de serviço.
+[4] -p: Para o scanning de portas especificas.
+[5] --script: Para o uso de scripts.
+[6] -oN: Para salvar o scanning em um arquivo.
+[7] Monte seu comando.\n""")
 
     command = int(input("Comando: "))
 

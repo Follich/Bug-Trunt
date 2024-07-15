@@ -2,21 +2,21 @@ def firewall_scan(domain):
     import subprocess
 
     print("""
-    ___       __      __________       _______________________
-    __ |     / /_____ ___  __/_ |     / /_  __ \\_  __ \\__  __/
-    __ | /| / /_  __ `/_  /_ __ | /| / /_  / / /  / / /_  /_  
-    __ |/ |/ / / /_/ /_  __/ __ |/ |/ / / /_/ // /_/ /_  __/  
-    ____/|__/  \\__,_/ /_/    ____/|__/  \\____/ \\____/ /_/        
-          
-     É uma ferramenta de identificação e impressão digital do firewall de aplicativos da Web.
+___       __      __________       _______________________
+__ |     / /_____ ___  __/_ |     / /_  __ \\_  __ \\__  __/
+__ | /| / /_  __ `/_  /_ __ | /| / /_  / / /  / / /_  /_  
+__ |/ |/ / / /_/ /_  __/ __ |/ |/ / / /_/ // /_/ /_  __/  
+____/|__/  \\__,_/ /_/    ____/|__/  \\____/ \\____/ /_/        
      
-     Comandos:
-     
-     [0] Pré-Pronto (waf00f http://<dominio>)
-     [1] -a: Para investigar todos os wafs
-     [2] -p PROXY: Para usar o waf com um proxy
-     [3] -r: Comando para não seguir redirecionamentos de respostas
-     [4] Monte seu comando.\n""")
+É uma ferramenta de identificação e impressão digital do firewall de aplicativos da Web.
+
+Comandos:
+
+[0] Pré-Pronto (waf00f http://<dominio>)
+[1] -a: Para investigar todos os wafs
+[2] -p PROXY: Para usar o waf com um proxy
+[3] -r: Comando para não seguir redirecionamentos de respostas
+[4] Monte seu comando.\n""")
 
     command = int(input("Comando: "))
 

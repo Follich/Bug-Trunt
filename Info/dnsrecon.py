@@ -2,25 +2,25 @@ def dns_info_2(domain):
     import subprocess
 
     print("""
-          _                                    
-       __| |_ __  ___ _ __ ___  ___ ___  _ __  
-      / _` | '_ \\/ __| '__/ _ \\/ __/ _ \\| '_ \\ 
-     | (_| | | | \\__ \\ | |  __/ (_| (_) | | | |
-      \\__,_|_| |_|___/_|  \\___|\\___\\___/|_| |_|
-     
-     Dsnrecon é um script python simples que permite coletar informações
-     orientadas a DNS em um determinado alvo.
-     
-     Comandos:
-     
-     [0] Pré-Pronto (dnsrecon -d <domain>)
-     [1] -j JSON: Salva as informações em um arquivo JSON
-     [2] -t <tipo>: Tipo de enumeração a ser executada. Existem vários tipos possíveis
-     [3] -r <faixa>: Faixa de IP para brute force de pesquisa reversa.
-     [4] --tcp: Usa o protocolo TCP para fazer consultas.
-     [5] --threads <num>: Número de threads a ser usados
-     [6] -n <ns_server>: Servidor de domínio a ser usado. Se nada for passado, o SOA do destino será usado.
-     [7] Monte seu comando.\n""")
+      _                                    
+   __| |_ __  ___ _ __ ___  ___ ___  _ __  
+  / _` | '_ \\/ __| '__/ _ \\/ __/ _ \\| '_ \\ 
+ | (_| | | | \\__ \\ | |  __/ (_| (_) | | | |
+  \\__,_|_| |_|___/_|  \\___|\\___\\___/|_| |_|
+ 
+ Dsnrecon é um script python simples que permite coletar informações
+ orientadas a DNS em um determinado alvo.
+ 
+ Comandos:
+ 
+ [0] Pré-Pronto (dnsrecon -d <domain>)
+ [1] -j JSON: Salva as informações em um arquivo JSON
+ [2] -t <tipo>: Tipo de enumeração a ser executada. Existem vários tipos possíveis
+ [3] -r <faixa>: Faixa de IP para brute force de pesquisa reversa.
+ [4] --tcp: Usa o protocolo TCP para fazer consultas.
+ [5] --threads <num>: Número de threads a ser usados
+ [6] -n <ns_server>: Servidor de domínio a ser usado. Se nada for passado, o SOA do destino será usado.
+ [7] Monte seu comando.\n""")
 
     command = int(input("Comando: "))
 
