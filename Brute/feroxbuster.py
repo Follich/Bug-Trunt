@@ -1,4 +1,4 @@
-def brute_url(domain):
+def feroxbuster(domain):
     import subprocess
     print("""
  _____                    ____            _            

@@ -1,4 +1,4 @@
-def domain_ip(domain):
+def host(domain):
     import subprocess
 
     print("""

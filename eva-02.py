@@ -7,38 +7,41 @@ import os
 
 while True:
     print("""
-   :::::::::: :::     :::     :::                            :::::::   :::::::: 
-   :+:        :+:     :+:   :+: :+:                         :+:   :+: :+:    :+:
-   +:+        +:+     +:+  +:+   +:+                        +:+  :+:+       +:+ 
-   +#++:++#   +#+     +:+ +#++:++#++:     +#++:++#++:++     +#+ + +:+     +#+   
-   +#+         +#+   +#+  +#+     +#+                       +#+#  +#+   +#+     
-   #+#          #+#+#+#   #+#     #+#                       #+#   #+#  #+#      
-   ##########     ###     ###     ###                        #######  ##########
-
+     :::::::::: :::     :::     :::                        :::::::   :::::::: 
+     :+:        :+:     :+:   :+: :+:                     :+:   :+: :+:    :+:
+     +:+        +:+     +:+  +:+   +:+                    +:+  :+:+       +:+ 
+     +#++:++#   +#+     +:+ +#++:++#++:     +#++:++#+     +#+ + +:+     +#+   
+     +#+         +#+   +#+  +#+     +#+                   +#+#  +#+   +#+     
+     #+#          #+#+#+#   #+#     #+#                   #+#   #+#  #+#      
+     ##########     ###     ###     ###                    #######  ##########
+     
 +---------------------------------------+-----------------------------------------+
 |                Info                   |                  Scan                   |
 +---------------------------------------+-----------------------------------------+
-| * Domain:                             | 9 - Owasp              12 - Metasploit  |
-|     1 - Whois           2 - Host      | 10 - Burp suite                         |
-| * DNS:                                | 11 - Wpscan                             |
-|     3 - Dnsenum         4 - Dnsrecon  +-----------------------------------------+
+| * Domain:                             | * Scan-Others                           |
+|     1 - Whois           2 - Host      |  16 - Owasp             19 - Burp suite |
+|               3 - Censys              |  17 - Metasploit        20 - Wpscan     |
+| * DNS:                                |  18 - W3af                              |
+|     4 - Dnsenum         5 - Dnsrecon  +-----------------------------------------+
 | * Net:                                |                 Subdomain               |
-|     5 - Nmap            6 - Wafw00f   +-----------------------------------------+
+|     6 - Nmap            7 - Wafw00f   +-----------------------------------------+
 +---------------------------------------+ * Crowlers:                             |
-|             Brute Force               |   13 - Gau   14 - Wayback   15 - Chaos  |
-+---------------------------------------| * Images:                               |
-|* - Url:                               |       16 - Aquatone  17 - Gowitness     |
-| 7 - Feroxbuster           8 - Wfuzz   | * Validação:                            |
-|                                       |        18 - Htppx    19 - Httprobe      |
+|             Brute Force               |   21 - Gau                24 - Wayback  |
++---------------------------------------|   22 - Reflector          25 - Chaos    |
+| * - Url:                              |   23 - Amass              26 - Api git  |
+|     8 - Feroxbuster      9 - Wfuzz    | * Images:                               |
+| * - Pass:                             |       27 - Aquatone  28 - Gowitness     |
+|     10 - Hydra         11 - John      | * Validação:                            |
+|              12 - HashCat             |        29 - Htppx    30 - Httprobe      |
 +---------------------------------------+-----------------------------------------+
 |                Vuls                   |                 Options                 |
 +---------------------------------------+-----------------------------------------+
-| * Injection:                          | 23 - Prepare folder                     |
-|  20 - Jsql              21 - Sqlmap   | 24 - Order to tools                     |
-| * LFI:                                | 25 - Main                               |
-|           22 - DotDotpwn              | 26 - Sites                              |
-|                                       | 27 - Dorks                              | 
-|             ---(0_0)---               |                                         |
+| * Injection:                          | 31 - Prepare folder                     |
+|      13 - Jsql          14 - Sqlmap   | 32 - Order to tools                     |
+| * LFI:                                | 33 - Main                               |
+|           15 - DotDotpwn              | 34 - Sites                              |
+|                                       | 35 - Dorks                              | 
+|             ---(0_0)---               | 36 - Config Setup - tools               |
 +---------------------------------------+-----------------------------------------+\n""")
 
     domain = str(input("Domain: "))
@@ -47,21 +50,23 @@ while True:
     os.system("clear")
 
     if decision == 1:
-        Info.domain_info(domain)
+        Info.whois(domain)
     elif decision == 2:
-        Info.domain_ip(domain)
+        Info.host(domain)
     elif decision == 3:
-        Info.dns_info_1(domain)
+        Info.censys(domain)
     elif decision == 4:
-        Info.dns_info_2(domain)
+        Info.dnsenum(domain)
     elif decision == 5:
-        Info.scan_net(domain)
+        Info.dnsrecon(domain)
     elif decision == 6:
-        Info.firewall_scan(domain)
+        Info.nmap(domain)
     elif decision == 7:
-        Brute.brute_url(domain)
+        Info.waf(domain)
     elif decision == 8:
-        Brute.fuzz_web(domain)
+        Brute.feroxbuster(domain)
+    elif decision == 9:
+        Brute.wfuzz(domain)
     else:
         pass
 
@@ -70,6 +75,7 @@ while True:
     if cont == 1:
         os.system("clear")
         pass
+
     else:
         os.system("clear")
         break

@@ -1,4 +1,4 @@
-def fuzz_web(domain):
+def wfuzz(domain):
     import subprocess
 
     print("""

@@ -1,4 +1,4 @@
-def dns_info_1(domain):
+def dnsenum(domain):
     import subprocess
 
     print("""

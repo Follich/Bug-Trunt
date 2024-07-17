@@ -1,4 +1,4 @@
-def scan_net(domain):
+def nmap(domain):
     import subprocess
 
     print("""

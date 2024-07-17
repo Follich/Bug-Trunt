@@ -1,4 +1,4 @@
-def dns_info_2(domain):
+def dnsrecon(domain):
     import subprocess
 
     print("""

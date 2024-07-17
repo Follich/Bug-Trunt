@@ -1,2 +1,2 @@
-from .feroxbuster import brute_url
-from .wfuzz import fuzz_web
+from .feroxbuster import feroxbuster
+from .wfuzz import wfuzz

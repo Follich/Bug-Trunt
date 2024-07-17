@@ -1,4 +1,4 @@
-def firewall_scan(domain):
+def waf(domain):
     import subprocess
 
     print("""

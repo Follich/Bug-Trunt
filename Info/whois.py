@@ -1,4 +1,4 @@
-def domain_info(domain):
+def whois(domain):
     import subprocess
 
     print("""
