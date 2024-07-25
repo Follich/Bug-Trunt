@@ -19,29 +19,29 @@ while True:
 |                Info                   |                  Scan                   |
 +---------------------------------------+-----------------------------------------+
 | * Domain:                             | * Scan-Others                           |
-|     1 - Whois           2 - Host      |  16 - Owasp             19 - Burp suite |
-|               3 - Censys              |  17 - Metasploit        20 - Wpscan     |
-| * DNS:                                |  18 - W3af                              |
-|     4 - Dnsenum         5 - Dnsrecon  +-----------------------------------------+
-| * Net:                                |                 Subdomain               |
-|     6 - Nmap            7 - Wafw00f   +-----------------------------------------+
-+---------------------------------------+ * Crowlers:                             |
-|             Brute Force               |   21 - Gau                24 - Wayback  |
-+---------------------------------------|   22 - Reflector          25 - Chaos    |
-| * - Url:                              |   23 - Amass              26 - Api git  |
-|     8 - Feroxbuster      9 - Wfuzz    | * Images:                               |
-| * - Pass:                             |       27 - Aquatone  28 - Gowitness     |
-|     10 - Hydra         11 - John      | * Validação:                            |
-|              12 - HashCat             |        29 - Htppx    30 - Httprobe      |
+|     1 - Whois           2 - Host      |  8 - Burp suite            10 - Wpscan  |
+|               3 - Censys              |  9 - Metasploit            11 - W3af    |
+| * DNS:                                | * Vuls                                  |
+|     4 - Dnsenum         5 - Dnsrecon  |       12 - Jsql       13 - DotDotpwn    |
+| * Net:                                |                                         |
+|     6 - Nmap            7 - Wafw00f   |              --( ~ _ ~ ) --             |
 +---------------------------------------+-----------------------------------------+
-|                Vuls                   |                 Options                 |
+|              Subdomain                |                Enumeration              |
 +---------------------------------------+-----------------------------------------+
-| * Injection:                          | 31 - Prepare folder                     |
-|      13 - Jsql          14 - Sqlmap   | 32 - Order to tools                     |
-| * LFI:                                | 33 - Main                               |
-|           15 - DotDotpwn              | 34 - Sites                              |
-|                                       | 35 - Dorks                              | 
-|             ---(0_0)---               | 36 - Config Setup - tools               |
+| * Crowlers:                           | * Asn:                                  |
+|   14 - Gau       17 - Reflector       |   * Metabigor                           |
+|   15 - Amass     18 - Wayback         | * Javascript:                           |
+| * Validação:                          |                                         |
+|   19 - Htppx     20- Httprobe         | * Endpoints:                            |
+| * Api:                                |                                         |
+|   * - Api git   * - Git dorker        | * Subdirectories:                       |
+|                                       |    8 - Feroxbuster         9 - Wfuzz    |
++---------------------------------------+-----------------------------------------+
+|                                    Options                                      |
++---------------------------------------+-----------------------------------------+
+| 30 - Prepare folder                           31 - Order to tools               |
+| 32 - Main                                     33 - Sites                        |
+| 34 - Dorks                                    35 - Config Setup - tools         |
 +---------------------------------------+-----------------------------------------+\n""")
 
     domain = str(input("Domain: "))
@@ -67,6 +67,12 @@ while True:
         Brute.feroxbuster(domain)
     elif decision == 9:
         Brute.wfuzz(domain)
+    elif decision == 16:
+        Scan.burp_suit()
+    elif decision == 17:
+        Scan.metasploit()
+    elif decision == 18:
+        Scan.wp_scan(domain)
     else:
         pass
 
