@@ -1,50 +1,44 @@
-import Subdomain
-import Information
 import Options
-import Scanners
 import os
 
 while True:
-    Options.banner_main()
+    Options.main_options.banner()
 
-    domain = str(input("Domain: "))
-    decision = int(input("Tools: "))
+    domain = str(input("Digite o dominio: "))
+    block = int(input("Digite o bloco que deseja usar: "))
+    stop = bool
 
-    os.system("clear")
+    # O código abaixo é do bloco "Information"
+    while stop:
+        if block == 1:
+            import Information
 
-    if decision == 1:
-        Information.whois(domain)
-    elif decision == 2:
-        Information.censys(domain)
-    elif decision == 3:
-        Information.host(domain)
-    elif decision == 4:
-        Information.dnsenum(domain)
-    elif decision == 5:
-        Information.dnsrecon(domain)
-    elif decision == 6:
-        Information.nmap(domain)
-    elif decision == 7:
-        Information.waf(domain)
-    elif decision == 8:
-        Subdomain.feroxbuster(domain)
-    elif decision == 9:
-        Subdomain.wfuzz(domain)
-    elif decision == 16:
-        Scanners.burp_suit()
-    elif decision == 17:
-        Scanners.metasploit()
-    elif decision == 18:
-        Scanners.wp_scan(domain)
-    else:
-        pass
+            os.system("clear")
+            Options.main_options.banner_01()
 
-    cont = int(input("\nContinuar?[1/0] "))
+            tool = int(input("Informe o número da ferramenta: "))
 
-    if cont == 1:
-        os.system("clear")
-        pass
+            if tool == 1:
+                Information.main_information.whois(domain)
+            elif tool == 2:
+                Information.main_information.host(domain)
+            elif tool == 3:
+                Information.main_information.censys(domain)
+            elif tool == 4:
+                Information.main_information.dnsenum(domain)
+            elif tool == 5:
+                Information.main_information.dnsrecon(domain)
+            elif tool == 5:
+                Information.main_information.nmap(domain)
+            elif tool == 6:
+                Information.main_information.waf(domain)
+            else:
+                print("Ferramenta não expecificada!")
 
-    else:
-        os.system("clear")
-        break
+            conclusion = bool(input("Deseja continuar?[1/0] "))
+            stop = stop == conclusion
+
+            if not stop:
+                break
+            else:
+                pass
