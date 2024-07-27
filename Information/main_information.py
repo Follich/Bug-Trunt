@@ -317,7 +317,7 @@ trazer uma lista de portas abertas, suas informações, e sistemas operacionais.
 
 Dê o comando: "service tor start", Para que os comandos funcionem.
 
-[0] Pré-Pronto (proxychains nmap -sS -F -Pn <domain>)
+[0] Pré-Pronto (proxychains nmap -v -sS -sV -F <domain> --script=vuln -oN nmap.txt)
 [1] -r: Verificação sequencial rápida.
 [2] -sO: Verificação do IP.
 [3] -sV: Investiga portas abertas para determinar informações de serviço.
@@ -329,8 +329,8 @@ Dê o comando: "service tor start", Para que os comandos funcionem.
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"\nComando executado: proxychains nmap -sS -F -Pn {domain}")
-        subprocess.call(f"proxychains nmap -sS -Pn -F {domain}", shell=True)
+        print(f"\nComando executado: proxychains nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt")
+        subprocess.call(f"proxychains nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt ", shell=True)
 
     elif command == 1:
         print(f"\nComando executado: proxychains nmap -sS -Pn -r -F {domain}")

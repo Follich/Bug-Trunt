@@ -15,22 +15,13 @@ desde o mapeamento e análise da superfície de ataque até a descoberta e explo
     print("Pressione CTRL + C para fechar.")
 
 
-def metasploit():
-    print("""
-Comandos:
-
-help: Menu de Ajuda
-exit: Sai do console\n""")
-    subprocess.call("msfconsole", shell=True)
-
-
 def wp_scan(domain):
     print("""
 __          _______   _____
 \\ \\        / /  __ \\ / ____|
  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __
-  \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | '_ \
-   \\  /\\  /  | |     ____) | (__| (_| | | | |
+  \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | '_ \\
+   \\  /\\  /  | |     ____) | (__| (_| | | | | 
     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|
 
 O WPScan é um scanner de vulnerabilidades de código aberto e multiplataforma, escrito na linguagem Ruby.
@@ -108,3 +99,91 @@ Comandos:
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
 
+
+def metasploit():
+    print("""
+Comandos:
+
+msfdb init: inicia o banco de dados
+help: Menu de Ajuda
+exit: Sai do console\n""")
+    subprocess.call("msfconsole", shell=True)
+
+
+def dotdotpwn():
+    print("""
+#################################################################################
+#                                                                               #
+#  CubilFelino                                                       Chatsubo   #
+#  Security Research Lab              and            [(in)Security Dark] Labs   #
+#  chr1x.sectester.net                             chatsubo-labs.blogspot.com   #
+#                                                                               #
+#                               pr0udly present:                                #
+#                                                                               #
+#  ________            __  ________            __  __________                   #
+#  \\______ \\    ____ _/  |_\\______ \\    ____ _/  |_\\______   \\__  _  __ ____    #
+#   |    |  \\  /  _ \\   __\\|    |  \\  /  _ \\   __\\|     ___/\\ \\/ \\/ //    \\   #
+#   |    `   \\(  <_> )|  |  |    `   \\(  <_> )|  |  |    |     \\     /|   |  \\  #
+#  /_______  / \\____/ |__| /_______  / \\____/ |__|  |____|      \\/\\_/ |___|  /  #
+#          \\/                      \\/                                      \\/   #
+#                              - DotDotPwn v3.0.2 -                             #
+#                         The Directory Traversal Fuzzer                        #
+#                         http://dotdotpwn.sectester.net                        #
+#                            dotdotpwn@sectester.net                            #
+#                                                                               #
+#                               by chr1x & nitr0us                              #
+#################################################################################
+
+Dodotpwn é ferramenta de fuzz para LFI! E usar ela é simples basta apenas colocar a url
+e o parametro para ser testado.
+
+Sinopse: 
+
+dotdotpwn -k root -m <módulo> -u <url=TRAVERSAL>
+
+Comandos:
+
+[1] Padrão = Sinopse
+[2] Monte seu comando
+
+-m: Módulo [http | http-url | ftp | tftp | payload | stdout]
+-O: Detecção do sistema operacional para fuzzing inteligente (nmap)
+-s: Detecção da versão do serviço (banner grabber)
+-d: Profundidade das travessias (por exemplo, profundidade 3 é igual a ../../../; padrão: 6)
+-u: URL com a parte a ser fuzzed marcada como TRAVERSAL (por exemplo, http://foo:8080/id.php?x=TRAVERSAL&y=31337)
+-p: Nome do arquivo com o payload a ser enviado e a parte a ser fuzzed marcada com a palavra-chave TRAVERSAL
+-t: Tempo em milissegundos entre cada teste (padrão: 300 (.3 segundos))
+-X: Use o Algoritmo de Bissecção para detectar a profundidade exata assim que uma vulnerabilidade for encontrada
+-e: Extensão do arquivo anexada no final de cada string fuzz (por exemplo, ".php", ".jpg", ".inc")
+-M: Método HTTP a ser usado ao usar o módulo 'http' [GET | POST | HEAD | COPY | MOVE] (padrão: GET)
+-r: Nome do arquivo do relatório (padrão: 'HOST_MM-DD-YYYY_HOUR-MIN.txt')
+-b: Interromper após a primeira vulnerabilidade ser encontrada
+
+Como é bem simples é preferível que você monte seu comando ou use o padrão.\n""")
+
+    command = int(input("Comando: "))
+    url = str(input("Digite a url completa faltando o valor do parametro."))
+
+    if command == 1:
+        print(f"Comando executado: dotdotpwn -k root -m http-url -u {url}=TRAVERSAL")
+        subprocess.call(f"dotdotpwn -k root -m http-url -u {url}=TRAVERSAL", shell=True)
+    elif command == 2:
+        shell = str(input("Digite seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+    else:
+        pass
+
+
+def jsql():
+    print("""
+ ,  ,-.   ,-.   ,   
+ | (   ` /   \\  |   
+ |  `-.  |   |  |   
+ | .   ) \\   X  |   
+-'  `-'   `-' ` `--'
+
+O jsql é uma ferramenta que tem diversas funções de scan mas é que é focada
+príncipalmente no sql injection.Tendo também outras funções e sendo bem útil!\n""")
+
+    subprocess.call("jsql", shell=True)
