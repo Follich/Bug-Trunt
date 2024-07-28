@@ -1,1 +1,2 @@
-import Information.main_information
+import Information.main_info
+

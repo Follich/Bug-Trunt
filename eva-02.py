@@ -1,8 +1,8 @@
-import Options
+import Banners
 import os
 
 while True:
-    Options.main_options.banner()
+    print(Banners.main_ban.banner_main)
 
     domain = str(input("Digite o dominio: "))
     block = int(input("Digite o bloco que deseja usar: "))
@@ -11,38 +11,40 @@ while True:
     # O código abaixo é do bloco "Information"
     if block == 1:
         while stop == 1:
-            if block == 1:
-                import Information
+            import Information
 
-                os.system("clear")
-                Options.main_options.banner_01()
+            os.system("clear")
+            print(Banners.main_ban.banner_info)
 
+            # Aqui é onde ele irá chamar as ferramentas.
+            try:
                 tool = int(input("Informe o número da ferramenta: "))
+                os.system("clear")
 
                 if tool == 1:
-                    Information.main_information.whois(domain)
+                    Information.main_info.whois(domain)
                 elif tool == 2:
-                    Information.main_information.host(domain)
+                    Information.main_info.host(domain)
                 elif tool == 3:
-                    Information.main_information.censys(domain)
+                    Information.main_info.censys(domain)
                 elif tool == 4:
-                    Information.main_information.dnsenum(domain)
+                    Information.main_info.dnsenum(domain)
                 elif tool == 5:
-                    Information.main_information.dnsrecon(domain)
+                    Information.main_info.dnsrecon(domain)
                 elif tool == 5:
-                    Information.main_information.nmap(domain)
+                    Information.main_info.nmap(domain)
                 elif tool == 6:
-                    Information.main_information.waf(domain)
-                else:
-                    print("Ferramenta não expecificada!")
+                    Information.main_info.waf(domain)
+            except:
+                print("Ferramenta não expecificada!")
 
-                num = int(input("Deseja continuar?[0/1] "))
-                stop += num
+            num = int(input("Deseja continuar?[0/1] "))
+            stop += num
 
-                if stop:
-                    pass
-                else:
-                    break
+            if stop:
+                pass
+            else:
+                break
 
     # O código abaixo é do bloco "Scanners"
     elif block == 2:
@@ -50,22 +52,52 @@ while True:
             import Scanners
 
             os.system("clear")
-            Options.main_options.banner_02()
+            print(Banners.main_ban.banner_scan)
 
-            tool = int(input("Informe o número da ferramenta: "))
-            os.system("clear")
+            # Aqui é onde ele irá chamar as ferramentas.
+            try:
+                tool = int(input("Informe o número da ferramenta: "))
+                os.system("clear")
 
-            if tool == 1:
-                Scanners.main_scann.burp_suit()
-            elif tool == 2:
-                Scanners.main_scann.wp_scan(domain)
-            elif tool == 3:
-                Scanners.main_scann.metasploit()
-            elif tool == 4:
-                Scanners.main_scann.dotdotpwn()
-            elif tool == 5:
-                Scanners.main_scann.jsql()
+                if tool == 1:
+                    Scanners.main_scan.burp_suit()
+                elif tool == 2:
+                    Scanners.main_scan.wp_scan(domain)
+                elif tool == 3:
+                    Scanners.main_scan.metasploit()
+                elif tool == 4:
+                    Scanners.main_scan.dotdotpwn()
+                elif tool == 5:
+                    Scanners.main_scan.jsql()
+            except:
+                print("Ferramenta não expecificada!")
+
+            num = int(input("Deseja continuar?[0/1] "))
+            stop += num
+
+            if stop:
+                pass
             else:
+                break
+
+    # O código abaixo é do bloco "Enumeration"
+    elif block == 3:
+        while stop:
+            import Enumeration
+
+            os.system("clear")
+            print(Banners.main_ban.banner_main)
+
+            # Aqui é onde ele irá chamar as ferramentas.
+            try:
+                tool = int(input("Informe o número da ferramenta: "))
+                os.system("clear")
+
+                if tool == 1:
+                    pass
+                elif tool == 2:
+                    pass
+            except:
                 print("Ferramenta não expecificada!")
 
             num = int(input("Deseja continuar?[0/1] "))
