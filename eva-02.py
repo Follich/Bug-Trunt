@@ -2,22 +2,22 @@ import Banners
 import os
 
 while True:
-    print(Banners.main_ban.banner_main)
-
-    domain = str(input("Digite o dominio: "))
-    block = int(input("Digite o bloco que deseja usar: "))
     stop = int(1)
+    try:
+        print(Banners.main_ban.banner_main)
 
-    # O código abaixo é do bloco "Information"
-    if block == 1:
-        while stop == 1:
-            import Information
+        domain = str(input("Digite o dominio: "))
+        block = int(input("Digite o bloco que deseja usar: "))
 
-            os.system("clear")
-            print(Banners.main_ban.banner_info)
+        # O código abaixo é do bloco "Information"
+        if block == 1:
+            while stop == 1:
+                import Information
 
-            # Aqui é onde ele irá chamar as ferramentas.
-            try:
+                os.system("clear")
+                print(Banners.main_ban.banner_info)
+
+                # Aqui é onde ele irá chamar as ferramentas.
                 tool = int(input("Informe o número da ferramenta: "))
                 os.system("clear")
 
@@ -35,27 +35,23 @@ while True:
                     Information.main_info.nmap(domain)
                 elif tool == 6:
                     Information.main_info.waf(domain)
-            except:
-                print("Ferramenta não expecificada!")
+                num = int(input("Deseja continuar?[0/1] "))
+                stop += num
 
-            num = int(input("Deseja continuar?[0/1] "))
-            stop += num
+                if stop:
+                    pass
+                else:
+                    break
 
-            if stop:
-                pass
-            else:
-                break
+        # O código abaixo é do bloco "Scanners"
+        elif block == 2:
+            while stop == 1:
+                import Scanners
 
-    # O código abaixo é do bloco "Scanners"
-    elif block == 2:
-        while stop == 1:
-            import Scanners
+                os.system("clear")
+                print(Banners.main_ban.banner_scan)
 
-            os.system("clear")
-            print(Banners.main_ban.banner_scan)
-
-            # Aqui é onde ele irá chamar as ferramentas.
-            try:
+                # Aqui é onde ele irá chamar as ferramentas.
                 tool = int(input("Informe o número da ferramenta: "))
                 os.system("clear")
 
@@ -69,41 +65,47 @@ while True:
                     Scanners.main_scan.dotdotpwn()
                 elif tool == 5:
                     Scanners.main_scan.jsql()
-            except:
-                print("Ferramenta não expecificada!")
 
-            num = int(input("Deseja continuar?[0/1] "))
-            stop += num
+                num = int(input("Deseja continuar?[0/1] "))
+                stop += num
 
-            if stop:
-                pass
-            else:
-                break
+                if stop:
+                    pass
+                else:
+                    break
 
-    # O código abaixo é do bloco "Enumeration"
-    elif block == 3:
-        while stop:
-            import Enumeration
+        # O código abaixo é do bloco "Enumeration"
+        elif block == 3:
+            while stop:
+                import Enumeration
 
-            os.system("clear")
-            print(Banners.main_ban.banner_main)
+                os.system("clear")
+                print(Banners.main_ban.banner_main)
 
-            # Aqui é onde ele irá chamar as ferramentas.
-            try:
+                # Aqui é onde ele irá chamar as ferramentas.
+
                 tool = int(input("Informe o número da ferramenta: "))
                 os.system("clear")
 
                 if tool == 1:
-                    pass
+                    Enumeration.main_enum.gf(domain)
                 elif tool == 2:
                     pass
-            except:
-                print("Ferramenta não expecificada!")
 
-            num = int(input("Deseja continuar?[0/1] "))
-            stop += num
+                num = int(input("Deseja continuar?[0/1] "))
+                stop += num
 
-            if stop:
-                pass
-            else:
-                break
+                if stop:
+                    pass
+                else:
+                    break
+    except:
+        print("\nErro de internet: 500 Network Error\nTente novamente mais tarde. (kk brinqs :3)")
+        num = int(input("Deseja continuar?[0/1] "))
+        stop += num
+
+        if stop:
+            os.system("clear")
+            pass
+        else:
+            break
