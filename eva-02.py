@@ -90,7 +90,11 @@ while True:
                 if tool == 1:
                     Enumeration.main_enum.gf(domain)
                 elif tool == 2:
-                    pass
+                    Enumeration.main_enum.unfurl(domain)
+                elif tool == 3:
+                    Enumeration.main_enum.paramspider(domain)
+                elif tool == 4:
+                    Enumeration.main_enum.arjun(domain)
 
                 num = int(input("Deseja continuar?[0/1] "))
                 stop += num

@@ -1,6 +1,81 @@
 import subprocess
 
 
+def gauplus(domain):
+    print("""
+
+ .oOOOo.                       o             
+.O     o                      O              
+o                             o              
+O                             O              
+O   .oOOo .oOoO' O   o  .oOo. o  O   o  .oOo 
+o.      O O   o  o   O  O   o O  o   O  `Ooo.
+ O.    oO o   O  O   o  o   O o  O   o      O
+  `OooO'  `OoO'o `OoO'o oOoO' Oo `OoO'o `OoO'
+                        O                    
+                        o' 
+
+Comandos: 
+
+[1] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew 
+[2] Monte seu comando:
+
+-b string: extensões para pular, ex: ttf,woff,svg,png,jpg
+-json: escreve a saída como json
+-o string: nome do arquivo para escrever os resultados
+-p string: proxy HTTP para usar
+-providers string:  provedores para buscar URLs (padrão "wayback,otx,commoncrawl")
+-random-agent: usa user-agent aleatório
+-subs: inclui subdomínios do domínio de destino
+-t int: quantidade de workers paralelos (padrão 5)
+-v habilita o modo verbose\n""")
+
+    command = int(input("Comando: "))
+    if command == 1:
+        print(
+            f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew",
+                        shell=True)
+    elif command == 2:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def waybackurl(domain):
+    print("""
+.::        .::                   .::                       .::     
+.::        .::                   .::                       .::     
+.::   .:   .::   .::    .::   .::.::         .::       .:::.::  .::
+.::  .::   .:: .::  .::  .:: .:: .:: .::   .::  .::  .::   .:: .:: 
+.:: .: .:: .::.::   .::    .:::  .::   .::.::   .:: .::    .:.::   
+.: .:    .::::.::   .::     .::  .::   .::.::   .::  .::   .:: .:: 
+.::        .::  .:: .:::   .::   .:: .::    .:: .:::   .:::.::  .::
+                         .::
+
+O waybackurl é uma ferramenta que busca por subdiretórios dentro do web archive.
+
+[0] Pré-pronto: echo \"domain\" | waybackurls -dates | anew
+[1]-dates: mostra a data da busca na primeira coluna
+[2]-get-versions: lista URLs para versões rastreadas de URL(s) de entrada
+[3]-no-subs: não inclui subdomínios do domínio de destino
+[4] Monte seu comando\n""")
+    command = int(input("Comando: "))
+    if command == 1 or command == 2:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew")
+        subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew", shell=True)
+    elif command == 3:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls -get-versions | anew")
+        subprocess.call(f"echo \"{domain}\" | waybackurls -get-versions | anew", shell=True)
+    elif command == 4:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls -no-subs | anew")
+        subprocess.call(f"echo \"{domain}\" | waybackurls -no-subs | anew", shell=True)
+    elif command == 5:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
 def feroxbuster(domain):
     print("""
  _____                    ____            _            
@@ -137,3 +212,4 @@ Comandos:
     elif command == 7:
         shell = str(input("Shell: "))
         subprocess.call(f"{shell}", shell=True)
+

@@ -19,4 +19,31 @@ mv /root/.gf/Gf-Patterns/* /root/.gf
 rm -rf Gf-Patterns
 echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
 cp -r $GOPATH/src/github.com/tomnomnom/gf/examples ~/.gf
+
+[?] Unfurl:
+
+go install github.com/tomnomnom/unfurl@latest
+mv /root/go/bin/unfurl /usr/bin 
+
+[?] ParamSpider:
+
+git clone https://github.com/devanshbatham/paramspider
+cd paramspider
+pip install .
+cd .. 
+rm -rf paramspider
+
+[?] Arjun:
+
+pip3 install arjun
+
+[?] Gauplus:
+
+go install github.com/bp0lr/gauplus@latest
+mv /root/go/bin/gauplus /usr/bin
+
+[?] Waybackurls:
+
+go install github.com/tomnomnom/waybackurls@latest
+mv /root/go/bin/waybackurls /usr/bin
 """)
