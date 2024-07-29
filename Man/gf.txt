@@ -1,0 +1,6 @@
+  -dump
+        imprime o comando grep em vez de executá-lo
+  -list
+        lista os padrões disponíveis
+  -save
+        salva um padrão (por exemplo: gf -save pat-name -Hnri 'search-pattern')

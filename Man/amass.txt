@@ -1,0 +1,19 @@
+Usage: amass intel|enum [options]
+
+-h -help  Mostra a mensagem de uso do programa
+-version  Imprime o número da versão deste binário Amass
+
+
+Subcommands:
+
+amass intel - Descubra alvos para enumerações
+amass enum - Execute enumerações e mapeamento de rede
+
+The user's guide can be found here:
+https://github.com/owasp-amass/amass/blob/master/doc/user_guide.md
+
+An example configuration file can be found here:
+https://github.com/owasp-amass/amass/blob/master/examples/config.yaml
+
+The Amass tutorial can be found here:
+https://github.com/owasp-amass/amass/blob/master/doc/tutorial.md

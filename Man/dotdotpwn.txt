@@ -1,0 +1,47 @@
+#################################################################################
+#                                                                               #
+#  CubilFelino                                                       Chatsubo   #
+#  Security Research Lab              and            [(in)Security Dark] Labs   #
+#  chr1x.sectester.net                             chatsubo-labs.blogspot.com   #
+#                                                                               #
+#                               pr0udly present:                                #
+#                                                                               #
+#  ________            __  ________            __  __________                   #
+#  \______ \    ____ _/  |_\______ \    ____ _/  |_\______   \__  _  __ ____    #
+#   |    |  \  /  _ \\   __\|    |  \  /  _ \\   __\|     ___/\ \/ \/ //    \   #
+#   |    `   \(  <_> )|  |  |    `   \(  <_> )|  |  |    |     \     /|   |  \  #
+#  /_______  / \____/ |__| /_______  / \____/ |__|  |____|      \/\_/ |___|  /  #
+#          \/                      \/                                      \/   #
+#                              - DotDotPwn v3.0.2 -                             #
+#                         The Directory Traversal Fuzzer                        #
+#                         http://dotdotpwn.sectester.net                        #
+#                            dotdotpwn@sectester.net                            #
+#                                                                               #
+#                               by chr1x & nitr0us                              #
+#################################################################################
+
+Usage: ./dotdotpwn.pl -m <module> -h <host> [OPTIONS]
+	Opções disponíveis:
+-m Módulo [http | http-url | ftp | tftp | payload | stdout]
+-h Nome do host
+-O Detecção do sistema operacional para fuzzing inteligente (nmap)
+-o Tipo de sistema operacional se conhecido ("windows", "unix" ou "genérico")
+-s Detecção da versão do serviço (banner grabber)
+-d Profundidade das travessias (por exemplo, profundidade 3 é igual a ../../../; padrão: 6)
+-f Nome de arquivo específico (por exemplo, /etc/motd; padrão: de acordo com o sistema operacional detectado, padrões em TraversalEngine.pm)
+-E Adicionar @Extra_files em TraversalEngine.pm (por exemplo, web.config, httpd.conf, etc.)
+-S Usar SSL para HTTP e módulo Payload (não é necessário para http-url, use uma url https:// em vez disso)
+-u URL com a parte a ser fuzzed marcada como TRAVERSAL (por exemplo, http://foo:8080/id.php?x=TRAVERSAL&y=31337)
+-k Padrão de texto para corresponder na resposta (http-url e módulos de payload - por exemplo, "root:" se tentar /etc/passwd)
+-p Nome do arquivo com o payload a ser enviado e a parte a ser fuzzed marcada com a palavra-chave TRAVERSAL
+-x Porta para conectar (padrão: HTTP=80; FTP=21; TFTP=69)
+-t Tempo em milissegundos entre cada teste (padrão: 300 (.3 segundos))
+-X Use o Algoritmo de Bissecção para detectar a profundidade exata assim que uma vulnerabilidade for encontrada
+-e Extensão do arquivo anexada no final de cada string fuzz (por exemplo, ".php", ".jpg", ".inc")
+-U Nome de usuário (padrão: 'anonymous')
+-P Senha (padrão: 'dot@dot.pwn')
+-M Método HTTP a ser usado ao usar o módulo 'http' [GET | POST | HEAD | COPY | MOVE] (padrão: GET)
+-r Nome do arquivo do relatório (padrão: 'HOST_MM-DD-YYYY_HOUR-MIN.txt')
+-b Interromper após a primeira vulnerabilidade ser encontrada
+-q Modo silencioso (não imprime cada tentativa)
+-C Continuar se nenhum dado foi recebido do host

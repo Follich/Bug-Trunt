@@ -1,0 +1,155 @@
+Uso:
+httpx [flags]
+
+Flags:
+ENTRADA:
+-l, -list string arquivo de entrada contendo lista de hosts para processar
+-rr, -request string arquivo contendo solicitação bruta
+-u, -target string[] host(s) de destino de entrada para sondar
+
+SONDA:
+-sc, -status-code exibe resposta status-code
+-cl, -content-length exibe resposta content-length
+-ct, -content-type exibe resposta content-type
+-location exibe resposta redirecionar local
+-favicon exibe hash mmh3 para arquivo '/favicon.ico'
+-hash string exibe resposta hash do corpo (compatível: md5,mmh3,simhash,sha1,sha256,sha512)
+-jarm exibe jarm fingerprint hash
+-rt, -response-time exibe resposta tempo
+-lc, -line-count exibe resposta corpo contagem de linhas
+-wc, -word-count exibe resposta corpo contagem de palavras
+-title exibe página título
+-bp, -body-preview exibe os primeiros N caracteres do corpo da resposta (padrão 100)
+-server, -web-server exibe o nome do servidor
+-td, -tech-detect exibe a tecnologia em uso com base no conjunto de dados wappalyzer
+-method exibe o método de solicitação http
+-websocket exibe o servidor usando websocket
+-ip exibe o ip do host
+-cname exibe o cname do host
+-extract-fqdn, -efqdn obtém o domínio e os subdomínios do corpo da resposta e do cabeçalho na saída jsonl/csv
+-asn exibe as informações do host asn
+-cdn exibe o cdn/waf em uso (padrão true)
+-probe exibe o status da sonda
+
+HEADLESS:
+-ss, -screenshot habilita o salvamento da captura de tela da página usando o navegador headless
+-system-chrome habilita o uso do chrome instalado local para captura de tela
+-ho, -headless-options string[] inicia o chrome headless com opções adicionais
+-esb, -exclude-screenshot-bytes habilita a exclusão de bytes da captura de tela do json saída
+-ehb, -exclude-headless-body habilita a exclusão do cabeçalho headless da saída json
+-st, -screenshot-timeout int define o tempo limite para captura de tela em segundos (padrão 10)
+
+MATCHERS:
+-mc, -match-code string corresponde à resposta com o código de status especificado (-mc 200,302)
+-ml, -match-length string corresponde à resposta com o comprimento do conteúdo especificado (-ml 100,102)
+-mlc, -match-line-count string corresponde ao corpo da resposta com a contagem de linhas especificada (-mlc 423,532)
+-mwc, -match-word-count string corresponde ao corpo da resposta com a contagem de palavras especificada (-mwc 43,55)
+-mfc, -match-favicon string[] corresponde à resposta com o hash do favicon especificado (-mfc 1494302000)
+-ms, -match-string string[] corresponde à resposta com a string especificada (-ms admin)
+-mr, -match-regex string[] corresponde à resposta com regex especificado (-mr admin)
+-mcdn, -match-cdn string[] corresponde ao host com o provedor cdn especificado (fastly, google, cloudfront)
+-mrt, -match-response-time string corresponde à resposta com o tempo de resposta especificado em segundos (-mrt '< 1')
+-mdc, -match-condition string corresponde à resposta com a condição de expressão dsl
+
+EXTRATOR:
+-er, -extract-regex string[] exibe o conteúdo da resposta com regex correspondente
+-ep, -extract-preset string[] exibe o conteúdo da resposta correspondente a um regex predefinido (url, ipv4, e-mail)
+
+FILTROS:
+-fc, -filter-code string filtra a resposta com o código de status especificado (-fc 403,401)
+-fep, -filter-error-page filtra a resposta com detecção de página de erro baseada em ML
+-fl, -filter-length string filtra a resposta com comprimento de conteúdo especificado (-fl 23,33)
+-flc, -filter-line-count string filtrar corpo de resposta com contagem de linhas especificada (-flc 423,532)
+-fwc, -filter-word-count string filtrar corpo de resposta com contagem de palavras especificada (-fwc 423,532)
+-ffc, -filter-favicon string[] filtrar resposta com hash de favicon especificado (-ffc 1494302000)
+-fs, -filter-string string[] filtrar resposta com string especificada (-fs admin)
+-fe, -filter-regex string[] filtrar resposta com regex especificado (-fe admin)
+-fcdn, -filter-cdn string[] filtrar host com provedor de cdn especificado (fastly, google, cloudfront)
+-frt, -filter-response-time string filtrar resposta com tempo de resposta especificado em segundos (-frt '> 1')
+-fdc, -filter-condition string filtra resposta com condição de expressão dsl
+-strip remove todas as tags em resposta. formatos suportados: html,xml (html padrão)
+
+RATE-LIMIT:
+-t, -threads int número de threads a serem usados ​​(padrão 50)
+-rl, -rate-limit int número máximo de solicitações a serem enviadas por segundo (padrão 150)
+-rlm, -rate-limit-minute int número máximo de solicitações a serem enviadas por minuto
+
+MISCELLANEOUS:
+-pa, -probe-all-ips sonda todos os ips associados ao mesmo host
+-p, -ports string[] portas a serem sondadas (sintaxe nmap: por exemplo http:1,2-10,11,https:80)
+-path string caminho ou lista de caminhos a serem sondados (separados por vírgula, arquivo)
+-tls-probe enviar http
+sondas nos domínios TLS extraídos (dns_name)
+-csp-probe envia sondas http nos domínios CSP extraídos
+-tls-grab executa captura de dados TLS(SSL)
+-pipeline sonda e servidor de exibição com suporte a pipeline HTTP1.1
+-http2 sonda e servidor de exibição com suporte a HTTP2
+-vhost sonda e servidor de exibição com suporte a VHOST
+-ldv, -list-dsl-variables lista chaves de campo de saída json nome que suportam dsl matcher/filter
+
+ATUALIZAÇÃO:
+-up, -update atualiza httpx para a versão mais recente
+-duc, -disable-update-check desabilita verificação automática de atualização httpx
+
+SAÍDA:
+-o, -output string arquivo para gravar resultados de saída
+-oa, -output-all nome do arquivo para gravar resultados de saída em todos os formatos
+-sr, -store-response armazena resposta http no diretório de saída
+-srd, -store-response-dir string armazena resposta http no diretório personalizado
+-ob, -omit-body omite corpo de resposta na saída
+-csv armazena a saída no formato csv
+-csvo, -csv-output-encoding string define a codificação de saída
+-j, -json armazena a saída no formato JSONL(ines)
+-irh, -include-response-header inclui resposta http (cabeçalhos) na saída JSON (somente -json)
+-irr, -include-response inclui solicitação/resposta http (cabeçalhos + corpo) na saída JSON (somente -json)
+-irrb, -include-response-base64 inclui solicitação/resposta http codificada em base64 na saída JSON (somente -json)
+-include-chain inclui cadeia de redirecionamento http na saída JSON (somente -json)
+-store-chain inclui cadeia de redirecionamento http em respostas (somente -sr)
+-svrc, -store-vision-recon-cluster inclui clusters de reconhecimento visual (somente -ss e -sr)
+-pr, -protocol string protocolo a ser usado (desconhecido, http11)
+
+CONFIGURAÇÕES:
+-config string caminho para o arquivo de configuração httpx (padrão $HOME/.config/httpx/config.yaml)
+-auth configure projectdiscovery cloud (pdcp) chave de api (padrão true)
+-r, -resolvers string[] lista de resolvedores personalizados (separados por arquivo ou vírgula)
+-allow string[] lista permitida de IP/CIDR's para processar (separados por arquivo ou vírgula)
+-deny string[] lista negada de IP/CIDR's para processar (separados por arquivo ou vírgula)
+-sni, -sni-name string nome SNI TLS personalizado
+-random-agent habilita o agente de usuário aleatório para usar (padrão true)
+-H, -header string[] cabeçalhos http personalizados para enviar com a solicitação
+-http-proxy, -proxy string proxy http para usar (por exemplo, http://127.0.0.1:8080)
+-unsafe envia solicitações brutas ignorando a normalização golang
+-resume retoma a varredura usando resume.cfg
+-fr, -follow-redirects segue redirecionamentos http
+-maxr, -max-redirects int número máximo de redirecionamentos a seguir por host (padrão 10)
+-fhr, -follow-host-redirects segue redirecionamentos no mesmo host
+-rhsts, -respect-hsts respeita cabeçalhos de resposta HSTS para solicitações de redirecionamento
+-vhost-input obtém uma lista de vhosts como entrada
+-x string métodos de solicitação para sondar, usa 'all' para sondar todos os métodos HTTP
+-body string corpo da postagem para incluir na solicitação http
+-s, -stream modo de fluxo - inicia a elaboração de alvos de entrada sem classificação
+-sd, -skip-dedupe desabilita itens de entrada de dedupe (usado somente com modo de fluxo)
+-ldp, -leave-default-ports deixa portas http/https padrão no cabeçalho do host (por exemplo, http://host:80 - https://host:443
+-ztls usa biblioteca ztls com fallback automático para padrão para tls13
+-no-decode evita decodificação do corpo
+-tlsi, -tls-impersonate habilita cliente experimental hello (ja3) randomização tls
+-no-stdin desabilita processamento Stdin
+-hae, -http-api-endpoint string ponto final experimental da API http
+
+DEBUG:
+-health-check, -hc executa verificação de diagnóstico
+-debug exibe o conteúdo da solicitação/resposta na CLI
+-debug-req exibe o conteúdo da solicitação na CLI
+-debug-resp exibe o conteúdo da resposta na CLI
+-version exibe a versão httpx
+-stats exibe a estatística de varredura
+-profile-mem string arquivo de despejo de perfil de memória httpx opcional
+-silent modo silencioso
+-v, -verbose modo verboso
+-si, -stats-interval int número de segundos de espera entre a exibição de uma atualização de estatísticas (padrão: 5)
+-nc, -no-color desabilita cores na saída cli
+
+OTIMIZAÇÕES:
+-nf, -no-fallback exibe ambos os protocolos sondados (HTTPS e HTTP)
+-nfs, -no-fallback-scheme sonda com esquema de protocolo especificado na entrada
+-maxhr, -max-host-error int max err

@@ -1,0 +1,16 @@
+usar: censys [-h] [-v] {account,asm,config,hnri,search,subdomains,view} ...
+
+positional arguments:
+  {account,asm,config,hnri,search,subdomains,view}
+    account             verificar detalhes da conta e quota do Censys
+    asm                 interagir com o ASM
+    config              configurar as configurações da API de pesquisa do Censys
+    hnri                identificador de risco da rede doméstica
+    search              pesquisa do Censys
+    subdomains          enumerar subdomínios
+    view                visualizar documento
+
+options:
+  -h, --help            esta mensagem de ajuda e sai
+  -v, --version         exibir versão
+

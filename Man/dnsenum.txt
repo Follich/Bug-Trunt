@@ -1,0 +1,112 @@
+DNSENUM(1) Documentação Perl contribuída pelo usuário DNSENUM(1)
+
+NOME
+ dnsenum – script multithread para enumerar informações em um domínio e para
+ descobrir blocos IP não contíguos
+
+VERSÃO
+ dnsenum versão 1.3.1
+
+SINOPSE
+ dnsenum [opções] <domínio> -f dns.txt
+
+DESCRIÇÃO
+ Operações suportadas: nslookup, zonetransfer, google scraping, domínio
+ força bruta (suporte também recursão), whois ip e pesquisas reversas.
+
+ Operações:
+
+ • 1) Obtenha o endereço do host (registro A).
+
+ • 2) Obtenha os servidores de nomes (threaded).
+
+ • 3) Obtenha o registro MX (threaded).
+
+ • 4) Realizar consultas AXFR em servidores de nomes (threaded).
+
+ • 5) Obtenha nomes e subdomínios extras através do google scraping (consulta do google
+ = "-www site:domínio").
+
+ • 6) Subdomínios de força bruta de (OBRIGATÓRIO), também podem executar
+ recursão em subdomínios que possuem registros NS (todos encadeados).
+
+ • 7) Calcule os intervalos de rede IP Classe C a partir dos resultados e execute
+ consultas whois sobre eles (threaded).
+
+ • 8) Realize pesquisas reversas em netranges (classe C ou/e whois
+ netranges)(encadeado).
+
+ • 9) Gravar no arquivo domain_ips.txt resultados de blocos de IP não contíguos.
+
+OPÇÕES
+ A opção de força bruta -f tem prioridade sobre o dns.txt padrão
+
+ OPÇÕES GERAIS:
+ --dnsserver <servidor> Use este servidor DNS para executar todos os A,
+ Consultas NS e MX,
+ as consultas AXFR e PTR são enviadas para
+ os servidores NS do domínio.
+
+ --enum Opção de atalho equivalente a --threads
+ 5 -s 20 -s.
+
+ -h, --help Imprime a mensagem de ajuda.
+
+ --noreverse Ignora as operações de pesquisa reversa.
+ Pesquisas reversas podem levar muito tempo
+ grandes redes.
+
+ --nocolor Desativa a saída ANSIColor.
+ Esta opção destina-se apenas a ser
+ usado em consoles que não suportam
+ saída colorida.
+
+ --private Mostra e salva ips privados no final de
+ o arquivo domínio_ips.txt.
+
+ --subfile <arquivo> Grava todos os subdomínios válidos neste
+ arquivo.
+ Os subdomínios são retirados de NS e MX
+ registros, transferência de zona,
+ raspagem do Google, força bruta e
+ nomes de host de pesquisa reversa.
+
+ -t, --timeout <valor> Os valores de tempo limite tcp e udp em
+ segundos (padrão: 10s).
+
+ --threads <va> O número de threads que irão executar
+ consultas diferentes.
+
+ -v, --verbose Seja detalhado (mostre todo o progresso e
+ todas as mensagens de erro).
+
+ Notas: nem o domínio padrão nem a lista de pesquisa do resolvedor são
+ anexado a domínios que não contêm pontos.
+
+ OPÇÕES DE RASPAGEM DO GOOGLE:
+ Esta função eliminará subdomínios da pesquisa do Google, usando a consulta:
+ -www site:domínio.
+
+ -p, --pages <value> O número de páginas de pesquisa do Google para
+ processo ao raspar nomes,
+ a opção -s deve ser especificada,
+ (padrão: 20 páginas).
+
+ -s, --scrap <valor> O número máximo de subdomínios que
+ será extraído do Google.
+
+ NOTAS: O Google pode bloquear nossas consultas com a detecção de malware. HTTP
+ as opções de proxy para google scraping são carregadas automaticamente do
+ ambiente se os vars http_proxy ou HTTP_PROXY estiverem presentes.
+ "http_proxy=http://127.0.0.1:8118/" ou
+ "HTTP_PROXY=http://127.0.0.1:8118/". Em erros de IO, a mecanização
+ o objeto do navegador chamará automaticamente die.
+
+ OPÇÕES DE FORÇA BRUTA:
+ -f, --file <arquivo> Lê subdomínios deste arquivo para
+ executar força bruta.
+
+ -u, --update <a|g|r|z> Atualize o arquivo especificado com -f
+ alternar com subdomínios válidos.
+
+ -u uma atualização usando todos os resultados.

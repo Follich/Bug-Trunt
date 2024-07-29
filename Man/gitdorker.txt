@@ -1,0 +1,9 @@
+Encontre segredos do GitHub utilizando uma vasta lista de dorks do GitHub e a API de pesquisa do GitHub. O
+propósito desta ferramenta é enumerar usuários, repositórios e arquivos interessantes para fornecer uma
+visão geral fácil de ler de onde uma potencial exposição de informações confidenciais pode residir.
+
+AJUDA: python3 GitDorker.py -h
+
+uso: GitDorker.py [-h] [-d DORKS] [-k KEYWORD] [-q QUERY] [-qf QUERYFILE] [-ri] [-lb] [-pf] [-u USERS] [-uf USERFILE] [-org ORGANIZATION] [-t TOKEN]
+[-tf TOKENFILE] [-e THREADS] [-p] [-o OUTPUT]
+GitDorker.py: erro: arquivo dorks ou palavra-chave ausente

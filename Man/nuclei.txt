@@ -1,0 +1,57 @@
+TARGET:
+-u, -target string[] URLs/hosts de destino para escanear
+-l, -list string caminho para o arquivo contendo uma lista de URLs/hosts de destino para escanear (um por linha)
+-eh, -exclude-hosts string[] hosts para excluir para escanear da lista de entrada (ip, cidr, nome do host)
+-resume string retomar escaneamento usando resume.cfg (o clustering será desabilitado)
+-sa, -scan-all-ips escanear todos os IPs associados ao registro dns
+-iv, -ip-version string[] versão do IP para escanear do nome do host (4,6) - (padrão 4)
+
+TARGET-FORMAT:
+-im, -input-mode string modo do arquivo de entrada (list, burp, jsonl, yaml, openapi, swagger) (padrão "list")
+-ro, -required-only usar somente campos obrigatórios no formato de entrada ao gerar solicitações
+-sfv, -skip-format-validation ignora validação de formato (como vars ausentes) ao analisar arquivo de entrada
+
+TEMPLATES:
+-nt, -new-templates executa apenas novos modelos adicionados na versão mais recente do nuclei-templates
+-ntv, -new-templates-version string[] executa novos modelos adicionados em versão específica
+-as, -automatic-scan varredura automática da web usando tecnologia wappalyzer detecção para mapeamento de tags
+-t, -templates string[] lista de modelos ou diretório de modelos para executar (separados por vírgula, arquivo)
+-turl, -template-url string[] URL do modelo ou lista contendo URLs de modelos para executar (separados por vírgula, arquivo)
+-w, -workflows string[] lista de fluxos de trabalho ou diretório de fluxos de trabalho para executar (separados por vírgula, arquivo)
+-wurl, -workflow-url string[] URL do fluxo de trabalho ou lista contendo URLs de fluxo de trabalho para executar (separados por vírgula, arquivo)
+-validate valida os modelos passados ​​para o nuclei
+-nss, -no-strict-syntax desabilita a verificação de sintaxe estrita em modelos
+-td, -template-display exibe o conteúdo dos modelos
+-tl lista todos os modelos disponíveis
+-tgl lista todas as tags disponíveis
+-sign assina os modelos com a chave privada definida na variável de ambiente NUCLEI_SIGNATURE_PRIVATE_KEY
+-code habilita o carregamento de modelos baseados em protocolo de código
+-dut, -disable-unsigned-templates desabilita a execução de modelos não assinados ou modelos com assinatura incompatível
+
+FILTRAGEM:
+-a, -author string[] modelos para executar com base em autores (separados por vírgula, arquivo)
+-tags string[] modelos para executar com base em tags (separados por vírgula, arquivo)
+-etags, -exclude-tags string[] modelos para excluir com base em tags (separados por vírgula, arquivo)
+-itags, -include-tags string[] tags a serem executadas mesmo se forem excluídas por padrão ou configuração
+-id, -template-id string[] modelos para executar com base em IDs de modelo (separados por vírgula, arquivo, permitir curinga)
+-eid, -exclude-id string[] modelos para excluir com base em IDs de modelo (separados por vírgula, arquivo)
+-it, -include-templates string[] caminho para o arquivo de modelo ou diretório a ser executado, mesmo se eles forem excluídos por padrão ou configuração
+-et, -exclude-templates string[] caminho para o arquivo de modelo ou diretório a ser excluído (separados por vírgula, arquivo)
+-em, -exclude-matchers string[] correspondentes de modelo a serem excluídos no resultado
+-s, -severity value[] modelos para executar com base na gravidade. Valores possíveis: info, baixo, médio, alto, crítico, desconhecido
+-es, -exclude-severity value[] modelos para excluir com base na gravidade. Valores possíveis: info, baixo, médio, alto, crítico, desconhecido
+-pt, -type value[] modelos para executar com base no tipo de protocolo. Valores possíveis: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript
+-ept, -exclude-type value[] modelos para excluir com base no tipo de protocolo. Valores possíveis: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript
+-tc, -template-condition string[] modelos para executar com base na condição de expressão
+
+SAÍDA:
+-o, -output string arquivo de saída para gravar problemas/vulnerabilidades encontrados
+-sresp, -store-resp armazena todas as solicitações/respostas passadas pelos núcleos no diretório de saída
+-srd, -store-resp-dir string armazena todas as solicitações/respostas passadas pelos núcleos no diretório personalizado (padrão "output")
+-silent exibe apenas as descobertas
+-nc, -no-color desabilita a coloração do conteúdo de saída (códigos de escape ANSI)
+-j, -jsonl grava a saída no formato JSONL(ines)
+-irr, -include-rr -omit-raw inclui pares de solicitação/resposta nas saídas JSON, JSONL e Markdown (apenas para descobertas) [USE -omit-raw OBSOLETO] (padrão true)
+-or, -omit-raw omite pares de solicitação/resposta nas saídas JSON, JSONL e Markdown (apenas para descobertas)
+-ot, -omit-template omite o modelo codificado na saída JSON, JSONL
+-nm, -no-meta desabilita a impressão de metadados de resultados

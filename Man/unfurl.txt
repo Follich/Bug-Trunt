@@ -1,0 +1,41 @@
+URLs de formato fornecidas em stdin
+
+Uso:
+unfurl [OPÇÕES] [MODO] [FORMATSTRING]
+
+Opções:
+-u, --unique Somente valores únicos de saída
+-v, --verbose Modo detalhado (erros de análise de URL de saída)
+
+Modos:
+keys     Chaves da string de consulta (uma por linha)
+values   ​​Valores da string de consulta (um por linha)
+keypairs Pares chave=valor da string de consulta (um por linha)
+domains  O nome do host (por exemplo, sub.example.com)
+paths    O caminho da solicitação (por exemplo, /users)
+apexes   O domínio apex (por exemplo, example.com de sub.example.com)
+json     Objetos JSON codificados url/format
+format   Especifica um formato personalizado (veja abaixo)
+
+Diretivas de formato:
+%% Um caractere de porcentagem literal
+%s O esquema de solicitação (por exemplo, https)
+%u As informações do usuário (por exemplo, usuário:senha)
+%d O domínio (por exemplo, sub.exemplo.com)
+%S O subdomínio (por exemplo, sub)
+%r A raiz do domínio (por exemplo, exemplo)
+%t O TLD (por exemplo, com)
+%P A porta (por exemplo, 8080)
+%p O caminho (por exemplo, /users)
+%e A extensão do arquivo do caminho (por exemplo, jpg, html)
+%q A sequência de consulta bruta (por exemplo, a=1&b=2)
+%f O fragmento da página (por exemplo, page-section)
+%@ Insere um @ se as informações do usuário forem especificadas
+%: Insere dois pontos se uma porta for especificada
+%? Insere um ponto de interrogação se uma string de consulta existir
+%# Insere um hash se um fragmento existir
+%a Autoridade (alias para %u%@%d%:%P)
+
+Exemplos:
+cat urls.txt | unfurl keys
+cat urls.txt | unfurl format %s://%d%p?%q

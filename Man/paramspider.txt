@@ -1,0 +1,17 @@
+uso: paramspider [-h] [-d DOMÍNIO] [-l LISTA] [-s] [--proxy PROXY] [-p PLACEHOLDER]
+
+Extração de URLs de cantos escuros de Web Archives
+
+opções:
+-h, --help      
+    mostra esta mensagem de ajuda e sai
+-d DOMÍNIO, --domain DOMÍNIO
+    Nome de domínio para buscar URLs relacionadas.
+-l LISTA, --list LISTA 
+    Arquivo contendo uma lista de nomes de domínio.
+-s, --stream
+    Transmite URLs no terminal.
+--proxy PROXY 
+    Define o endereço de proxy para solicitações da web.
+-p PLACEHOLDER, --placeholder PLACEHOLDER
+    espaço reservado para valores de parâmetros

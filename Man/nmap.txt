@@ -1,0 +1,96 @@
+Nmap 7.94SVN ( https://nmap.org )
+Uso: nmap [Tipo(s) de verificação] [Opções] {especificação de destino}
+ESPECIFICAÇÃO DO ALVO:
+ Pode passar nomes de host, endereços IP, redes, etc.
+ Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+ -iL <inputfilename>: entrada da lista de hosts/redes
+ -iR <num hosts>: Escolha alvos aleatórios
+ --exclude <host1[,host2][,host3],...>: Exclui hosts/redes
+ --excludefile <exclude_file>: Excluir lista do arquivo
+DESCOBERTA DO ANFITRIÃO:
+ -sL: List Scan - simplesmente lista os alvos a serem verificados
+ -sn: Ping Scan - desabilita a varredura de porta
+ -Pn: trata todos os hosts como online – ignora a descoberta do host
+ -PS/PA/PU/PY[portlist]: descoberta de TCP SYN/ACK, UDP ou SCTP para determinadas portas
+ -PE/PP/PM: sondagens de descoberta de solicitação de eco ICMP, carimbo de data/hora e máscara de rede
+ -PO[lista de protocolos]: Ping do protocolo IP
+ -n/-R: Nunca faça resolução de DNS/Sempre resolva [padrão: às vezes]
+ --dns-servers <serv1[,serv2],...>: Especifique servidores DNS personalizados
+ --system-dns: Use o resolvedor DNS do sistema operacional
+ --traceroute: rastreia o caminho do salto para cada host
+TÉCNICAS DE DIGITALIZAÇÃO:
+ -sS/sT/sA/sW/sM: varreduras TCP SYN/Connect()/ACK/Window/Maimon
+ -sU: verificação UDP
+ -sN/sF/sX: varreduras TCP Null, FIN e Xmas
+ --scanflags <flags>: Personaliza sinalizadores de varredura TCP
+ -sI <host zumbi[:probeport]>: verificação ociosa
+ -sY/sZ: verificações SCTP INIT/COOKIE-ECHO
+ -sO: verificação do protocolo IP
+ -b <host de retransmissão de FTP>: verificação de rejeição de FTP
+ESPECIFICAÇÃO DA PORTA E ORDEM DE VARREDURA:
+ -p <intervalos de portas>: verifica apenas as portas especificadas
+ Ex: -p22; -p1-65535; -p U:53.111.137,T:21-25.80.139.8080,S:9
+ --exclude-ports <intervalos de portas>: exclui as portas especificadas da verificação
+ -F: Modo rápido - verifica menos portas do que a verificação padrão
+ -r: Verifica as portas sequencialmente - não randomize
+ --top-ports <número>: Verifica <número> portas mais comuns
+ --port-ratio <ratio>: Verifica portas mais comuns que <ratio>
+DETECÇÃO DE SERVIÇO/VERSÃO:
+ -sV: investiga portas abertas para determinar informações de serviço/versão
+ --version-intensity <nível>: Defina de 0 (leve) a 9 (tente todas as sondas)
+ --version-light: Limite para testes mais prováveis ​​(intensidade 2)
+ --version-all: Experimente todas as sondagens (intensidade 9)
+ --version-trace: mostra atividade detalhada de verificação de versão (para depuração)
+VERIFICAÇÃO DE SCRIPT:
+ -sC: equivalente a --script=default
+ --script=<Lua scripts>: <Lua scripts> é uma lista separada por vírgulas de
+ diretórios, arquivos de script ou categorias de script
+ --script-args=<n1=v1,[n2=v2,...]>: fornece argumentos para scripts
+ --script-args-file=filename: fornece argumentos de script NSE em um arquivo
+ --script-trace: Mostra todos os dados enviados e recebidos
+ --script-updatedb: Atualize o banco de dados de scripts.
+ --script-help=<Lua scripts>: Mostra ajuda sobre scripts.
+ <Lua scripts> é uma lista separada por vírgulas de arquivos de script ou
+ categorias de script.
+DETECÇÃO DE SO:
+ -O: Ativa a detecção do sistema operacional
+ --osscan-limit: Limita a detecção do sistema operacional a alvos promissores
+ --osscan-guess: Adivinhe o sistema operacional de forma mais agressiva
+TEMPO E DESEMPENHO:
+ As opções que levam <tempo> estão em segundos ou acrescentam 'ms' (milissegundos),
+ 's' (segundos), 'm' (minutos) ou 'h' (horas) para o valor (por exemplo, 30m).
+ -T<0-5>: Definir modelo de tempo (quanto maior, mais rápido)
+ --min-hostgroup/max-hostgroup <tamanho>: tamanhos de grupos de varredura de host paralelo
+ --min-parallelism/max-parallelism <numprobes>: Paralelização da sonda
+ --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <tempo>: especifica
+ tempo de ida e volta da sonda.
+ --max-retries <tries>: Limita o número de retransmissões de sondagem de varredura de porta.
+ --host-timeout <time>: Desistir do alvo depois de tanto tempo
+ --scan-delay/--max-scan-delay <tempo>: ajusta o atraso entre as sondas
+ --min-rate <número>: envia pacotes não mais lento que <número> por segundo
+ --max-rate <número>: envia pacotes não mais rápido que <número> por segundo
+EVASÃO E SPOOFING DE FIREWALL/IDS:
+ -f; --mtu <val>: pacotes de fragmentos (opcionalmente com MTU fornecido)
+ -D <decoy1,decoy2[,ME],...>: encobre uma varredura com iscas
+ -S <IP_Address>: Endereço de origem falsificado
+ -e <iface>: usa interface especificada
+ -g/--source-port <portnum>: Use o número de porta fornecido
+ --proxies <url1,[url2],...>: retransmite conexões por meio de proxies HTTP/SOCKS4
+ --data <sequência hexadecimal>: anexa uma carga personalizada aos pacotes enviados
+ --data-string <string>: Anexa uma string ASCII personalizada aos pacotes enviados
+ --data-length <num>: Acrescenta dados aleatórios aos pacotes enviados
+ --ip-options <options>: Envia pacotes com opções de IP especificadas
+ --ttl <val>: Definir campo de tempo de vida do IP
+ --spoof-mac <endereço MAC/prefixo/nome do fornecedor>: falsifica seu endereço MAC
+ --badsum: Envia pacotes com uma soma de verificação TCP/UDP/SCTP falsa
+SAÍDA:
+ -oN/-oX/-oS/-oG <arquivo>: verificação de saída em normal, XML, s|<rIpt kIddi3,
+ e formato Grepable, respectivamente, para o nome de arquivo fornecido.
+ -oA <basename>: Saída nos três formatos principais de uma só vez
+ -v: Aumenta o nível de verbosidade (use -vv ou mais para maior efeito)
+ -d: Aumenta o nível de depuração (use -dd ou mais para maior efeito)
+ --reason: exibe o motivo pelo qual uma porta está em um estado específico
+ --open: Mostra apenas portas abertas (ou possivelmente abertas)
+ --packet-trace: Mostra todos os pacotes enviados e recebidos
+ --iflist: Imprime interfaces e rotas de host (para depuração)
+ --ap

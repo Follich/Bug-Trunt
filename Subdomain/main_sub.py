@@ -65,6 +65,93 @@ Opções:
     subprocess.call(f"python3 /usr/bin/github-search/{file_choosen} -t {token} -d {domain}", shell=True)
 
 
+def git_dorker(domain):
+    print("""
+  /$$$$$$  /$$   /$$           /$$$$$$$                      /$$
+ /$$__  $$|__/  | $$          | $$__  $$                    | $$
+| $$  \\__/ /$$ /$$$$$$        | $$  \\ $$  /$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$   /$$$$$$
+| $$ /$$$$| $$|_  $$_/        | $$  | $$ /$$__  $$ /$$__  $$| $$  /$$/ /$$__  $$ /$$__  $$
+| $$|_  $$| $$  | $$          | $$  | $$| $$  \\ $$| $$  \\__/| $$$$$$/ | $$$$$$$$| $$  \\__/
+| $$  \\ $$| $$  | $$ /$$      | $$  | $$| $$  | $$| $$      | $$_  $$ | $$_____/| $$
+|  $$$$$$/| $$  |  $$$$/      | $$$$$$$/|  $$$$$$/| $$      | $$ \\  $$|  $$$$$$$| $$
+ \\______/ |__/   \\___/        |_______/  \\______/ |__/      |__/  \\__/ \\_______/|__/
+
+"GitDorker é uma ferramenta que utiliza a API de pesquisa do GitHub e uma extensa lista do GitHub que compilei
+de várias fontes para fornecer uma visão geral das informações confidenciais armazenadas no github com base em
+uma consulta de pesquisa."
+
+/usr/bin/GitDorker/Dorks/medium_dorks.txt
+/usr/bin/GitDorker/GitDorker.py
+
+Comandos:
+
+[0] Pré-pronto: python3 /usr/bin/GitDorker/GitDorker.py -tf <token> -p -d <dorks> -o <domain>
+[1] Monte seu comando. 
+ 
+-d DORKS: Arquivo dorks (obrigatório)
+-k PALAVRA-CHAVE: Pesquisa em uma palavra-chave em vez de uma lista de dorks
+-q CONSULTA: Consulta (obrigatório ou -q)
+-ri: Classifica os resultados das consultas do mais recente primeiro
+-uf USERFILE: Arquivo contendo usuários separados por nova linha
+-org ORGANIZATION: Nome do GitHub da organização (obrigatório ou -org se a consulta não for especificada)
+-e THREADS: Máximo de n threads, padrão 1
+-p: Exibir Apenas resultados positivos
+-o OUTPUT: Saída para nome do arquivo (obrigatório ou -o)\n""")
+    command = int(input("Comando: "))
+
+    if command == 0:
+        token = str(input("Informe seu token: "))
+        print(f"Comando executado: python3 /usr/bin/GitDorker/GitDorker.py -tf {token} -p -d /usr/bin/GitDorker/Dorks/medium_dorks.txt -o {domain}")
+        subprocess.call(f"python3 /usr/bin/GitDorker/GitDorker.py -tf {token} -p -d /usr/bin/GitDorker/Dorks/medium_dorks.txt -o {domain}", shell=True)
+    elif command == 1:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def ffuf(domain):
+    print(f"""
+ ______  ______  _    _   ______
+| |     | |     | |  | | | |    
+| |---- | |---- | |  | | | |----
+|_|     |_|     \\_|__|_| |_|   
+
+Um web fuzzer rápido escrito em Go.
+
+Comandos:
+
+[0] Pré-pronto: ffuf -u <domain> -w <wordlist> -t 2 -json -p 0,1 -mc 200
+[1] Monte seu comando: 
+
+-mc: Corresponde aos códigos de status HTTP ou "all" para tudo. (padrão: 200-299,301,302,307,401,403,405,500)
+-ac: Calibrar automaticamente as opções de filtragem (padrão: false)
+-acc: String de calibração automática personalizada. Pode ser usada várias vezes. Implica -ac
+-ach: Autocalibração por host (padrão: false)
+-ack: Palavra-chave de calibração automática (padrão: FUZZ)
+-acs: Estratégias de calibração automática personalizadas. Podem ser usadas várias vezes. Implica -ac
+-config: Carregar a configuração de um arquivo
+-json: Saída JSON, imprimindo registros JSON delimitados por nova linha (padrão: false)
+-maxtime: Tempo máximo de execução em segundos para todo o processo. (padrão: 0)
+-maxtime-job: Tempo máximo de execução em segundos por trabalho. (padrão: 0)
+-p: Segundos de `atraso` entre solicitações ou um intervalo de atraso aleatório. Por exemplo "0,1" ou "0,1-2,0"
+-rate: Taxa de solicitações por segundo (padrão: 0)
+-search: Procura por uma carga útil FFUFHASH do histórico ffuf
+-sf: Para quando > 95% das respostas retornam 403 (padrão: falso)
+-t: Número de threads simultâneos. (padrão: 40)\n""")
+    command = int(input("Comando: "))
+
+    if command == 0:
+        print(f"Comando executado: ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t 2 -json -p 0,1 -mc 200")
+        subprocess.call(f"ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t 2 -json -p 0,1 -mc 200", shell=True)
+    elif command == 1:
+        print("Algumas listas para você usar: ")
+        subprocess.call(f"wordlists", shell=True)
+
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
 def gauplus(domain):
     print("""
 
@@ -275,5 +362,125 @@ Comandos:
 
     elif command == 7:
         shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def httpx():
+    print("""
+    __    __  __       _  __
+   / /_  / /_/ /_____ | |/ /
+  / __ \\/ __/ __/ __ \\|   /
+ / / / / /_/ /_/ /_/ /   |
+/_/ /_/\\__/\\__/ .___/_/|_|
+             /_/
+
+httpx é um kit de ferramentas HTTP rápido e multifuncional que permite executar vários testes 
+usando a biblioteca retryablehttp. Ele foi projetado para manter a confiabilidade dos resultados
+com um número maior de threads.
+
+Comandos: 
+[0] Pré-pronto: httpx -l <archive_list>
+[1] Monte seu comando.
+
+-l, -list string: arquivo de entrada de string contendo a lista de hosts para processar 
+-rr, -request string: Arquivo contendo solicitação de "brute" 
+-u, -target string[]: Entrada de host(s) de destino para sondar\n""")
+    command = int(input("Comando: "))
+
+    if command == 0:
+        subprocess.call("ls", shell=True)
+        archive_choosen = str(input("Caminho ou nome do arquivo: "))
+        print(f"Comando executado: httpx -l {archive_choosen}")
+        subprocess.call(f"httpx -l {archive_choosen}", shell=True)
+    elif command == 1:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def httprobe():
+    print(f"""
+.-..-. .-.  .-.                  .-.         
+: :; :.' `..' `.                 : :         
+:    :`. .'`. .'.---. .--.  .--. : `-.  .--. 
+: :: : : :  : : : .; `: ..'' .; :' .; :' '_.'
+:_;:_; :_;  :_; : ._.':_;  `.__.'`.__.'`.__.'
+                : :                          
+                :_;   
+                
+O httprobe é uma ferramenta que pega uma lista de domínios e investigua
+servidores http e https em funcionamento.
+
+Comandos:
+[0] Pré-pronto: cat <archive_file> | httprobe
+[1] Monte seu comando.
+
+-c int: Define o nível de simultaneidade (padrão 20)
+-p: Valor adiciona sonda adicional (proto:port)
+-s: Ignora as sondagens padrão (http:80 e https:443)
+-t int: Timeout (milissegundos) (padrão 10000)
+-v: Erros de saída para stderr\n""")
+
+    command = int(input("Comando: "))
+    if command == 0:
+        subprocess.call("ls", shell=True)
+        archive_chosen = str(input("Caminho ou nome do arquivo: "))
+        print(f"Comando executado: cat {archive_chosen} | httprobe")
+        subprocess.call(f"cat {archive_chosen} | httprobe", shell=True)
+    elif command == 1:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def aquatone():
+    print("""
+d s.     sSSSs   d       b d s.   sss sssss   sSSSs   d s  b d sss  
+S  ~O   S     S  S       S S  ~O      S      S     S  S  S S S      
+S   `b S       S S       S S   `b     S     S       S S   SS S      
+S sSSO S       S S       S S sSSO     S     S       S S    S S sSSs 
+S    O S       S S       S S    O     S     S       S S    S S      
+S    O  S   s S   S     S  S    O     S      S     S  S    S S      
+P    P   "sss"ss   "sss"   P    P     P       "sss"   P    P P sSSss
+
+
+Aquatone é uma ferramenta para inspeção visual de sites em uma grande quantidade de hosts
+e é conveniente para obter rapidamente uma visão geral da superfície de ataque baseada em HTTP.
+
+Comandos:
+
+[0] Pré-pronto: cat <list_archive> | aquatone -template-path <directory> -proxy 127.0.0.1:9050 -threads <int>
+[1] Monte seu comando.
+
+-chrome-path string: Caminho completo para o executável Chrome/Chromium a ser usado.
+-debug: Imprime informações de depuração
+-http-timeout int: Tempo limite em milissegundos para solicitações HTTP (padrão 3000)
+-nmap: Analisa a entrada como Nmap/Masscan XML
+-out string: Diretório para gravar arquivos (padrão ".")
+-ports string: Portas para escanear em hosts. Aliases de lista suportados: small, medium, large, xlarge (padrão "80,443,8000,8080,8443")
+-proxy string: Proxy a ser usado para solicitações HTTP
+-resolution string: resolução de captura de tela (padrão "1440,900")
+-save-body: Salvar corpos de resposta em arquivos (padrão true)
+-scan-timeout int: Tempo limite em milissegundos para varreduras de porta (padrão 100)
+-screenshot-timeout int: Tempo limite em milissegundos para capturas de tela (padrão 30000)
+-session string: Carregar arquivo de sessão Aquatone e gerar relatório HTML
+-silent: Suprimir todas as saídas, exceto erros
+-template-path string: Caminho para o modelo HTML a ser usado para o relatório
+-threads int: Número de threads simultâneas (número padrão de CPUs lógicas)\n""")
+    command = int(input("Comando: "))
+
+    if command == 0:
+        subprocess.call("ls", shell=True)
+        archive_choosen = str(input("Diretório ou nome do arquivo: "))
+        directory_save = str(input("Diretório onde será salvo: "))
+        threads = int(input("Informe o número de threads a serem usados: \n"))
+
+        print(f"Comando executado: cat {archive_choosen} | aquatone -template-path {directory_save} -proxy 127.0.0.1:9050 -threads {threads}")
+        subprocess.call(f"cat {archive_choosen} | aquatone -template-path {directory_save} -proxy 127.0.0.1:9050 -threads {threads}", shell=True)
+    elif command == 1:
+        subprocess.call("ls", shell=True)
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
 

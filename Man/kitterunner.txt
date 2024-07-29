@@ -1,0 +1,16 @@
+kite [comando]
+
+Comandos disponíveis:
+brute       brute um ou vários hosts com uma lista de palavras fornecida
+help        Ajuda sobre qualquer comando
+kb          manipula o esquema do kitebuilder
+scan        escaneia um ou vários hosts com uma lista de palavras fornecida
+version     versão do binário que você está executando
+wordlist    olha suas listas de palavras em cache e listas de palavras remotas
+
+Sinalizadores:
+--config string arquivo de configuração (o padrão é $HOME/.kiterunner.yaml)
+-h, --help ajuda para kite
+-o, --output string formato de saída. pode ser json,text,pretty (padrão "pretty")
+-q, --quiet modo silencioso. silenciará texto bonito desnecessário
+-v, --verbose string nível de verbosidade de registro. pode ser error,info,debug,trace (padrão "info")

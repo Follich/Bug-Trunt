@@ -1,0 +1,73 @@
+ENTRADA:
+-u, -list string[] url de destino / lista para rastrear
+-resume string retomar varredura usando resume.cfg
+-e, -exclude string[] excluir host que corresponda ao filtro especificado ('cdn', 'private-ips', cidr, ip, regex)
+
+CONFIGURAÇÃO:
+-r, -resolvers string[] lista de resolvedores personalizados (separados por arquivo ou vírgula)
+-d, -depth int profundidade máxima para rastrear (padrão 3)
+-jc, -js-crawl habilitar análise de endpoint / rastreamento em arquivo javascript
+-jsl, -jsluice habilitar análise jsluice em arquivo javascript (uso intensivo de memória)
+-ct, -crawl-duration valor duração máxima para rastrear o alvo por (s, m, h, d) (padrão s)
+-kf, -known-files string habilitar rastreamento de arquivos conhecidos (all,robotstxt,sitemapxml), uma profundidade mínima de 3 é necessária para garantir que todos os arquivos conhecidos sejam rastreados corretamente.
+-mrs, -max-response-size int tamanho máximo de resposta para ler (padrão 9223372036854775807)
+-timeout int tempo de espera pela solicitação em segundos (padrão 10)
+-aff, -automatic-form-fill habilita o preenchimento automático de formulários (experimental)
+-fx, -form-extraction extrai elementos de formulário, entrada, textarea e seleção na saída jsonl
+-retry int número de vezes para tentar novamente a solicitação (padrão 1)
+-proxy string proxy http/socks5 a ser usado
+-H, -headers string[] cabeçalho/cookie personalizado a ser incluído em todas as solicitações http no formato header:value (arquivo)
+-config string caminho para o arquivo de configuração do katana
+-fc, -form-config string caminho para o arquivo de configuração do formulário personalizado
+-flc, -field-config string caminho para o arquivo de configuração do campo personalizado
+-s, -strategy string Visite a estratégia (profundidade primeiro, largura primeiro) (padrão "depth-first")
+-iqp, -ignore-query-params Ignora o rastreamento do mesmo caminho com valores diferentes de query-param
+-tlsi, -tls-impersonate habilita o hello do cliente experimental (ja3) randomização tls
+-dr, -disable-redirects desabilita os redirecionamentos seguintes (padrão false)
+
+DEBUG:
+-health-check, -hc executa verificação de diagnóstico
+-elog, -error-log arquivo de string para gravar o log de erros de solicitações enviadas
+
+HEADLESS:
+-hl, -headless habilita o rastreamento híbrido headless (experimental)
+-sc, -system-chrome usa o navegador chrome instalado localmente em vez do katana instalado
+-sb, -show-browser mostra o navegador na tela com o modo headless
+-ho, -headless-options string[] inicia o headless chrome com opções adicionais
+-nos, -no-sandbox inicia o headless chrome no modo --no-sandbox
+-cdd, -chrome-data-dir string caminho para armazenar dados do navegador Chrome
+-scp, -system-chrome-path string usar navegador Chrome especificado para rastreamento sem interface
+-noi, -no-incognito iniciar o Chrome sem interface sem modo anônimo
+-cwu, -chrome-ws-url string usar instância do navegador Chrome iniciada em outro lugar com o depurador escutando nesta URL
+-xhr, -xhr-extraction extrair URL de solicitação xhr, método na saída jsonl
+
+PASSIVO:
+-ps, -passive habilitar fontes passivas para descobrir endpoints de destino
+-pss, -passive-source string[] fonte passiva a ser usada para descoberta de URL (waybackarchive, commoncrawl, alienvault)
+
+ESCOPO:
+-cs, -crawl-scope string[] no escopo URL regex a ser seguido pelo rastreador
+-cos, -crawl-out-scope string[] fora do escopo URL regex a ser excluído pelo rastreador
+-fs, -field-scope string campo de escopo predefinido (dn,rdn,fqdn) ou regex personalizado (por exemplo, '(company-staging.io|company.com)') (padrão "rdn")
+-ns, -no-scope desabilita o escopo padrão baseado em host
+-do, -display-out-scope exibe o ponto de extremidade externo do rastreamento com escopo
+
+FILTRO:
+-mr, -match-regex string[] regex ou lista de regex para corresponder na url de saída (cli, arquivo)
+-fr, -filter-regex string[] regex ou lista de regex para filtrar na url de saída (cli, arquivo)
+-f, -field campo de string para exibir na saída (url,caminho,fqdn,rdn,rurl,qurl,qpath,arquivo,ufile,chave,valor,kv,dir,udir)
+-sf, -store-field campo de string para armazenar na saída por host (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)
+-em, -extension-match string[] corresponde à saída para a extensão fornecida (por exemplo, -em php,html,js)
+-ef, -extension-filter string[] filtra a saída para a extensão fornecida (por exemplo, -ef png,css)
+-mdc, -match-condition string corresponde à resposta com a condição baseada em dsl
+-fdc, -filter-condition string filtra a resposta com a condição baseada em dsl
+
+RATE-LIMIT:
+-c, -concurrency int número de buscadores simultâneos a serem usados ​​(padrão 10)
+-p, -parallelism int número de entradas simultâneas a serem processadas (padrão 10)
+-rd, -delay int atraso da solicitação entre cada solicitação em segundos
+-rl, -rate-limit int número máximo de solicitações a serem enviadas por segundo (padrão 150)
+-rlm, -rate-limit-minute int número máximo de solicitações a serem enviadas por minuto
+
+ATUALIZAÇÃO:
+-up, -update upda

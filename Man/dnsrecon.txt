@@ -1,0 +1,107 @@
+DNSRECON(1) Manual de Comandos Gerais DNSRECON(1)
+
+NOME
+ dnsrecon - Ferramenta de enumeração e verificação de DNS
+
+SINOPSE
+ dnsrecon [-h] [-d DOMÍNIO] [-n NS_SERVER] [-r RANGE] [-D DICIONÁRIO] [-f] [-a] [-s] [-b] [-k] [-w] [ -z] [-y] [--threads THREADS] [--lifetime LIFETIME] [--tcp]
+ [--db DB] [-x XML] [-c CSV] [-j JSON] [--iw] [--disable_check_recursion] [--disable_check_bindversion] [-v] [-V] [-t TIPO]
+
+DESCRIÇÃO
+ dsnrecon é um script python simples que permite coletar informações orientadas a DNS em um determinado alvo.
+
+OPÇÕES
+ -h, --ajuda
+ mostrar mensagem de ajuda e sair
+
+ -d DOMÍNIO, --domínio DOMÍNIO
+ Domínio alvo.
+
+ -n NS_SERVER, --name_server NS_SERVER
+ Servidor de domínio a ser usado. Se nada for fornecido, o SOA do destino será usado. Vários servidores podem ser especificados usando uma lista separada por vírgulas.
+
+ -r FAIXA, --range FAIXA
+ Faixa de IP para força bruta de pesquisa reversa em formatos (primeiro-último) ou em (intervalo/máscara de bits).
+
+ -D DICIONÁRIO, --dictionary DICIONÁRIO
+ Arquivo de dicionário de subdomínios e nomes de host para uso de força bruta. Filtre a pesquisa de domínio de força bruta, registros que resolvem para o curinga definido
+ Endereço IP ao salvar registros.
+
+ -f Filtre da pesquisa de domínio de força bruta os registros que resolvem para o endereço IP definido como curinga ao salvar registros.
+
+ -a Execute AXFR com enumeração padrão.
+
+ -b Execute a enumeração do Bing com enumeração padrão.
+
+ -s Execute uma pesquisa reversa de intervalos IPv4 no registro SPF com enumeração padrão.
+
+ -y Execute a enumeração Yandex com enumeração padrão.
+
+ -k Execute a enumeração crt.sh com enumeração padrão.
+
+ -w Execute uma análise profunda de registros whois e pesquisa reversa de intervalos de IP encontrados por meio de Whois ao fazer uma enumeração padrão.
+
+ -z Executa uma caminhada na zona DNSSEC com enumeração padrão.
+
+ --threads TÓPICOS
+ Número de threads a serem usados ​​em pesquisas reversas, pesquisas diretas, força bruta e enumeração de registros SRV.
+
+ --lifetime VIDA ÚTIL
+ Tempo de espera que um servidor responda a uma consulta. o padrão é 3.
+
+ --tcp Use o protocolo TCP para fazer consultas.
+
+ --db banco de dados
+ Arquivo SQLite 3 para salvar os registros encontrados.
+
+ -xXML, --xmlXML
+ Arquivo XML para salvar os registros encontrados.
+
+ -c CSV, --csv CSV
+ Arquivo de valores separados por vírgula.
+
+ -j JSON, --json JSON
+ Arquivo JSON.
+
+ --iw Continua a força bruta em um domínio mesmo se registros curinga forem descobertos.
+
+ --disable_check_recursion
+ Desativa a verificação de recursão em servidores de nomes
+
+ --disable_check_bindversão
+ Desativa a verificação da versão do BIND em servidores de nomes
+
+ -v Habilitar detalhado
+
+ -V Mostrar versão
+
+ -t TIPO, --type TIPO
+ Tipo de enumeração a ser executada. Existem vários tipos possíveis:
+
+ • padrão: SOA, NS, A, AAAA, MX e SRV.
+
+ • rvl: Pesquisa reversa de um determinado intervalo CIDR ou IP.
+
+ • brt: Domínios e hosts de força bruta usando um determinado dicionário.
+
+ • srv: registros SRV.
+
+ • axfr: Teste todos os servidores NS para uma transferência de zona.
+
+ • bing: Execute a pesquisa do Bing para subdomínios e hosts.
+
+ • yand: Realiza busca Yandex por subdomínios e hosts.
+
+ • crt: Execute a pesquisa crt.sh de subdomínios e hosts.
+
+ • snoop: Execute a espionagem de cache em todos os servidores NS de um determinado domínio, testando todos com o arquivo contendo os domínios, arquivo fornecido com a opção -D.
+
+ • tld: Remova o TLD de determinado domínio e teste todos os TLDs registrados na IANA.
+
+ • zonewalk: Execute uma caminhada na zona DNSSEC usando registros NSEC.
+
+EXEMPLOS
+ tenta uma transferência de zona (AXFR) no domínio zonetransfer.me
+ dnsrecon -t axfr -d zonetransfer.me
+
+ DNSRECON(1)

@@ -1,0 +1,109 @@
+WHOIS(1) Debian GNU/Linux WHOIS(1)
+
+NOME
+ whois - cliente para o serviço de diretório whois
+
+SINOPSE
+ quem é [ { -h | --host } HOST ] [ { -p | --port } PORTA ] [ -abBcdGHIKlLmMrRx ] [ -g FONTE: PRIMEIRO-ÚLTIMO ] [ -i ATTR[,ATTR]... ] [ -s FONTE[,FONTE]... ] [ -T
+ TIPO[,TIPO]... ] [ --verbose ] [ --no-recursion ] OBJETO
+
+ whois -q PALAVRA-CHAVE
+
+ whois -t TIPO
+
+ whois -v TIPO
+
+ whois --ajuda
+
+ whois --versão
+
+DESCRIÇÃO
+ whois procura um objeto em um banco de dados RFC 3912.
+
+ Esta versão do cliente whois tenta adivinhar o servidor certo para solicitar o objeto especificado. Se nenhuma estimativa puder ser feita, ele se conectará a whois.network.
+ solutions.com para identificadores de NIC ou whois.arin.net para endereços IPv4 e nomes de rede.
+
+OPÇÕES
+ -h HOST, --host=HOST Conecta-se ao HOST.
+
+ -H Não exiba as isenções de responsabilidade legais que alguns registros gostam de mostrar.
+
+ -p PORT, --port=PORT Conecta-se a PORT.
+
+ -Eu primeiro consulto whois.iana.org e depois sigo seu encaminhamento para o servidor whois autorizado para aquela solicitação. Isso funciona para endereços IP, números AS
+ e domínios. CUIDADO: isso implica que o servidor IANA receberá sua consulta completa.
+
+ --sem recursão
+ Desative a recursão do registro para os servidores registradores.
+
+ --verbose
+ Seja prolixo.
+
+ --help Exibe a ajuda on-line.
+
+ --versão
+ Exibir a versão do programa.
+
+ Outras opções são sinalizadores compreendidos por whois.ripe.net e alguns outros servidores do tipo RIPE:
+
+ -a Pesquise também todos os bancos de dados espelhados.
+
+ -b Retorna breves intervalos de endereços IP com contato de abuso.
+
+ -B Desativa a filtragem de objetos. (Mostre os endereços de e-mail.)
+
+ -c Retorna o menor intervalo de endereços IP com uma referência a um objeto irt.
+
+ -d Retorna também o objeto de delegação de DNS reverso.
+
+ -g FONTE: PRIMEIRA-ÚLTIMA Pesquisa atualizações do banco de dados FONTE entre a PRIMEIRA e a ÚLTIMA atualização do número de série. É útil obter espelhamento quase em tempo real
+ fluxo.
+
+ -G Desativa o agrupamento de objetos associados.
+
+ -i ATTR[,ATTR]... Objetos de pesquisa inversa com atributos associados. ATTR é o nome do atributo, enquanto o argumento posicional OBJECT é o at-
+ valor do tributo.
+
+ -K Retorna apenas atributos de chave primária. Uma exceção é o atributo membros dos objetos definidos, que sempre é retornado. Outra exceção são todos em
+ homenagens da organização dos objetos, pessoa e função, que nunca são devolvidas.
+
+ -l Retorna o objeto específico com um nível a menos.
+
+ -L Retorna todos os níveis de objetos menos específicos.
+
+ -m Retorna todos os objetos específicos de um nível a mais.
+
+ -M Retorna todos os níveis de objetos mais específicos.
+
+ -q KEYWORD Retorna informações sobre o servidor. KEYWORD pode ser versão para a versão do servidor, fontes para a lista de fontes do banco de dados ou tipos para
+ a lista de tipos de objetos suportados.
+
+ -r Desativa pesquisas recursivas para informações de contato.
+
+ -R Desativa as seguintes referências e força a exibição do objeto da cópia local no servidor.
+
+ -s FONTE[,FONTE]... Solicita ao servidor que procure objetos espelhados de FONTE. As fontes são delimitadas por vírgula e a ordem é significativa.
+ Use o parâmetro -q fontes para obter uma lista de fontes válidas.
+
+ -t TYPE Retorna o modelo para um objeto de TYPE.
+
+ -T TYPE[,TYPE]... Restringe a pesquisa a objetos de TYPE. Vários tipos são separados por vírgula.
+
+ -v TYPE Retorna o modelo detalhado para um objeto de TYPE.
+
+ -x Pesquisa apenas a correspondência exata no prefixo do endereço de rede.
+
+NOTAS
+ Ao consultar os servidores de registro thin gTLDs da Verisign (por exemplo, .com, .net...) para um domínio, o programa precederá automaticamente a palavra-chave do domínio apenas para
+ mostrar registros de domínio. As palavras-chave nameserver ou registrar devem ser usadas para mostrar outros tipos de registros.
+
+ Ao consultar whois.arin.net para redes IPv4 ou IPv6, o comprimento da máscara de rede CIDR será automaticamente removido da string de consulta.
+
+ Ao consultar whois.nic.ad.jp para números AS, o programa converterá automaticamente a solicitação no formato apropriado, inserindo um espaço após o
+ cadeia COMO.
+
+ Ao consultar whois.denic.de para nomes de domínio e nenhum outro sinalizador tiver sido especificado, o programa adicionará automaticamente o sinalizador -T dn.
+
+ Ao consultar whois.dk-hostmaster.dk para nomes de domínio e nenhum outro sinalizador tiver sido especificado, o programa adicionará automaticamente o sinalizador --show-handles.
+
+ As opções de linha de comando específicas do RIPE são ignoradas ao consultar servidores não RIPE. Este pode ou não ser o comportamento pretendido pelo usuário. O que

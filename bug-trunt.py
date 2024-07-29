@@ -79,7 +79,7 @@ while stop == 1:
 
         # O código abaixo é do bloco "Enumeration"
         elif block == 3:
-            while stop:
+            while stop == 1:
                 import Enumeration
 
                 os.system("clear")
@@ -122,7 +122,9 @@ while stop == 1:
                 import Subdomain
 
                 os.system("clear")
-                Banners.main_ban.banner_sub()
+                print(Banners.main_ban.banner_sub)
+
+                # Aqui é onde ele irá chamar as ferramentas.
 
                 tool = int(input("Informe o número da ferramenta: "))
                 os.system("clear")
@@ -131,7 +133,103 @@ while stop == 1:
                     Subdomain.main_sub.kitterunner(domain)
                 elif tool == 2:
                     Subdomain.main_sub.git_api(domain)
+                elif tool == 3:
+                    Subdomain.main_sub.git_dorker(domain)
+                elif tool == 4:
+                    Subdomain.main_sub.ffuf(domain)
+                elif tool == 5:
+                    Subdomain.main_sub.gauplus(domain)
+                elif tool == 6:
+                    Subdomain.main_sub.waybackurl(domain)
+                elif tool == 7:
+                    Subdomain.main_sub.feroxbuster(domain)
+                elif tool == 8:
+                    Subdomain.main_sub.wfuzz(domain)
+                elif tool == 9:
+                    Subdomain.main_sub.httpx()
+                elif tool == 10:
+                    Subdomain.main_sub.httprobe()
+                elif tool == 11:
+                    Subdomain.main_sub.aquatone()
 
+                num = int(input("Deseja continuar?[0/1] "))
+                os.system("clear")
+                stop += num
+
+                if stop:
+                    pass
+                else:
+                    break
+
+        # O código abaixo é do bloco "Structure"
+        elif block == 5:
+            while stop == 1:
+                import Structure
+
+                os.system("clear")
+                print(Banners.main_ban.banner_str)
+
+                # Aqui é onde ele irá chamar as ferramentas.
+
+                tool = int(input("Informe o número da ferramenta: "))
+                os.system("clear")
+
+                if tool == 1:
+                    Structure.main_struct.xargs()
+                elif tool == 2:
+                    Structure.main_struct.nuclei()
+                elif tool == 3:
+                    Structure.main_struct.dalfox()
+                elif tool == 4:
+                    Structure.main_struct.katana(domain)
+                elif tool == 5:
+                    Structure.main_struct.jsscanner()
+
+                num = int(input("Deseja continuar?[0/1] "))
+                os.system("cear")
+                stop += num
+
+                if stop:
+                    pass
+                else:
+                    break
+
+        # O código abaixo é do bloco "Options"
+        elif block == 6:
+            while stop == 1:
+                import Options
+
+                os.system("clear")
+                print(Banners.main_ban.banner_opt)
+
+                # Aqui é onde ele irá chamar as ferramentas.
+
+                tool = int(input("Número da opção: "))
+                os.system("clear")
+
+                if tool == 1:
+                    Options.main_opt.man()
+                elif tool == 2:
+                    print(Options.main_opt.order)
+                elif tool == 3:
+                    print(Options.main_opt.dorks)
+                elif tool == 4:
+                    print(Options.main_opt.sites)
+                elif tool == 5:
+                    print(Options.main_opt.report)
+                elif tool == 6:
+                    print(Options.main_opt.step_by_step)
+                elif tool == 7:
+                    Options.main_opt.options_install_tools()
+
+                num = int(input("Deseja continuar?[0/1] "))
+                os.system("cear")
+                stop += num
+
+                if stop:
+                    pass
+                else:
+                    break
     except:
         print("\nErro de internet: 500 Network Error\nTente novamente mais tarde. (kk brinqs :3)")
         num = int(input("Deseja continuar?[0/1] "))

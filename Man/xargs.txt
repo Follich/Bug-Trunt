@@ -1,0 +1,44 @@
+Argumentos obrigatórios e opcionais para opções longas também são
+obrigatórios ou opcionais para a opção curta correspondente.
+-0, --null itens são separados por um nulo, não por espaço em branco;
+desabilita o processamento de aspas e barras invertidas e
+processamento lógico de EOF
+-a, --arg-file=FILE lê argumentos de FILE, não de entrada padrão
+-d, --delimiter=CHARACTER itens no fluxo de entrada são separados por CHARACTER,
+não por espaço em branco; desabilita o processamento de aspas e barras invertidas
+e o processamento lógico de EOF
+-E END define a string lógica de EOF; se END ocorrer como uma linha
+de entrada, o restante da entrada será ignorado
+(ignorado se -0 ou -d foi especificado)
+-e, --eof[=END] equivalente a -E END se END for especificado;
+caso contrário, não há uma sequência de fim de arquivo
+-I R igual a --replace=R
+-i, --replace[=R] substitui R em INITIAL-ARGS por nomes lidos
+da entrada padrão, divididos em novas linhas;
+se R não for especificado, assume {}
+-L, --max-lines=MAX-LINES usa no máximo MAX-LINES linhas de entrada não em branco por
+linha de comando
+-l[MAX-LINES] semelhante a -L, mas assume como padrão no máximo uma linha de entrada não em branco
+se MAX-LINES não for especificado
+-n, --max-args=MAX-ARGS usa no máximo MAX-ARGS argumentos por linha de comando
+-o, --open-tty Reabre stdin como /dev/tty no processo filho
+antes de executar o comando; útil para executar um
+aplicativo interativo.
+-P, --max-procs=MAX-PROCS executa no máximo processos MAX-PROCS por vez
+-p, --interactive avisa antes de executar comandos
+--process-slot-var=VAR define a variável de ambiente VAR em processos filhos
+-r, --no-run-if-empty se não houver argumentos, não executa COMMAND;
+se esta opção não for fornecida, COMMAND será
+executado pelo menos uma vez
+-s, --max-chars=MAX-CHARS limita o comprimento da linha de comando para MAX-CHARS
+--show-limits mostra os limites do comprimento da linha de comando
+-t, --verbose imprime os comandos antes de executá-los
+-x, --exit sai se o tamanho (veja -s) for excedido
+--help exibe esta ajuda e sai
+--version exibe as informações da versão e sai
+
+Consulte também a documentação em https://www.gnu.org/software/findutils/.
+Você pode relatar (e acompanhar o progresso na correção) bugs no programa "xargs"
+por meio da página de relatórios de bugs do GNU findutils em
+https://savannah.gnu.org/bugs/?group=findutils ou, se
+você não tiver acesso à web, enviando um e-mail para <bug-findutils@gnu.org>.

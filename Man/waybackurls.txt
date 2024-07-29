@@ -1,0 +1,7 @@
+Uso de waybackurls:
+-dates
+     mostra a data da busca na primeira coluna
+-get-versions
+     lista URLs para versões rastreadas de URL(s) de entrada
+-no-subs 
+     não inclui subdomínios do domínio de destino

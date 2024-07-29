@@ -1,0 +1,101 @@
+OPÇÕES HTTP:
+-H Cabeçalho `"Nome: Valor"`, separado por dois pontos. Vários sinalizadores -H são aceitos.
+-X Método HTTP a ser usado
+-b Dados do cookie `"NOME1=VALOR1; NOME2=VALOR2"` para cópia como funcionalidade curl.
+-cc Certificado do cliente para autenticação. A chave do cliente também precisa ser definida para que isso funcione
+-ck Chave do cliente para autenticação. O certificado do cliente também precisa ser definido para que isso funcione
+-d Dados POST
+-http2 Usar protocolo HTTP2 (padrão: falso)
+-ignore-body Não buscar o conteúdo da resposta. (padrão: falso)
+-r Seguir redirecionamentos (padrão: falso)
+-raw Não codificar URI (padrão: falso)
+-recursion Verificar recursivamente. Somente a palavra-chave FUZZ é suportada, e URL (-u) tem que terminar nela. (padrão: falso)
+-recursion-depth Profundidade máxima de recursão. (padrão: 0)
+-recursion-strategy Estratégia de recursão: "padrão" para um redirecionamento baseado e "greedy" para recursar em todas as correspondências (padrão: padrão)
+-replay-proxy Repete solicitações correspondentes usando este proxy.
+-sni TLS SNI de destino, não suporta a palavra-chave FUZZ
+-timeout Tempo limite de solicitação HTTP em segundos. (padrão: 10)
+-u URL de destino
+-x URL do proxy (SOCKS5 ou HTTP). Por exemplo: http://127.0.0.1:8080 ou socks5://127.0.0.1:8080
+
+OPÇÕES GERAIS:
+-V Mostra informações da versão. (padrão: false)
+-ac Calibra automaticamente as opções de filtragem (padrão: false)
+-acc String de calibração automática personalizada. Pode ser usada várias vezes. Implica -ac
+-ach Autocalibração por host (padrão: false)
+-ack Palavra-chave de autocalibração (padrão: FUZZ)
+-acs Estratégias de autocalibração personalizadas. Podem ser usadas várias vezes. Implica -ac
+-c Colorir saída. (padrão: false)
+-config Carregar configuração de um arquivo
+-json Saída JSON, imprimindo registros JSON delimitados por nova linha (padrão: false)
+-maxtime Tempo máximo de execução em segundos para todo o processo. (padrão: 0)
+-maxtime-job Tempo máximo de execução em segundos por trabalho. (padrão: 0)
+-noninteractive Desabilitar a funcionalidade do console interativo (padrão: false)
+-p Segundos de `atraso` entre solicitações ou um intervalo de atraso aleatório. Por exemplo, "0,1" ou "0,1-2,0"
+-rate Taxa de solicitações por segundo (padrão: 0)
+-s Não imprime informações adicionais (modo silencioso) (padrão: falso)
+-sa Para em todos os casos de erro. Implica -sf e -se. (padrão: falso)
+-scraperfile Caminho do arquivo do scraper personalizado
+-scrapers Grupos de scraper ativos (padrão: todos)
+-se Para em erros espúrios (padrão: falso)
+-search Procura uma carga útil FFUFHASH do histórico ffuf
+-sf Para quando > 95% das respostas retornam 403 Proibido (padrão: falso)
+-t Número de threads simultâneos. (padrão: 40)
+-v Saída detalhada, imprimindo URL completa e local de redirecionamento (se houver) com os resultados. (padrão: falso)
+
+OPÇÕES DE CORRESPONDÊNCIA:
+-mc Corresponde códigos de status HTTP ou "todos" para tudo. (padrão: 200-299,301,302,307,401,403,405,500)
+-ml Corresponde à quantidade de linhas na resposta
+-mmode Operador de conjunto de correspondência. Qualquer um dos seguintes: e, ou (padrão: ou)
+-mr Corresponde à expressão regular
+-ms Corresponde ao tamanho da resposta HTTP
+-mt Corresponde a quantos milissegundos para o primeiro byte de resposta, seja maior ou menor que. EX.: >100 ou <100
+-mw Corresponde à quantidade de palavras na resposta
+
+OPÇÕES DE FILTRO:
+-fc Filtra códigos de status HTTP da resposta. Lista separada por vírgulas de códigos e intervalos
+-fl Filtra por quantidade de linhas na resposta. Lista separada por vírgulas de contagens de linhas e intervalos
+-fmode Operador de conjunto de filtros. Qualquer um dos seguintes: e, ou (padrão: ou)
+-fr Filtra a expressão regular
+-fs Filtra o tamanho da resposta HTTP. Lista separada por vírgulas de tamanhos e intervalos
+-ft Filtra por número de milissegundos para o primeiro byte de resposta, maior ou menor que. EXEMPLO: >100 ou <100
+-fw Filtra por quantidade de palavras na resposta. Lista separada por vírgulas de contagens de palavras e intervalos
+
+OPÇÕES DE ENTRADA:
+-D Modo de compatibilidade de lista de palavras DirSearch. Usado em conjunto com o sinalizador -e. (padrão: false)
+-e Lista separada por vírgulas de extensões. Estende a palavra-chave FUZZ.
+-enc Codificadores para palavras-chave, por exemplo, 'FUZZ:urlencode b64encode'
+-ic Ignora comentários da lista de palavras (padrão: false)
+-input-cmd Comando que produz a entrada. --input-num é necessário ao usar este método de entrada. Substitui -w.
+-input-num Número de entradas para testar. Usado em conjunto com --input-cmd. (padrão: 100)
+-input-shell
+
+Shell a ser usado para executar o comando
+-mode Modo de operação multi-wordlist. Modos disponíveis: clusterbomb, pitchfork, sniper (padrão: clusterbomb)
+-request Arquivo contendo a solicitação http bruta
+-request-proto Protocolo a ser usado junto com a solicitação bruta (padrão: https)
+-w Caminho do arquivo de lista de palavras e palavra-chave (opcional) separados por dois pontos. por exemplo, '/path/to/wordlist:KEYWORD'
+
+OPÇÕES DE SAÍDA:
+-debug-log Grava todo o registro interno no arquivo especificado.
+-o Grava a saída no arquivo
+-od Caminho do diretório para armazenar os resultados correspondentes.
+-of Formato do arquivo de saída. Formatos disponíveis: json, ejson, html, md, csv, ecsv (ou, 'all' para todos os formatos) (padrão: json)
+-or Não cria o arquivo de saída se não tivermos resultados (padrão: false)
+
+EXEMPLO DE USO:
+Caminhos de arquivo Fuzz de wordlist.txt, correspondem a todas as respostas, mas filtram aquelas com content-size 42.
+Saída colorida e detalhada.
+ffuf -w wordlist.txt -u https://example.org/FUZZ -mc all -fs 42 -c -v
+
+Cabeçalho do host Fuzz, corresponde a respostas HTTP 200.
+ffuf -w hosts.txt -u https://example.org/ -H "Host: FUZZ" -mc 200
+
+Dados JSON do POST Fuzz. Corresponde a todas as respostas que não contêm o texto "error".
+ffuf -w entries.txt -u https://example.org/ -X POST -H "Content-Type: application/json" \
+-d '{"name": "FUZZ", "anotherkey": "anothervalue"}' -fr "error"
+
+Fuzz em vários locais. Corresponde apenas às respostas que refletem o valor da palavra-chave "VAL". Colorido.
+ffuf -w params.txt:PARAM -w values.txt:VAL -u https://example.org/?PARAM=VAL -mr "VAL" -c
+
+Mais informações e exemplos: https://github.com/ffuf/ffuf

@@ -1,0 +1,26 @@
+uso: arjun [-h] [-u URL] [-o JSON_FILE] [-oT TEXT_FILE] [-oB [BURP_PROXY]] [-d DELAY] [-t THREADS] [-w WORDLIST] [-m METHOD] [-i [IMPORT_FILE]] [-T TIMEOUT]
+[-c CHUNKS] [-q] [--rate-limit RATE_LIMIT] [--headers [HEADERS]] [--passive [PASSIVE]] [--stable] [--include INCLUDE] [--disable-redirects]
+
+opções:
+-h, --help mostra esta mensagem de ajuda e sai
+-u URL URL de destino
+-o JSON_FILE, -oJ JSON_FILE
+Caminho para o arquivo de saída json.
+-oT TEXT_FILE Caminho para o arquivo de saída de texto.
+-oB [BURP_PROXY] Saída para Burp Suite Proxy. O padrão é 127.0.0.1:8080.
+-d DELAY Atraso entre solicitações em segundos. (padrão: 0)
+-t THREADS Número de threads simultâneas. (padrão: 5)
+-w WORDLIST Caminho do arquivo de lista de palavras. (padrão: {arjundir}/db/large.txt)
+-m METHOD Método de solicitação a ser usado: GET/POST/XML/JSON/HEADERS. (padrão: GET)
+-i [IMPORT_FILE] Importa URLs de destino do arquivo.
+-T TIMEOUT Tempo limite de solicitação HTTP em segundos. (padrão: 15)
+-c CHUNKS Tamanho do bloco. O número de parâmetros a serem enviados de uma vez
+-q Modo silencioso. Sem saída.
+--rate-limit RATE_LIMIT
+
+Número máximo de solicitações a serem enviadas por segundo (padrão: 9999)
+--headers [HEADERS] Adicione cabeçalhos. Separe vários cabeçalhos com uma nova linha.
+--passive [PASSIVE] Colete nomes de parâmetros de fontes passivas como wayback, commoncrawl e otx.
+--stable Prefira estabilidade à velocidade.
+--include INCLUDE Incluir esses dados em todas as solicitações.
+--disable-redirects desabilitar redirecionamentos

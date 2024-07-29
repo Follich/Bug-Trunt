@@ -1,0 +1,65 @@
+WAFW00F(8) Comandos do usuário WAFW00F(8)
+
+NOME
+ WAFW00F - Identificar e identificar produtos de firewall de aplicativos da Web
+
+SINOPSE
+ wafw00f url1 [url2 [url3...]]
+
+DESCRIÇÃO
+ A ferramenta de identificação e impressão digital do firewall de aplicativos da Web.
+
+ Para fazer sua mágica, WAFW00F faz o seguinte:
+ Envia uma solicitação HTTP normal e analisa a resposta; isso identifica uma série de soluções WAF. Se isso não for bem sucedido, ele envia uma série de
+ (potencialmente malicioso) solicita HTTP e usa lógica simples para deduzir qual WAF é. Se isso também não for bem sucedido, analisa as respostas
+ retornado anteriormente e usa outro algoritmo simples para adivinhar se um WAF ou solução de segurança está ativo>
+
+OPÇÕES
+ -h, --ajuda
+ Mostrar opções disponíveis.
+
+ -v, --verbose
+ Habilitar verbosidade – múltiplas opções -v aumentam a verbosidade.
+
+ -a, --findall
+ Encontre todos os WAFs, não pare de testar o primeiro.
+
+ -r, --noredirect
+ Não siga os redirecionamentos dados pelas respostas 3xx.
+
+ -t WAF, --test=WAF
+ Teste um produto WAF específico.
+
+ -o SAÍDA, --saída = SAÍDA
+ Grave a saída em arquivo csv, json ou texto, dependendo da extensão do arquivo. Para stdout, especifique - como nome de arquivo.
+
+ -i ENTRADA, --input = ENTRADA
+ Ler alvos de um arquivo. O formato de entrada pode ser csv, json ou texto. Para csv e json, é necessário um nome ou elemento de coluna `url`.
+
+ -l, --lista
+ Liste todos os WAFs que o WAFW00F é capaz de detectar.
+
+ -p PROXY, --proxy=PROXY
+ Use um proxy HTTP para realizar solicitações, exemplo: http://hostname:8080, Socks5://hostname:1080.
+
+ -V, --versão
+ Imprima a versão.
+
+ -H ARQUIVO, --headers=ARQUIVO
+ Passe cabeçalhos personalizados, por exemplo, para substituir a sequência de agente do usuário padrão.
+
+AUTORES
+ Sandro Gauci (@SandroGauci)
+ Pinaki Mondal (@0xInfecção)
+
+RELATANDO BUGS
+ Você pode relatar bugs no rastreador de problemas da página inicial do projeto: <https://github.com/EnableSecurity/wafw00f/issues/>.
+
+DIREITO AUTORAL
+ Copyright (C) 2009-2022 WAFW00F Desenvolvedores. Licença: BSD 3 cláusulas <https://opensource.org/licenses/BSD-3-Clause>.
+ Este é um software gratuito: você é livre para modificar e distribuir sob os termos permitidos pela licença fornecida juntamente com ele.
+
+VEJA TAMBÉM
+ A documentação completa está disponível em: <https://github.com/EnableSecurity/wafw00f/wiki/>.
+
+wafw00f outubro de 2020 WAFW00F(8)

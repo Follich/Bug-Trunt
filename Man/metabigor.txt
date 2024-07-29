@@ -1,0 +1,69 @@
+metabigor [comando]
+
+Comandos disponíveis:
+cert        Pesquisa de certificados
+completion  Gera o script de preenchimento automático para o shell especificado
+help        Ajuda sobre qualquer comando
+ip          Extrai Shodan IPInfo de internetdb.shodan.io
+ipc         Resumo sobre a lista de IP
+net         Descobre informações de rede sobre alvos (o mesmo com o comando net, mas usa dados estáticos)
+netd        Descobre informações de rede sobre alvos (semelhante ao comando 'net', mas usa dados de terceiros)
+related     Encontra mais domínios relacionados do alvo aplicando várias técnicas
+scan        Wrapper para executar a varredura de porta a partir da entrada fornecida
+
+Sinalizadores:
+-c, --concurrency int concurrency (padrão 5)
+--debug Depuração
+-h, --help ajuda para metabigor
+-i, --input strings Entrada para executar
+-I, --inputFile string Arquivo de entrada
+-J, --json Saída como JSON
+-o, --output string Arquivo de saída
+--proxy string Proxy para fazer solicitação
+-q, --quiet Mostrar apenas o essencial informação
+--retry int Retry (padrão 3)
+--timeout int timeout (padrão 40)
+-T, --tmp string Pasta de saída temporária
+-v, --verbose Detalhado
+
+Use "metabigor [comando] --help" para obter mais informações sobre um comando.
+
+Exemplos Comandos
+=================
+
+# descoberta de IP de uma empresa/organização
+echo "company" | metabigor net --org -o /tmp/result.txt
+
+# descoberta de IP de um ASN
+echo "ASN1111" | metabigor net --asn -o /tmp/result.txt
+cat list_of_ASNs | metabigor net --asn -o /tmp/result.txt
+
+# Execute rustscan somente com portas completas
+echo '1.2.3.4/24' | metabigor scan -o result.txt
+
+# Executa somente a varredura de detalhes do nmap com base em dados de pré-varredura
+echo '1.2.3.4:21' | metabigor scan -s
+cat list_of_ip_with_port.txt | metabigor scan -c 10 --8 -s -o result.txt
+cat list_of_ip_with_port.txt | metabigor scan -c 10 --tmp /tmp/raw-result/ -s -o result.txt
+echo '1.2.3.4 -> [80,443,2222]' | metabigor scan -R
+
+# Executa o rustscan com portas completas e varredura de detalhes do nmap com base em dados de pré-varredura
+echo '1.2.3.4/24' | metabigor scan --pipe | metabigor scan -R
+
+# Executa somente a varredura com zmap
+cat ranges.txt | metabigor scan -p '443,80' -z
+
+# Obter resumo sobre o endereço IP (fornecido por @thebl4ckturtle)
+cat list_of_ips.txt | metabigor ipc --json
+
+# Encontrar mais domínios relacionados do alvo aplicando várias técnicas
+
+## Obter mais domínios relacionados pesquisando informações de certificado
+echo 'example.com' | metabigor related -s 'cert'
+
+## Obter mais relacionados pesquisando informações whois
+echo 'example.com' | metabigor related -s 'whois'
+
+## Obter mais relacionados pesquisando ID do Google Analytics
+echo 'https://example.com' | metabigor related -s 'google-analytic'
+metabigor related -s 'google-analytic' -i 'UA-9152XXX' --debug

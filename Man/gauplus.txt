@@ -1,0 +1,22 @@
+Uso do gauplus:
+-b string
+ extensões para pular, ex: ttf,woff,svg,png,jpg
+-json
+ escreve a saída como json
+-o string
+ nome do arquivo para escrever os resultados
+-p string
+ proxy HTTP para usar
+-providers string
+ provedores para buscar URLs (padrão "wayback,otx,commoncrawl")
+-random-agent
+ usa user-agent aleatório
+-retries uint
+ quantidade de tentativas para cliente http (padrão 5)
+-subs
+ inclui subdomínios do domínio de destino
+-t int
+ quantidade de workers paralelos (padrão 5)
+-v habilita o modo verbose
+-version
+ mostra a versão gau

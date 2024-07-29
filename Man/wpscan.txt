@@ -1,0 +1,151 @@
+5.000 / 5.000
+Comandos do usuário WPSCAN(1) WPSCAN(1)
+
+NOME
+ wpscan – Verificador de segurança para WordPress
+
+SINOPSE
+ wpscan [opções]
+
+DESCRIÇÃO
+ Verificador de segurança WordPress da equipe WPScan
+
+ Patrocinado pela Sucuri - https://sucuri.net
+
+ @_WPScan_, @ethicalhack3r, @erwan_lr, @_FireFart_
+
+OPÇÕES
+ --urlURL
+ A URL do blog para verificar Protocolos permitidos: http, https Protocolo padrão se nenhum for fornecido: http Esta opção é obrigatória, a menos que haja atualização ou ajuda ou
+ hh ou versão é/são fornecidas
+
+ -h, --ajuda
+ Exiba a ajuda simples e saia
+
+ --hh Exibe a ajuda completa e sai
+
+ --versão
+ Exibir a versão e sair
+
+ -v, --verbose
+ Modo detalhado
+
+ --[não-]banner
+ Exibição ou não do banner Padrão: verdadeiro
+
+ -o, --arquivo de saída
+ Saída para ARQUIVO
+
+ -f, --format FORMATO
+ Resultados de saída no formato fornecido Opções disponíveis: cli-no-color, cli-no-color, json, cli
+
+ --detection-mode MODO
+ Padrão: misto Opções disponíveis: misto, passivo, agressivo
+
+ --user-agent, --ua VALOR
+
+ --random-user-agent, --rua
+ Use um user-agent aleatório para cada varredura
+
+ --http-auth login:senha
+
+ -t, --max-threads VALOR
+ O máximo de threads a serem usados ​​Padrão: 5
+
+ --throttle Milliseconds
+ Milissegundos de espera antes de fazer outra solicitação da web. Se usado, o máximo de threads será definido como 1.
+
+ --request-timeout SEGUNDOS
+ O tempo limite da solicitação em segundos Padrão: 60
+
+ --connect-timeout SEGUNDOS
+ O tempo limite da conexão em segundos Padrão: 30
+
+ --disable-tls-verificações
+ Desativa a verificação de certificado SSL/TLS
+
+ --proxy protocolo://IP:porta
+ Os protocolos suportados dependem do cURL instalado
+
+ --proxy-auth login:senha
+
+ --cookie-string COOKIE
+ String de cookie para usar em solicitações, formato: cookie1=value1[; cookie2=valor2]
+
+ --cookie-jar CAMINHO DO ARQUIVO
+ Arquivo para ler e gravar cookies Padrão: /tmp/wpscan/cookie_jar.txt
+
+ --force
+ Não verifique se o alvo está executando WordPress
+
+ --[sem atualização
+ Se deve ou não atualizar o banco de dados
+
+ --wp-content-dir DIR
+
+ --wp-plugins-dir DIR
+
+ -e, --enumerar [OPÇÕES]
+ Opções disponíveis do processo de enumeração:
+
+ vp Plug-ins vulneráveis
+
+ ap Todos os plug-ins
+
+ Plug-ins
+
+ vt Temas vulneráveis
+
+ em todos os temas
+
+ Temas
+
+ tt Timthumbs
+
+ backups de configuração cb
+
+ dbe Exportações de banco de dados
+
+ u Intervalo de IDs de usuário. por exemplo: u1-5 Separador de intervalo a ser usado: '-' Valor se nenhum argumento for fornecido: 1-10
+
+ m Intervalo de IDs de mídia. por exemplo, m1-15 Nota: A configuração do link permanente deve ser definida como "Plain" para que sejam detectados Separador de intervalo a ser usado: '-' Valor se não houver argumento
+ fornecimento fornecido: 1-100
+
+ Separador a ser usado entre os valores: ',' Padrão: Todos os Plugins, Config Backups Valor se nenhum argumento for fornecido: vp,vt,tt,cb,dbe,u,m Incompatível
+ opções (apenas um de cada grupo/s pode ser usado):
+
+ - vp, ap, p - vt, em, t
+
+ --excluir REGEXP_OR_STRING baseado em conteúdo
+ Exclua todas as respostas que correspondam ao Regexp (sem distinção entre maiúsculas e minúsculas) durante partes da enumeração. Os cabeçalhos e o corpo são verificados. Delimitação de Regexp
+ iters não são necessários.
+
+ --plugins-modo de detecção
+ Use o modo fornecido para enumerar Plugins, em vez do modo global (--detection-mode). Padrão: passivo Opções disponíveis: misto, passivo, agressivo
+ progressivo
+
+ --plugins-version-modo de detecção
+ Use o modo fornecido para verificar as versões dos plugins em vez dos modos --detection-mode ou --plugins-detection. Padrão: misto Opções disponíveis:
+ misto, passivo, agressivo
+
+ -P, --passwords CAMINHO DO ARQUIVO
+ Lista de senhas a serem usadas durante o ataque de senha. Se nenhuma opção --username/s for fornecida, a enumeração do usuário será executada.
+
+ -U, --usernames LISTA
+ Lista de nomes de usuário a serem usados ​​durante o ataque de senha. Exemplos: 'a1', 'a1,a2,a3', '/tmp/a.txt'
+
+ --multicall-max-senhas MAX_PWD
+ Número máximo de senhas a serem enviadas por solicitação com multicall XMLRPC Padrão: 500
+
+ --password-attack ATAQUE
+ Forçar o ataque fornecido a ser usado em vez de determinar um automaticamente. Opções disponíveis: wp-login, xmlrpc, xmlrpc-multicall
+
+ --stealthy
+ Alias ​​para --random-user-agent --detection-mode passivo --plugins-version-detection passivo
+
+ Para ver a lista completa de opções, use --hh.
+
+wpscan
+Enviar feedback
+Limite de caracteres: 5.000. Use as setas para traduzir mais.
+Resultados de tradução disponíveis 

@@ -1,0 +1,9 @@
+Uso do httprobe:
+-c int
+define o nível de simultaneidade (padrão 20)
+-p valor
+adiciona sonda adicional (proto:porta)
+-s ignora as sondas padrão (http:80 e https:443)
+-t int
+tempo limite (milissegundos) (padrão 10000)
+-v envia erros para stderr

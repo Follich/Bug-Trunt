@@ -1,0 +1,11 @@
+Uso de subjs:
+-c int
+ Número de trabalhadores simultâneos (padrão 10)
+-i string
+ Arquivo de entrada contendo URLS
+-t int
+ Tempo limite (em segundos) para cliente http (padrão 15)
+-ua string
+ User-Agent para enviar solicitações
+-version
+ Mostrar número da versão

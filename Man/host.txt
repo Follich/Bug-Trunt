@@ -1,0 +1,99 @@
+HOST(1) LIGAR 9 HOST(1)
+
+NOME
+ host - utilitário de pesquisa de DNS
+
+SINOPSE
+ host [-aACdlnrsTUwv] [-c classe] [-N ndots] [-p porta] [-R número] [-t
+ tipo] [-W esperar] [-m sinalizador] [ [-4] | [-6] ] [-v] [-V] {nome} [servidor]
+
+DESCRIÇÃO
+ host é um utilitário simples para realizar pesquisas de DNS. Normalmente é usado
+ para converter nomes em endereços IP e vice-versa. Quando não há argumentos ou opções
+ são fornecidas, o host imprime um breve resumo de seus argumentos de linha de comando
+ mentos e opções.
+
+ name é o nome de domínio que deve ser pesquisado. Também pode ser um ponto
+ endereço IPv4 decimal ted ou um endereço IPv6 delimitado por dois pontos, nesse caso
+ host, por padrão, executa uma pesquisa reversa para esse endereço. servidor é um
+ argumento opcional que é o nome ou endereço IP do nome
+ servidor que o host deve consultar em vez do servidor ou servidores listados em
+ /etc/resolv.conf.
+
+OPÇÕES
+ -4 Esta opção especifica que apenas IPv4 deve ser usado para consulta
+ transporte. Veja também a opção -6.
+
+ -6 Esta opção especifica que apenas IPv6 deve ser usado para consulta
+ transporte. Veja também a opção -4.
+
+ -a A opção -a ("all") normalmente é equivalente a -v -t ANY. Isso também
+ afeta o comportamento da opção -l list zone.
+
+ -A A opção -A ("quase todas") é equivalente a -a, exceto que
+ Os registros RRSIG, NSEC e NSEC3 são omitidos da saída.
+
+ -c classe
+ Esta opção especifica a classe de consulta, que pode ser usada para pesquisar
+ Registros de recursos de classe HS (Hesiod) ou CH (Chaosnet). O padrão
+ a aula é IN (Internet).
+
+ -C Esta opção indica que o nomeado deve verificar a consistência, ou seja
+ esse host consulta os registros SOA para o nome da zona de todos os
+ listou servidores de nomes autorizados para essa zona. A lista de nome
+ servidores é definido pelos registros NS encontrados para a zona.
+
+ -d Esta opção imprime rastreamentos de depuração e é equivalente a -v
+ opção detalhada.
+
+ -l Esta opção diz ao nomeado para listar a zona, ou seja, o comando host
+ executa uma transferência de zona do nome da zona e imprime o NS, PTR,
+ e registros de endereço (A/AAAA).
+
+ Juntas, as opções -l -a imprimem todos os registros na zona.
+
+ -N pontos
+ Esta opção especifica o número de pontos (ndots) que devem ser
+ em nome para que seja considerado absoluto. O valor padrão é
+ aquele definido usando a instrução ndots em /etc/resolv.conf, ou 1
+ se nenhuma instrução ndots estiver presente. Nomes com menos pontos são inter‐
+ apresentados como nomes relativos e são pesquisados ​​nos domínios
+ listado na diretiva de pesquisa ou domínio em /etc/resolv.conf.
+
+ -p porta
+ Esta opção especifica a porta a ser consultada no servidor. O padrão
+ é 53.
+
+ -r Esta opção especifica uma consulta não recursiva; configurando esta opção
+ limpa o bit RD (recursão desejada) na consulta. Isso significa
+ que o servidor de nomes que recebe a consulta não tente refazer
+ resolver nome. A opção -r permite que o host imite o comportamento de um
+ servidor de nomes fazendo consultas não recursivas e esperando re-
+ receber respostas para aquelas perguntas que podem ser referências para outro nome
+ servidores.
+
+ -R número
+ Esta opção especifica o número de novas tentativas para consultas UDP. Se
+ número é negativo ou zero, o número de novas tentativas é definido silenciosamente
+ para 1. O valor padrão é 1 ou o valor da opção de tentativas
+ em /etc/resolv.conf, se definido.
+
+ -s Esta opção diz ao nomeado para não enviar a consulta para o próximo nome.
+ servidor se algum servidor responder com uma resposta SERVFAIL, que é
+ o inverso do comportamento normal do resolvedor de stub.
+
+ -t tipo
+ Esta opção especifica o tipo de consulta. O argumento de tipo pode ser qualquer
+ tipo de consulta reconhecido: CNAME, NS, SOA, TXT, DNSKEY, AXFR, etc.
+
+ Quando nenhum tipo de consulta é especificado, o host seleciona automaticamente um aplicativo
+ tipo de consulta apropriado. Por padrão, procura A, AAAA e MX
+ registros. Se a opção -C for fornecida, serão feitas consultas para SOA
+ registros. Se o nome for um endereço IPv4 decimal com pontos ou delimitado por dois pontos
+ endereço IPv6 indicado, consultas de host para registros PTR.
+
+ Se for escolhido um tipo de consulta IXFR, o número de série inicial pode
+ ser especificado anexando um sinal de igual (=), seguido pelo
+ número de série inicial, por exemplo, -t IXFR=12345678.
+
+ -T, -U Esta opção especifica TCP ou UDP. Por defa

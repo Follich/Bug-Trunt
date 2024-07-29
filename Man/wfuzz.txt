@@ -1,0 +1,135 @@
+WFUZZ(1) Comandos do usuário WFUZZ(1)
+
+NOME
+ wfuzz - um bruteforcer de aplicação web
+
+SINOPSE
+ wfuzz [opções] -z carga útil,params <url>
+
+OPÇÕES
+ -h Imprime informações sobre os argumentos disponíveis.
+
+ --help Ajuda avançada.
+
+ --versão
+ Detalhes da versão Wfuzz
+
+ -e <tipo>
+ Lista de codificadores/cargas úteis/iteradores/impressoras/scripts disponíveis
+
+ --recipe <nome do arquivo>
+ Lê opções de uma receita
+
+ --dump-recipe <nome do arquivo>
+ Imprime as opções atuais como uma receita
+
+ --oF <nome do arquivo>
+ Salva os resultados do fuzz em um arquivo. Eles podem ser consumidos posteriormente usando a carga wfuzz.
+
+ -c Saída com cores
+
+ -v Informações detalhadas.
+
+ -f nome do arquivo, impressora
+ Armazene os resultados no arquivo de saída usando a impressora especificada (impressora bruta, se omitida).
+
+ -o impressora
+ Formate a saída usando a impressora especificada.
+
+ --interagir
+ (beta) Se selecionado, todas as teclas pressionadas serão capturadas. Isso permite que você interaja com o programa.
+
+ --funcionamento a seco
+ Imprima os resultados da aplicação das solicitações sem realmente fazer nenhuma solicitação HTTP.
+
+ --prev Imprime as solicitações HTTP anteriores (somente ao usar cargas que geram resultados fuzz)
+
+ -p endereço
+ Use Proxy no formato ip:port:type. Repita a opção para usar vários proxies. Onde o tipo poderia ser SOCKS4,
+ SOCKS5 ou HTTP se omitido.
+
+ -t N Especifique o número de conexões simultâneas (10 padrão)
+
+ -s N Especifique o atraso entre solicitações (0 padrão)
+
+ -R profundidade
+ Descoberta de caminho recursivo sendo a profundidade o nível máximo de recursão.
+
+ -L, --siga
+ Siga redirecionamentos HTTP
+
+ -Z Modo de varredura (erros de conexão serão ignorados).
+
+ --req-atraso N
+ Define o tempo máximo em segundos que a solicitação pode levar (CURLOPT_TIMEOUT). Padrão 90.
+
+ --conn-atraso N
+ Define o tempo máximo em segundos que a fase de conexão com o servidor levará (CURLOPT_CONNECTTIMEOUT). De-
+ culpa 90.
+
+ -Um alias para --script=default -v -c
+
+ --script=
+ Equivalente a --script=default
+
+ --script=<plugins>
+ Executa a verificação do script. <plugins> é uma lista separada por vírgulas de arquivos de plugins ou categorias de plugins
+
+ --script-help=<plugins>
+ Mostre ajuda sobre scripts.
+
+ --script-args n1=v1,...
+ Forneça argumentos para scripts. ou seja. --script-args grep.regex="<A href=\"(.*?)\">"
+
+ -u url Especifique um URL para a solicitação.
+
+ -m iterador
+ Especifique um iterador para combinar cargas (produto por padrão)
+
+ -z carga útil
+ Especifique uma carga útil para cada palavra-chave FUZZ usada na forma de tipo, parâmetros, codificador. Uma lista de codificadores
+ pode ser usado, ou seja. md5-sha1. Os codificadores podem ser encadeados, ou seja. md5@sha1. A categoria de codificadores pode ser usada. ou seja.
+ url. Use a ajuda como uma carga útil para mostrar os detalhes do plugin de carga útil (você pode filtrar usando --slice)
+
+ --zP <parâmetros>
+ Argumentos para a carga especificada (deve ser precedida por -z ou -w).
+
+ --slice <filtro>
+ Filtre os elementos da carga usando a expressão especificada. Deve ser precedido por -z.
+
+ -w lista de palavras
+ Especifique um arquivo de lista de palavras (alias para -z arquivo,lista de palavras).
+
+ -V todos os tipos
+ Todos os parâmetros de força bruta (allvars e allpost). Não há necessidade de palavra-chave FUZZ.
+
+ Método -X
+ Especifique um método HTTP para a solicitação, ou seja. HEAD ou FUZZ
+
+ -b biscoito
+ Especifique um cookie para as solicitações. Opção de repetição para vários cookies.
+
+ -d pós-dados
+ Use dados de postagem (ex: "id=FUZZ&catalogue=1")
+
+ -H cabeçalhos
+ Use cabeçalhos (ex: "Host:www.mysite.com,Cookie:id=1312321&user=FUZZ"). Opção de repetição para vários cabeçalhos.
+
+ --basic/ntlm/digest autenticação
+ no formato "usuário:senha" ou "FUZZ:FUZZ" ou "domínio\FUZ2Z:FUZZ"
+
+ --hc/hl/hw/hh N[,N]+
+ Ocultar respostas com o código/linhas/palavras/caracteres especificados (use BBB para obter valores da linha de base)
+
+ --sc/sl/sw/sh N[,N]+
+ Mostrar respostas com o código/linhas/palavras/caracteres especificados (use BBB para obter valores da linha de base)
+
+ --ss/hs regex
+ Mostrar/ocultar respostas com o regex especificado dentro do conteúdo
+
+ --filtro <filtro>
+ Filtre as respostas usando a expressão especificada (use BBB para obter valores da linha de base). Deve ser
+ composto por: c,l,w,h/and,or/=,<,>,!=,<=,>= Palavra-chave: FUZZ, ..., FUZnZ onde quer que você coloque essas palavras-chave
+ wfuzz irá substituí-los pelos valores da carga especificada. Linha de base: FUZZ{baseline_value} FUZZ
+ será substituído por valor_base. Será a primeira solicitação realizada e poderá ser usada como base
+ para filtro

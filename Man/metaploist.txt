@@ -1,0 +1,120 @@
+Metasploit Framework - Comandos Completos
+
+Este documento organiza todos os comandos disponíveis no Metasploit Framework, agrupados por funcionalidade.
+
+Comandos Básicos
+
+    ?: Exibe um banner incrível do Metasploit
+    banner: (Mesmo que ?) Exibe um banner incrível do Metasploit
+    cd: Altera o diretório de trabalho atual
+    color: Alterna a cor da saída
+    connect: Conecte-se a um host
+    debug: Exibe informações úteis para depuração
+    exit: Sai do console
+    exploit: Explora uma vulnerabilidade (dependendo do módulo carregado)
+    get: Obtém o valor de uma variável
+    getg: Obtém o valor de uma variável global
+    grep: Grep a saída de outro comando
+    help: Menu de Ajuda
+    history: Mostra o histórico de comandos
+    info: Exibe informações sobre um módulo
+    load: Carrega um plugin de estrutura
+    quit: Sair do console
+    repeat: Repete uma lista de comandos
+    route: Rotear o tráfego através de uma sessão
+    save: Salva as sessões de armazenamento de dados ativas
+    sessions: Lista sessões e exibe informações sobre elas
+    set: Define uma variável para um valor
+    setg: Define uma variável global para um valor
+    sleep: Não faz nada durante o número especificado de segundos
+    spool: Grava a saída do console em um arquivo
+    threads: Visualiza e manipula o plano de fundo
+    tips: Mostra uma lista de dicas úteis de produtividade
+    unload: Descarrega um plugin de estrutura
+    unset: Desativa uma ou mais variáveis
+    unsetg: Desativa uma ou mais variáveis globais
+    version: Mostra os números de versão da estrutura e da biblioteca do console
+
+Comandos de Módulo
+
+    advanced: Exibe opções avançadas para um módulo
+    back: Volta do contexto atual
+    clearm: Limpa a pilha de módulos
+    favorite: Adiciona módulo(s) à lista de favoritos
+    favorites: Imprime a lista de módulos favoritos (alias para show favorites)
+    info: Exibe informações sobre um módulo
+    listm: Lista o caminho de carregamento da pilha de módulos
+    search: Procura e carrega módulos de um caminho
+    options: Exibe opções globais ou para um módulo
+    popm: Retira o módulo mais recente da pilha e o torna ativo
+    previous: Define o módulo carregado anteriormente como o módulo atual
+    pushm: Empurra o módulo ativo ou a lista de módulos para a pilha de módulos
+    reload_all: Recarrega todos os módulos de todos os caminhos de módulos definidos
+    search: Pesquisa nomes e descrições de módulos
+    show: Mostra módulos de um determinado tipo ou todos os módulos
+    use: Interagir com um módulo por nome ou termo/índice de pesquisa
+
+Comandos de Trabalho
+
+    handler: Inicia um manipulador de carga útil como job
+    jobs: Exibe e gerencia jobs
+    kill: Elimina um job
+    rename_job: Renomear um trabalho
+
+Comandos de Script de Recursos
+
+    makerc: Salva os comandos inseridos desde o início para um recurso de arquivo
+    runrc: Execute os comandos armazenados em um arquivo
+
+Comandos de Back-end do Banco de Dados
+
+    analyze: Analisa informações do banco de dados sobre um endereço específico ou intervalo de endereços
+    db_connect: Conecta-se a um serviço de dados existente
+    db_disconnect: Desconecta-se do serviço de dados atual
+    db_export: Exporta um arquivo contendo o conteúdo do banco de dados
+    db_import: Importe um arquivo de resultado de varredura (o tipo de arquivo será detectado automaticamente)
+    db_nmap: Executa nmap e registra a saída automaticamente
+    db_rebuild_cache: Reconstrói o cache do módulo armazenado no banco de dados (obsoleto)
+    db_remove: Remove a entrada de serviço de dados salva
+    db_save: Salva a conexão atual do serviço de dados como padrão para reconectar na inicialização
+    db_stats: Mostra estatísticas do banco de dados
+    db_status: Mostra o status atual do serviço de dados
+    hosts: Lista todos os hosts no banco de dados
+
+    klist: Listar tickets Kerberos no saque do banco de dados
+    loot: Listar todos os saques nas notas do banco de dados
+    notes: Listar todas as notas nos serviços do banco de dados
+    services: Listar todos os serviços nas vulnerabilidades do banco de dados
+    vulns: Listar todas as vulnerabilidades no banco de dados
+    workspace: Alternar entre espaços de trabalho do banco de dados
+
+Comandos de Back-end de Credenciais
+
+    creds: Lista todas as credenciais no banco de dados
+
+Comandos do Desenvolvedor
+
+    edit: Edite o módulo atual ou um arquivo com o editor preferido
+    irb: Abra um shell Ruby interativo no contexto atual
+    log: Exibe framework.log paginado até o final, se possível
+    pry: Abre o depurador Pry no módulo ou Framework atual
+    reload_lib: Recarrega os arquivos da biblioteca Ruby dos caminhos especificados
+    time: Mede quanto tempo leva para executar um comando específico
+
+Comandos DNS
+
+    dns: Gerenciar o comportamento de resolução de DNS do Metasploit
+
+Para obter mais informações sobre um comando específico, use help <comando> ou ? <comando>.
+
+msfconsole
+
+msfconsole é a interface principal do Metasploit Framework.
+
+Construindo Intervalos e Listas
+
+Muitos comandos e opções que usam uma lista de itens podem usar intervalos para evitar ter que listar manualmente cada item desejado. Todas as gamas são inclusivas.
+
+    Intervalos de IDs: Use , (vírgula) para separar IDs individuais e - ou .. para intervalos.
+    Intervalos de IPs: Use espaços para separar IPs individuais, BEGINNING_ADDRESS-END_ADDRESS para intervalos ou CIDR (ex: 127.0.0.0/8).
+    Máscaras de rede: Use com nomes de domínio para resolver dinamicamente o bloco a ser atingido.

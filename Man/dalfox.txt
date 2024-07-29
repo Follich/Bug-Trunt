@@ -1,0 +1,75 @@
+dalfox [flags]
+dalfox [command]
+
+Comandos disponíveis:
+conclusion Gera o script de autocompletar para o shell especificado
+file Usa o modo de arquivo (lista de alvos ou rawdata)
+help Ajuda sobre qualquer comando
+payload Modo de carga útil, make e enum payloads
+pipe Usa o modo pipeline
+server Iniciar servidor de API
+sxss Usa o modo XSS armazenado
+url Usa o modo de alvo único
+version Mostra a versão
+
+Flags:
+-b, --blind string Adiciona seu blind xss
+* Exemplo: -b your-callback-url
+--config string Usando a configuração do arquivo
+-C, --cookie string Adiciona cookie personalizado
+--cookie-from-raw string Carrega cookie da solicitação http bruta do burp
+* Exemplo: --cookie-from-raw request.txt
+--custom-alert-type string Altera o tipo de valor do alerta
+* Exemplo: --custom-alert-type=none / --custom-alert-type=str,none (padrão "none")
+--custom-alert-value string Alterar valor de alerta
+* Exemplo: --custom-alert-value=document.cookie (padrão "1")
+--custom-payload string Adicionar payloads personalizados do arquivo
+-d, --data string Usando o método POST e adicionar dados do corpo
+--debug modo de depuração, salvar todos os logs usando a opção -o
+--deep-domxss Teste DOM XSS com mais payloads em headless [tão lento]
+--delay int Milissegundos entre envio para o mesmo host (1000==1s)
+-F, --follow-redirects Seguindo redirecionamento
+--format string Formato de saída Stdout
+* Suportado: plain / json (padrão "plain")
+--found-action string Se for encontrado fraco/vuln, ação(cmd) para o próximo
+* Exemplo: --found-action='./notify.sh'
+--found-action-shell string Selecionar aplicativo shell para --found-action (padrão "bash")
+--grep string Usando arquivo grepping personalizado
+* Exemplo: --grep ./samples/sample_grep.json
+--har-file-path string Caminho para salvar o HAR das solicitações de varredura
+-H, --header strings Adicionar cabeçalhos personalizados
+-h, --help ajuda para dalfox
+--ignore-param strings Ignora este parâmetro ao varrer.
+* Exemplo: --ignore-param api_token --ignore-param csrf_token
+--ignore-return string Ignora a varredura do código de retorno
+* Exemplo: --ignore-return 302,403,404
+-X, --method string Força a substituição do método HTTP
+* Exemplo: -X PUT (padrão "GET")
+--mining-dict Encontra um novo parâmetro com ataque de dicionário, o padrão é Gf-Patterns=>XSS (padrão true)
+-W, --mining-dict-word string Arquivo de lista de palavras personalizado para mineração de parâmetros
+* Exemplo: --mining-dict-word word.txt
+--mining-dom Encontra um novo parâmetro no DOM (valor de atributo/js) (padrão true)
+--no-color Não usa colorize
+--no-spinner Não usa spinner
+--only-custom-payload Testa apenas o payload personalizado (obrigatório --custom-payload)
+--only-discovery Testa apenas a análise de parâmetros (mesma opção '--skip-xss-scanning')
+--only-poc string Mostra apenas o código PoC para o padrão especificado (g: grep / r: refletido / v: verificado)
+* Exemplo: --only-poc='g,v'
+-o, --output string Grava no arquivo de saída (por padrão, apenas o código PoC é salvo)
+--output-all Modo de gravação de todos os logs (-o ou stdout)
+--output-request Inclui solicitações HTTP brutas nos resultados.
+--output-response Inclui resposta HTTP bruta nos resultados.
+-p, --param strings Testando apenas parâmetros selecionados
+--poc-type string Selecionar tipo de PoC
+* Suportado: plain/curl/httpie/http-request
+* Exemplo: --poc-type='curl' (padrão "plain")
+--proxy string Enviar todas as solicitações para o servidor proxy
+* Exemplo: --proxy http://127.0.0.1:8080
+--remote-payloads string Usando payload remoto para teste XSS
+* Suportado: portswigger/payloadbox
+* Exemplo: --remote-payloads=portswigger,payloadbox
+--remote-wordlists string Usando listas de palavras remotas para mineração de parâmetros
+* Suportado: burp/assetnote
+* Exemplo: --remote-wordlists=burp
+--report Mostrar relatório detalhado
+--report-format string Formato do sinalizador --report [plain/json] (def

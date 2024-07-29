@@ -1,0 +1,192 @@
+FEROXBUSTER(1) Comandos do usuário FEROXBUSTER(1)
+
+NOME
+ feroxbuster - página de manual para feroxbuster 2.10.2
+
+SINOPSE
+ feroxbuster [OPÇÕES]
+
+DESCRIÇÃO
+ Uma ferramenta de descoberta de conteúdo rápida, simples e recursiva.
+
+OPÇÕES
+
+ -h, --ajuda
+
+ Imprimir ajuda (veja um resumo com '-h')
+
+ -V, --versão
+
+ Versão impressa
+
+ Seleção de alvo:
+
+ -você, --url <URL>
+
+ O URL de destino (obrigatório, a menos que [--stdin || --resume-from] seja usado)
+
+ --stdin
+
+ Ler URL(s) do STDIN
+
+ --resume-from <STATE_FILE>
+
+ Arquivo de estado a partir do qual retomar uma verificação parcialmente completa (ex. --resume-from ferox-1606586780.state)
+
+ Configurações compostas:
+
+ --burp
+
+ Defina --proxy como http://127.0.0.1:8080 e defina --insecure como verdadeiro
+
+ --burp-replay
+
+ Defina --replay-proxy como http://127.0.0.1:8080 e defina --insecure como verdadeiro
+
+ --smart
+
+ Defina --auto-tune, --collect-words e --collect-backups como verdadeiros
+
+ --thorough
+
+ Use as mesmas configurações de --smart e defina --collect-extensions como true
+
+ Configurações de proxy:
+
+ -p, --proxy <PROXY>
+
+ Proxy a ser usado para solicitações (ex: http(s)://host:port, Socks5(h)://host:port)
+
+ -P, --replay-proxy <REPLAY_PROXY>
+
+ Envie apenas solicitações não filtradas por meio de um Replay Proxy, em vez de todas as solicitações
+
+ -R, --replay-códigos <REPLAY_CODE>...
+
+ Códigos de status para enviar através de um Replay Proxy quando encontrado (padrão: valor --status-codes)
+
+ Configurações de solicitação:
+
+ -a, --user-agent <USER_AGENT>
+
+ Define o User-Agent (padrão: feroxbuster/2.10.2)
+
+ -A, --agente aleatório
+
+ Use um User-Agent aleatório
+
+ -x, --extensões <FILE_EXTENSION>...
+
+ Extensão(ões) de arquivo a serem pesquisadas (ex: -x php -x pdf js); lê valores (separados por nova linha) do arquivo se a entrada começar com @ (ex: @ext.txt)
+
+ -m, --métodos <HTTP_METHODS>...
+
+ Quais métodos de solicitação HTTP devem ser enviados (padrão: GET)
+
+ --dados <DADOS>
+
+ Corpo da Solicitação; pode ler dados de um arquivo se a entrada começar com @ (ex: @post.bin)
+
+ -H, --headers <CABEÇALHO>...
+
+ Especifique os cabeçalhos HTTP a serem usados ​​em cada solicitação (ex: -H Header:val -H 'stuff: things')
+
+ -b, --cookies <COOKIE>...
+
+ Especifique cookies HTTP a serem usados ​​em cada solicitação (ex: -b stuff=things)
+
+ -Q, --query<QUERY>...
+
+ Parâmetros de consulta de URL da solicitação (ex: -Q token=stuff -Q secret=key)
+
+ -f, --add-barra
+
+ Anexar / ao URL de cada solicitação
+
+ Filtros de solicitação:
+
+ --no-scan <URL>...
+
+ URL(s) ou padrão(s) Regex para excluir de recursão/varreduras
+
+ Filtros de resposta:
+
+ -S, --filter-size <TAMANHO>...
+
+ Filtre mensagens de um tamanho específico (ex: -S 5120 -S 4927,1970)
+
+ -X, --filter-regex <REGEX>...
+
+ Filtre mensagens por meio de correspondência de expressão regular no corpo da resposta (ex: -X '^ignore me$')
+
+ -W, --filter-palavras <PALAVRAS>...
+
+ Filtre mensagens de uma contagem de palavras específica (ex: -W 312 -W 91,82)
+
+ -N, --filter-lines <LINHAS>...
+
+ Filtre mensagens de uma contagem de linhas específica (ex: -N 20 -N 31,30)
+
+ -C, --filter-status <STATUS_CODE>...
+
+ Filtre os códigos de status (lista de negações) (ex: -C 200 -C 401)
+
+ --filter-semelhante a <UNWANTED_PAGE>...
+
+ Filtre páginas semelhantes à página fornecida (ex. --filter-similar-to http://site.xyz/soft404)
+
+ -s, --códigos de status <STATUS_CODE>...
+
+ Códigos de status a serem incluídos (lista de permissões) (padrão: todos os códigos de status)
+
+ Configurações do cliente:
+
+ -T, --timeout <SEGUNDOS>
+
+ Número de segundos antes que a solicitação de um cliente expire (padrão: 7)
+
+ -r, --redireciona
+
+ Permitir que o cliente siga redirecionamentos
+
+ -k, --insecure
+
+ Desativa a validação do certificado TLS no cliente
+
+ --server-certs<PEM|DER>...
+
+ Adicione certificados raiz personalizados para servidores com certificados desconhecidos
+
+ --client-cert <PEM>
+
+ Adicione um certificado codificado PEM para autenticação mútua (mTLS)
+
+ --client-key<PEM>
+
+ Adicione uma chave privada codificada em PEM para autenticação mútua (mTLS)
+
+ Configurações de digitalização:
+
+ -t, --threads <THREADS>
+
+ Número de threads simultâneos (padrão: 50)
+
+ -n, --sem recursão
+
+ Não digitalize recursivamente
+
+ -d, --profundidade <RECURSION_DEPTH>
+
+ Profundidade máxima de recursão, uma profundidade de 0 é recursão infinita (padrão: 4)
+
+ --force-recursão
+
+ Forçar tentativas de recursão em todos os endpoints 'encontrados' (ainda respeita a profundidade da recursão)
+
+ --não extrair links
+
+ Não extraia links do corpo da resposta (html, javascript, etc...)
+
+ -L, --scan-limit <SCAN_LIMIT>
+
+ Limitar o número total
