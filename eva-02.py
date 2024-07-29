@@ -1,8 +1,8 @@
 import Banners
 import os
 
-while True:
-    stop = int(1)
+stop = int(1)
+while stop == 1:
     try:
         print(Banners.main_ban.banner_main)
 
@@ -35,7 +35,9 @@ while True:
                     Information.main_info.nmap(domain)
                 elif tool == 6:
                     Information.main_info.waf(domain)
+
                 num = int(input("Deseja continuar?[0/1] "))
+                os.system("clear")
                 stop += num
 
                 if stop:
@@ -67,6 +69,7 @@ while True:
                     Scanners.main_scan.jsql()
 
                 num = int(input("Deseja continuar?[0/1] "))
+                os.system("clear")
                 stop += num
 
                 if stop:
@@ -80,7 +83,7 @@ while True:
                 import Enumeration
 
                 os.system("clear")
-                print(Banners.main_ban.banner_main)
+                print(Banners.main_ban.banner_enum)
 
                 # Aqui é onde ele irá chamar as ferramentas.
 
@@ -95,14 +98,40 @@ while True:
                     Enumeration.main_enum.paramspider(domain)
                 elif tool == 4:
                     Enumeration.main_enum.arjun(domain)
+                elif tool == 5:
+                    Enumeration.main_enum.subjs(domain)
+                elif tool == 6:
+                    Enumeration.main_enum.anti_burl()
+                elif tool == 7:
+                    Enumeration.main_enum.amass(domain)
+                elif tool == 8:
+                    Enumeration.main_enum.metabigor(domain)
 
                 num = int(input("Deseja continuar?[0/1] "))
+                os.system("clear")
                 stop += num
 
                 if stop:
                     pass
                 else:
                     break
+
+        # O código abaixo é do bloco "Subdomain"
+        elif block == 4:
+            while stop == 1:
+                import Subdomain
+
+                os.system("clear")
+                Banners.main_ban.banner_sub()
+
+                tool = int(input("Informe o número da ferramenta: "))
+                os.system("clear")
+
+                if tool == 1:
+                    Subdomain.main_sub.kitterunner(domain)
+                elif tool == 2:
+                    Subdomain.main_sub.git_api(domain)
+
     except:
         print("\nErro de internet: 500 Network Error\nTente novamente mais tarde. (kk brinqs :3)")
         num = int(input("Deseja continuar?[0/1] "))

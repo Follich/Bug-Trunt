@@ -1,6 +1,70 @@
 import subprocess
 
 
+def kitterunner(domain):
+    print(f"""
+ _ __ _    _                                      
+| / /<_> _| |_  ___  _ _  _ _ ._ _ ._ _  ___  _ _ 
+|  \\ | |  | |  / ._>| '_>| | || ' || ' |/ ._>| '_>
+|_\\_\\|_|  |_|  \\___.|_|  `___||_|_||_|_|\\___.|_|  
+
+O kitte é uma ferramenta que faz fuzzing e scan ou brute de API's em sites.
+
+/usr/bin/routes-large.kite
+/usr/bin/routes-small.json
+
+Comandos: 
+[0] Pré-Pronto: kr scan <domain> -w /usr/bin/routes-large.kite -A=apiroutes-210228:20000 -x 10 --ignore-length=34
+[1] Brute: kr brute <domain> -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt
+[2] Monte seu comando.
+
+-h, --help: ajuda
+-o, --output:  formato de saída de string. pode ser json,text,pretty (padrão "pretty")
+-q, --quiet modo silencioso: silenciará o "texto bonito" desnecessário
+-v, --verbose nível de string de verbosidade de registro. pode ser erro,info,debug,trace (padrão "info")
+
+brute: brute um ou vários hosts com uma lista de palavras fornecida
+help: Ajuda sobre qualquer comando
+kb: Manipula o esquema do kitebuilder
+scan: Escaneia um ou vários hosts com uma lista de palavras fornecida
+version: Versão do binário que você está executando
+wordlist: Olha suas listas de palavras em cache e listas de palavras remotas\n""")
+    command = int(input("Comando: "))
+
+    if command == 0:
+        print(f"Comando executado: kr scan {domain} -w /usr/bin/routes-large.kite -A=apiroutes-210228:20000 -x 10 --ignore-length=34")
+        subprocess.call(f"kr scan {domain} -w /usr/bin/routes-large.kite -A=apiroutes-210228:20000 -x 10 --ignore-length=34", shell=True)
+    elif command == 1:
+        print(f"Comando executado: kr brute {domain} -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt")
+        subprocess.call(f"kr brute {domain} -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt")
+    else:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def git_api(domain):
+    print("""
+ ____    ___   _____ 
+).-._(  )_ _( )__ __(
+|( ,-.  _| |_   | |  
+)_`__( )_____(  )_(  
+
+O git search é uma ferramenta simples que serve para procurar api's de sites
+dentro do github.
+
+Opções:
+
+1 - github-secrets.py      6 - github-users.py
+2 - github-dorks.py        7 - github-subdomains.py 
+3 - github-employees.py    8 - github-survey.py  
+4 - github-endpoints.py    9 - github-survey2.py
+5 - github-contributors.py\n """)
+    token = str(input("Informe seu token: "))
+    file_choosen = str(input("Digite qual das opções executar: "))
+    subprocess.call(f"python3 /usr/bin/github-search/{file_choosen} -t {token} -d {domain}", shell=True)
+
+
 def gauplus(domain):
     print("""
 

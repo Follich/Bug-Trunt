@@ -35,7 +35,7 @@ Comandos:
 
         print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern}")
         subprocess.call(f"echo \"{domain}\" | {crawler} | gf {pattern}", shell=True)
-    elif command == 2:
+    else:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -96,7 +96,7 @@ Comandos:
     elif command == 8:
         print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl format | anew ")
         subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl format | anew ", shell=True)
-    elif command == 9:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -139,7 +139,7 @@ Comandos:
         prox = str(input("Digite o proxy a ser usado: "))
         print(f"Comando executado: paramspider -d {domain} --proxy {prox}")
         subprocess.call(f"paramspider -d {domain} --proxy {prox}", shell=True)
-    elif command == 5:
+    else:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: ")
         subprocess.call(f"{shell}", shell=True)
@@ -168,9 +168,177 @@ Comandos:
 --disable-redirects: desabilita redirecionamento\n""")
 
     command = int(input("Monte seu comando: "))
-    if command == 1:
+    if command == 0:
         print(f"Comando executado: arjun -u {domain} -oB 127.0.0.1:9050 -o arjun.txt -t 2 -d 1")
         subprocess.call(f"arjun -u {domain} -oB 127.0.0.1:9050 -o arjun.txt -t 2 -d 1", shell=True)
+    else:
+        shell = str(input("Monte seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def subjs(domain):
+    print("""
+  >=>>=>            >=>                    
+>=>    >=>          >=>         >=>        
+ >=>       >=>  >=> >=>              >===> 
+   >=>     >=>  >=> >=>>==>     >=> >=>    
+      >=>  >=>  >=> >=>  >=>    >=>   >==> 
+>=>    >=> >=>  >=> >=>  >=>    >=>     >=>
+  >=>>=>     >==>=> >=>>==>     >=> >=> >=>
+                             >==>     
+
+Subjs busca arquivos javascript de uma lista de URLS ou subdomínios.
+A análise de arquivos javascript pode ajudá-lo a encontrar endpoints não documentados, segredos e mais
+
+
+Comandos:
+
+[0] Pré-Pronto: echo \"domain\" | gauplus -b png,jpg,gif -subs | subjs | anew js
+[1]-c int: Número de threads simultâneos (padrão 10)
+[2]-i string: Arquivo de entrada contendo URLS
+[3]-t int: Tempo limite (em segundos) para cliente http (padrão 15)
+[4]-ua string: User-Agent para enviar solicitações
+[5] Monte seu comando.\n""")
+    command = int(input("Comando: "))
+
+    if command == 0:
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js", shell=True)
+    elif command == 1:
+        threads = int(input("Número de threads: "))
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js", shell=True)
+    elif command == 2:
+        archive_url = str(input("Caminho do arquivo url: "))
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -i {archive_url} | anew js")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -i {archive_url} | anew js", shell=True)
+    elif command == 3:
+        time_laps = int(input("Número de tempo: "))
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -t {time_laps} | anew js")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -t {time_laps} | anew js", shell=True)
+    elif command == 4:
+        user_agent = str(input("Número de threads: "))
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -ua {user_agent} | anew js")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -ua {user_agent} | anew js", shell=True)
+    else:
+        shell = str(input("Monte seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def anti_burl():
+    print("""
+.______  .______  _____._.___ 
+:      \\ :      \\ \\__ _:|: __|
+|   .   ||       |  |  :|| : |
+|   :   ||   |   |  |   ||   |
+|___|   ||___|   |  |   ||   |
+    |___|    |___|  |___||___|
+    
+O anti-burl é uma ferramenta de validação de arquivos js.
+
+Comandos:
+
+[0] Pré-Pronto
+[1] Monte seu comando.""")
+    command = int(input("Comando: "))
+    if command == 0:
+        archive_js = str(input("Diretório do arquivo com as url .js: "))
+        awk = "'{print $4}'"
+        print(f"Comando executado: cat {archive_js} | anti-burl | awk {awk} | anew js200",)
+        subprocess.call(f"cat {archive_js} | anti-burl | awk {awk} | anew js200", shell=True)
+    else:
+        shell = str(input("Monte seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def amass(domain):
+    print("""
+        .+++:.         :++:                             .+++.       .+++.
+      +W@@@@@@8        &+W@#               o8W8:      +W@@@@@@#.   oW@@@W#+
+     &@#+   .o@##.    .@@@o@W.o@@o       :@@#&W8o    .@#:  .:oW+  .@#+++&#&
+    +@&        &@&     #@8 +@W@&8@+     :@W.   +@8   +@:          .@8
+    8@          @@     8@o  8@8  WW    .@W      W@+  .@W.          o@#:
+    WW          &@o    &@:  o@+  o@+   #@.      8@o   +W@#+.        +W@8:
+    #@          :@W    &@+  &@+   @8  :@o       o@o     oW@@W+        oW@8
+    o@+          @@&   &@+  &@+   #@  &@.      .W@W       .+#@&         o@W.
+     WW         +@W@8. &@+  :&    o@+ #@      :@W&@&         &@:  ..     :@o
+     :@W:      o@# +Wo &@+        :W: +@W&o++o@W. &@&  8@#o+&@W.  #@:    o@+
+      :W@@WWWW@@8       +              :&W@@@@&    &W  .o#@@W&.   :W@WWW@@&
+        +o&&&&+.                                                    +oooo.
+
+O amassa é uma ferramenta de enumeração de subdominios e asn.
+
+Comandos:
+
+[0] Pré-Pronto: amass -d domain -o amass_scan_01 | anew 
+[1] Asn: amass intel -org domain -max-dns-queries 2500 | awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''
+[2] Monte seu comando.""")
+    command = str(input("Comando: "))
+    if command == 0:
+        print(f"Comando executado: amass -d {domain} -o amass_scan_01 | anew")
+        subprocess.call(f"amass -d {domain} -o amass_scan_01 | anew", shell=True)
+    elif command == 1:
+        org = str(input("Org: "))
+        awk = "'{print $1}'"
+        subprocess.call(f"proxychains amass intel -org {org} -max-dns-queries 2500 | awk -F, {awk} ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''", shell=True)
+    else:
+        shell = str(input("Monte seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
+
+
+def metabigor(domain):
+    print("""
+ _ _ _                           
+' ) ) )   _/_      /             
+ / / / _  /  __.  /__o _,  __ __ 
+/ ' (_</_<__(_/|_/_)<_(_)_(_)/ (_
+                       /|        
+                      |/   
+                      
+Metabigor é uma ferramenta de Inteligência, seu objetivo é realizar tarefas OSINT e muito mais
+,mas sem nenhuma chave de API.
+
+Comandos:
+
+[1] Pré-Pronto: echo \"domain\" | metabigor related -o metabigor_result_01 | anew
+[2] Asn: echo \"ip\" | metabigor net --asn -o metabigor_result_01 | anew
+[3] Monte seu comando.
+
+cert: Pesquisa de certificados
+conclusion: Gera o script de preenchimento automático para o shell especificado
+help: Ajuda sobre qualquer comando
+ip: Extrai Shodan IPInfo de internetdb.shodan.io
+ipc: Resumo sobre a lista de IP
+net: Descobre informações de rede sobre alvos (o mesmo com o comando net, mas usa dados estáticos)
+netd: Descobre informações de rede sobre alvos (semelhante ao comando 'net', mas usa dados de terceiros)
+related: Encontra mais domínios relacionados do alvo aplicando várias técnicas
+scan Wrapper: para executar varredura de porta a partir da entrada fornecida
+
+-c int: simultaneidade (padrão 5)
+--debug: Depurar
+-h: Ajuda do metabigor
+-i strings: Entrada para executar
+-I string:  Arquivo de entrada
+-J: Saída como JSON
+-o string: Arquivo de saída
+--proxy: string Proxy para fazer solicitação
+-q: Mostrar apenas informações essenciais
+--retry int: Repetir (padrão 3)
+--timeout int: tempo limite (padrão 40)
+-T string: Pasta de saída temporária
+-v: Detalhação\n""")
+    command = int(input("Comando: "))
+    if command == 1:
+        print(f"Comando executado: echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew")
+        subprocess.call(f" echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew", shell=True)
+    elif command == 2:
+        ip = str(input("Digite o ip: "))
+        print(f"Comando executado: echo \"{ip}\" | metabigor net --asn -o metabigor_result_01 | anew")
+        subprocess.call(f"echo \"{ip}\" | metabigor net --asn -o metabigor_result_01 | anew", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
