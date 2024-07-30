@@ -13,33 +13,30 @@ urls passadas.
 
 Sinopse:
 
-echo "domain" | <crawler> | gf <patterns>
+echo "domain" | <crawler> | gf <patterns> | anew
 
 Comandos:
 
-[0] Pré-pronto = Sinopse
-[1] Open redirect: echo \"domain\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew
-[2] Monte seu comando
+[0] Pré-pronto = echo "domain" | <crawler> | gf <patterns> | anew
+[1] Monte seu comando
 
 Patterns disponiveis:
 
-1 - debug_logic     5 - interestingparams  9 - sqli  13 - ssrf
+1 - debug_logic     5 - interestingparams  9 - sqli     13 - ssrf
 2 - idor            6 - interestingsubs    10 - rce       
 3 - img-traversal   7 - jsvar              11 - ssti
-4 - interestingEXT  8 - lfi                12 - xss\n """)
+4 - interestingEXT  8 - lfi                12 - xss\n""")
 
     command = int(input("Comando: "))
 
-    if command == 1:
+    if command == 0:
         crawler = str(input("Digite o crawler a ser usado: "))
         pattern = str(input("Qual pattern listado a cima deseja usar? "))
 
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern}")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | gf {pattern}", shell=True)
-    elif command == 3:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew")
-        subprocess.call(f"echo \"{domain}\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew", shell=True)
-    elif command == 2:
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern} | anew")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | gf {pattern} | anew", shell=True)
+
+    else:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -62,7 +59,7 @@ echo "domain" | <crawler> | unfurl <key> | anew
 
 Comandos:
 
-[0]Pré-pronto = Sinopse.
+[0]Pré-pronto = echo "domain" | <crawler> | unfurl <key> | anew
 [1]keys: Chaves da string de consulta (uma por linha)
 [2]values: Valores da string de consulta (um por linha)
 [3]keypairs: chaves Pares chave=valor da string de consulta (um por linha)
@@ -118,7 +115,7 @@ O paramspider é uma ferramenta de enumeração de url/vuls feita em python.
 
 Comandos:
 
-[0] Pré-Pronto: paramspider -d {domain} -s --proxy SOCKS5://127.0.0.1:9050
+[0] Pré-Pronto: paramspider -d {domain} -s --proxy socks5://127.0.0.1:9050
 [1]-d <domain>: Nome de domínio para buscar URLs relacionados.
 [2]-l <list>: Arquivo contendo uma lista de nomes de domínio.
 [3]-s: Transmita URLs no terminal.
@@ -127,8 +124,8 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando execultado: paramspider -d {domain} -s --proxy SOCKS5://127.0.0.1:9050")
-        subprocess.call(f"paramspider -d {domain} -s --proxy SOCKS5://127.0.0.1:9050", shell=True)
+        print(f"Comando execultado: paramspider -d {domain} -s --proxy socks5://127.0.0.1:9050")
+        subprocess.call(f"paramspider -d {domain} -s --proxy socks5://127.0.0.1:9050", shell=True)
     elif command == 1:
         print(f"Comando executado: paramspider -d {domain}")
         subprocess.call(f"paramspider -d {domain}", shell=True)
@@ -170,8 +167,8 @@ Comandos:
 -w WORDLIST: Caminho do arquivo da lista de palavras. (padrão: {arjundir}/db/large.txt).
 -stable: Prefira estabilidade à velocidade.
 --disable-redirects: desabilita redirecionamento\n""")
-
     command = int(input("Monte seu comando: "))
+
     if command == 0:
         print(f"Comando executado: arjun -u {domain} -oB 127.0.0.1:9050 -o arjun.txt -t 2 -d 1")
         subprocess.call(f"arjun -u {domain} -oB 127.0.0.1:9050 -o arjun.txt -t 2 -d 1", shell=True)
@@ -244,9 +241,10 @@ O anti-burl é uma ferramenta de validação de arquivos js.
 
 Comandos:
 
-[0] Pré-Pronto
-[1] Monte seu comando.""")
+[0] Pré-Pronto: cat <archive_js> | anti-burl | awk '{print $4}' | anew js200
+[1] Monte seu comando.\n""")
     command = int(input("Comando: "))
+
     if command == 0:
         archive_js = str(input("Diretório do arquivo com as url .js: "))
         awk = "'{print $4}'"
@@ -273,21 +271,20 @@ def amass(domain):
       :W@@WWWW@@8       +              :&W@@@@&    &W  .o#@@W&.   :W@WWW@@&
         +o&&&&+.                                                    +oooo.
 
-O amassa é uma ferramenta de enumeração de subdominios e asn.
+O amass é uma ferramenta de enumeração de subdominios e asn.
 
 Comandos:
 
 [0] Pré-Pronto: amass -d domain -o amass_scan_01 | anew 
-[1] Asn: amass intel -org domain -max-dns-queries 2500 | awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''
-[2] Monte seu comando.\n""")
+[1] Monte seu comando.
+
+amass intel - Descubra alvos para enumerações
+amass enum - Execute enumerações e mapeamento de rede\n""")
     command = int(input("Comando: "))
+
     if command == 0:
         print(f"Comando executado: amass -d {domain} -o amass_scan_01 | anew")
         subprocess.call(f"amass -d {domain} -o amass_scan_01 | anew", shell=True)
-    elif command == 1:
-        org = str(input("Org: "))
-        awk = " awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''"
-        subprocess.call(f"amass intel -org {org} -max-dns-queries 2500 | {awk}", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
@@ -308,9 +305,8 @@ Metabigor é uma ferramenta de Inteligência, seu objetivo é realizar tarefas O
 
 Comandos:
 
-[1] Pré-Pronto: echo \"domain\" | metabigor related -o metabigor_result_01 | anew
-[2] Asn: echo \"ip\" | metabigor net --asn -o metabigor_result_01 | anew
-[3] Monte seu comando.
+[0] Pré-Pronto: echo \"domain\" | metabigor related -o metabigor_result_01 | anew
+[1] Monte seu comando.
 
 cert: Pesquisa de certificados
 conclusion: Gera o script de preenchimento automático para o shell especificado
@@ -340,10 +336,6 @@ scan Wrapper: para executar varredura de porta a partir da entrada fornecida
     if command == 1:
         print(f"Comando executado: echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew")
         subprocess.call(f" echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew", shell=True)
-    elif command == 2:
-        ip = str(input("Digite o ip: "))
-        print(f"Comando executado: echo \"{ip}\" | metabigor net --asn -o metabigor_result_01 | anew")
-        subprocess.call(f"echo \"{ip}\" | metabigor net --asn -o metabigor_result_01 | anew", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")

@@ -14,14 +14,13 @@ que nos ajuda a saber alguns emails, números e quem hospedou aquele determinado
 site.
 
 Comandos:
-[0] Pré-Proto (default).
+[0] Pré-Pronto: whois <domain>
 [1] -a: Pesquise também todos os bancos de dados espelhados.
 [2] -b: Retorna breves intervalos de endereços IP com contato de abuso.
 [3] -B: Desativa a filtragem de objetos. (Mostre os endereços de e-mail.)
 [4] -c: Retorna o menor intervalo de endereços IP com uma referência a um objeto irt.
 [5] -d: Retorna também o objeto de delegação de DNS reverso.
 [6] Monte seu comando.\n""")
-
     command = int(input("Comando: "))
 
     if command == 0:
@@ -74,14 +73,13 @@ e opções.
 
 Comandos:
 
-[0] Pré-Pronto(default)
+[0] Pré-Pronto: host <domain>
 [1] -p: Esta opção especifica a porta a ser consultada no servidor. O padrão é 53.
 [2] -d: Esta opção imprime rastreamentos de depuração e é equivalente a -v (opção detalhada).
 [3] -l -a: Imprimem todos os registros na zona.
 [4] -4: Esta opção especifica que apenas IPv4 deve ser usado para consulta
 [5] -6: Esta opção especifica que apenas IPv6 deve ser usado para consulta
 [6] Monte seu comando\n""")
-
     command = int(input("Comando: "))
 
     if command == 0:
@@ -133,8 +131,8 @@ Comandos:
 [2] View: Visualizar conteúdo html.
 [3] Portas abertas
 [4] Monte seu comando\n""")
-
     command = int(input("Comando: "))
+
     if command == 0:
         print(f"Comando executado: censys search {domain}")
         subprocess.call(f"censys search {domain}", shell=True)
@@ -181,7 +179,6 @@ Comandos:
 [5] -www site:domínio: Eliminará subdomínios da pesquisa do Google.
 [6] -s: número máximo de subdomínios que será extraído do Google.
 [7] Monte seu comando\n""")
-
     command = int(input("Comando: "))
 
     if command == 0:
@@ -233,7 +230,7 @@ def dnsrecon(domain):
 
  Comandos:
 
- [0] Pré-Pronto (dnsrecon -d <domain>)
+ [0] Pré-Pronto: dnsrecon -d <domain>
  [1] -j JSON: Salva as informações em um arquivo JSON
  [2] -t <tipo>: Tipo de enumeração a ser executada. Existem vários tipos possíveis
  [3] -r <faixa>: Faixa de IP para brute force de pesquisa reversa.
@@ -241,7 +238,6 @@ def dnsrecon(domain):
  [5] --threads <num>: Número de threads a ser usados
  [6] -n <ns_server>: Servidor de domínio a ser usado. Se nada for passado, o SOA do destino será usado.
  [7] Monte seu comando.\n""")
-
     command = int(input("Comando: "))
 
     if command == 0:
@@ -315,9 +311,7 @@ def nmap(domain):
 O nmap é uma ferramenta gratuita que faz uma varredura de rede para
 trazer uma lista de portas abertas, suas informações, e sistemas operacionais.
 
-Dê o comando: "service tor start", Para que os comandos funcionem.
-
-[0] Pré-Pronto (nmap -v -sS -sV -F <domain> --script=vuln -oN nmap.txt)
+[0] Pré-Pronto: nmap -v -sS -sV -F <domain> --script=vulners -oN nmap.txt
 [1] -r: Verificação sequencial rápida.
 [2] -sO: Verificação do IP.
 [3] -sV: Investiga portas abertas para determinar informações de serviço.
@@ -325,12 +319,11 @@ Dê o comando: "service tor start", Para que os comandos funcionem.
 [5] --script: Para o uso de scripts.
 [6] -oN: Para salvar o scanning em um arquivo.
 [7] Monte seu comando.\n""")
-
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"\nComando executado: nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt")
-        subprocess.call(f"proxychains nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt ", shell=True)
+        print(f"\nComando executado: nmap -v -sS -sV -F {domain} --script=vulners -oN nmap.txt")
+        subprocess.call(f"proxychains nmap -v -sS -sV -F {domain} --script=vulners -oN nmap.txt ", shell=True)
 
     elif command == 1:
         print(f"\nComando executado:  nmap -sS -Pn -r -F {domain}")
@@ -376,12 +369,11 @@ ____/|__/  \\__,_/ /_/    ____/|__/  \\____/ \\____/ /_/
 
 Comandos:
 
-[0] Pré-Pronto (waf00f http://<dominio>)
+[0] Pré-Pronto: waf00f http://<dominio>
 [1] -a: Para investigar todos os wafs
 [2] -p PROXY: Para usar o waf com um proxy
 [3] -r: Comando para não seguir redirecionamentos de respostas
 [4] Monte seu comando.\n""")
-
     command = int(input("Comando: "))
 
     if command == 0:

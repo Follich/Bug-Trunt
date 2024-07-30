@@ -37,12 +37,9 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(
-            f"Comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f json -o wp.txt")
+        print(f"Comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f json -o wp.txt")
+        subprocess.call(f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f json -o wp.txt", shell=True)
 
-        subprocess.call(
-            f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f json -o wp.txt",
-            shell=True)
     elif command == 1:
         plugins = str(input("""
         Que tipo de enumeração você gostaria de fazer?
@@ -58,20 +55,16 @@ Comandos:
 
         (Separe por ',' se usar mais de um)R: \n"""))
 
-        print(
-            f"Comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -e {plugins} -t 1 -o wp.txt")
+        print(f"Comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -e {plugins} -t 1 -o wp.txt")
 
-        subprocess.call(
-            f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -e {plugins} -t 1 -o wp.txt",
-            shell=True)
+        subprocess.call(f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -e {plugins} -t 1 -o wp.txt", shell=True)
+
     elif command == 2:
         threads = int(input("Defina o número de threads: "))
 
-        print(
-            f"Comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t {threads} -o wp.txt")
-        subprocess.call(
-            f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t {threads} -o wp.txt",
-            shell=True)
+        print(f"Comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t {threads} -o wp.txt")
+        subprocess.call(f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t {threads} -o wp.txt", shell=True)
+
     elif command == 3:
         proxy_definido = str(input("Defina seu proxy [Protocolo://Ip:Porta]"))
 
@@ -85,15 +78,14 @@ Comandos:
 
         print(f"Comando executado: wpscan {proxy_definido} {modo_definido} --url {domain} --force -t 1 -o wp.txt")
         subprocess.call(f"wpscan {proxy_definido} {modo_definido} --url {domain} --force -t 1 -o wp.txt", shell=True)
+
     elif command == 4:
         print("Tipos de formato: cli-no-color, cli-no-color, json, cli")
         formato = str(input("Formato: "))
 
-        print(
-            f"comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f {formato} -o wp.txt")
-        subprocess.call(
-            f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f {formato} -o wp.txt",
-            shell=True)
+        print(f"comando executado: wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f {formato} -o wp.txt")
+        subprocess.call(f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f {formato} -o wp.txt", shell=True)
+
     else:
         shell = str(input("Shell:"))
         print(f"Comando executado: {shell}")
@@ -161,7 +153,6 @@ Comandos:
 -b: Interromper após a primeira vulnerabilidade ser encontrada
 
 Como é bem simples é preferível que você monte seu comando ou use o padrão.\n""")
-
     command = int(input("Comando: "))
     url = str(input("Digite a url completa faltando o valor do parametro."))
 

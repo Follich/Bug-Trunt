@@ -11,8 +11,7 @@ O xargs é O xargs é um comando usado para construir e executar linhas de coman
 Comandos: 
 
 [0] Pré-Pronto: xargs -a <list> -I@ sh -c '<ferramenta> @ | anew <list_2>' = chama o bash para concatenar uma lista a outra.
-[1] Shodan: shodan domain <domain>| awk '{print $3}'|  httpx -silent | anew | xargs -I@ jaeles scan -c 100 -s /jaeles-signatures/ -u @
-[2] Monte seu comando: 
+[1] Monte seu comando.
 
 -a, --arg-file=FILE: Lê argumentos de FILE, não da entrada padrão
 -d, --delimiter=CHARACTER: Os itens no fluxo de entrada são separados por CHARACTER, não por espaço em branco;
@@ -41,10 +40,6 @@ Comandos:
         ferramenta = str(input("Nome da ferramenta a ser usada: "))
         print(f"\nComando executado: xargs -a {lista_01} -I@ sh -c '{ferramenta} @ | anew {lista_02}")
         subprocess.call(f"xargs -a {lista_01} -I@ sh -c '{ferramenta} @ | anew {lista_02}", shell=True)
-    elif command == 1:
-        awk = "awk '{print $3}'|  httpx -silent | anew | xargs -I@ jaeles scan -c 100 -s /jaeles-signatures/ -u @"
-        print(f"Comando executado: shodan domain {domain} | {awk}")
-        subprocess.call(f"shodan domain {domain} | {awk}", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell: "))
@@ -69,8 +64,7 @@ o Nuclei pode ser usado para modelar todos os tipos de verificações de seguran
 Comandos:
 
 [0] Pré-Pronto: cat <list_01> | nuclei -t /root/nuclei-templates -o nuclei_results
-[1] Shodan: shodan domain <domain> | awk '{print $3}' | httpx -silent | nuclei -t /root/nuclei-templates
-[2] Monte seu comando.
+[1] Monte seu comando.
 
 -u, -target string[] URLs/hosts de destino para escanear
 -l, -list string caminho para o arquivo contendo uma lista de URLs/hosts de destino para escanear (um por linha)
@@ -87,10 +81,6 @@ Comandos:
         lista_01 = str(input("Caminho ou nome do arquivo: "))
         print(f"Comando executado: cat {lista_01} | nuclei -t /root/nuclei-templates -o nuclei_results")
         subprocess.call(f"cat {lista_01} | nuclei -t /root/nuclei-templates -o nuclei_results", shell=True)
-    elif command == 1:
-        awk = "shodan domain <domain> | awk '{print $3}' | httpx -silent | nuclei -t /root/nuclei-templates"
-        print(f"Comando executado: shodan domain {domain} | {awk}")
-        subprocess.call(f" shodan domain {domain} | {awk}", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell:"))
@@ -114,7 +104,7 @@ e verificação de vulnerabilidades.
 
 Comandos:
 
-[0] Pré-pronto: cat <list> | dalfox pipe --proxy SOCKS5://127.0.0.1:9050
+[0] Pré-pronto: cat <list> | dalfox pipe --proxy socks5://127.0.0.1:9050
 [1] Monte seu comando.
 
 conclusion: Gerar o script de autocompletar para o shell especificado
@@ -130,14 +120,14 @@ version: Mostrar versão
 -b, --blind string: Adicione seu xss
 -o, --output string: Grava no arquivo de saída (por padrão, apenas o código PoC é salvo)
 --proxy string: Envia todas as solicitações ao servidor proxy.
--F, --follow-redirects: Segue o redirecionamento""")
+-F, --follow-redirects: Segue o redirecionamento\n""")
     command = int(input("Comando: "))
 
     if command == 0:
         subprocess.call("ls", shell=True)
         lista_01 = str(input("Caminho ou nome da lista: "))
-        print(f"Comando executado: cat {lista_01} | dalfox pipe --proxy SOCKS5://127.0.0.1:9050")
-        subprocess.call(f"cat {lista_01}| dalfox pipe --proxy SOCKS5://127.0.0.1:9050", shell=True)
+        print(f"Comando executado: cat {lista_01} | dalfox pipe --proxy socks5://127.0.0.1:9050")
+        subprocess.call(f"cat {lista_01}| dalfox pipe --proxy socks5://127.0.0.1:9050", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell:"))
@@ -179,7 +169,7 @@ Comandos:
         print(f"Comando executado: katana -u {domain}-proxy socks5://127.0.0.1:9050")
         subprocess.call(f"katana -u {domain} -proxy socks5://127.0.0.1:9050", shell=True)
     else:
-        shell = str(input("Shell:"))
+        shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
 

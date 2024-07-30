@@ -37,7 +37,7 @@ wordlist: Olha suas listas de palavras em cache e listas de palavras remotas\n""
     elif command == 1:
         print(f"Comando executado: kr brute {domain} -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt")
         subprocess.call(f"kr brute {domain} -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt")
-    elif command == 2:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -75,7 +75,7 @@ Opções:
         token = str(input("Informe seu token: "))
         print(f"Comando executado: python3 /usr/bin/github-search/github-subdomains.py -t {token} -d {domain}| httpx --title")
         subprocess.call(f"python3 /usr/bin/github-search/github-subdomains.py -t {token} -d {domain}| httpx --title", shell=True)
-    elif command == 2:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -119,7 +119,7 @@ Comandos:
         token = str(input("Informe seu token: "))
         print(f"Comando executado: python3 /usr/bin/GitDorker/GitDorker.py -tf {token} -p -d /usr/bin/GitDorker/Dorks/medium_dorks.txt -o {domain}")
         subprocess.call(f"python3 /usr/bin/GitDorker/GitDorker.py -tf {token} -p -d /usr/bin/GitDorker/Dorks/medium_dorks.txt -o {domain}", shell=True)
-    elif command == 1:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -159,10 +159,9 @@ Comandos:
     if command == 0:
         print(f"Comando executado: ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t 2 -json -p 0,1 -mc 200")
         subprocess.call(f"ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t 2 -json -p 0,1 -mc 200", shell=True)
-    elif command == 1:
+    else:
         print("Algumas listas para você usar: ")
         subprocess.call(f"wordlists", shell=True)
-
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -184,8 +183,8 @@ o.      O O   o  o   O  O   o O  o   O  `Ooo.
 
 Comandos: 
 
-[1] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew 
-[2] Monte seu comando:
+[0] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew 
+[1] Monte seu comando:
 
 -b string: extensões para pular, ex: ttf,woff,svg,png,jpg
 -json: escreve a saída como json
@@ -196,14 +195,12 @@ Comandos:
 -subs: inclui subdomínios do domínio de destino
 -t int: quantidade de workers paralelos (padrão 5)
 -v habilita o modo verbose\n""")
-
     command = int(input("Comando: "))
-    if command == 1:
-        print(
-            f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew",
-                        shell=True)
-    elif command == 2:
+
+    if command == 0:
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew", shell=True)
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -228,6 +225,7 @@ O waybackurl é uma ferramenta que busca por subdiretórios dentro do web archiv
 [3]-no-subs: não inclui subdomínios do domínio de destino
 [4] Monte seu comando\n""")
     command = int(input("Comando: "))
+
     if command == 1 or command == 2:
         print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew")
         subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew", shell=True)
@@ -317,10 +315,8 @@ Comandos:
     file = str(input("Digite o arquivo para fuzzing: "))
 
     if command == 0:
-        print(
-            f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p 127.0.0.1:9050:SOCKS5 --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz -p 127.0.0.1:9050:SOCKS5 --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
-                        shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p 127.0.0.1:9050:SOCKS5 --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        subprocess.call(f"wfuzz -p 127.0.0.1:9050:SOCKS5 --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     elif command == 1:
         proxy_config = str(input("IP:PORT:TYPE = "))
@@ -331,50 +327,37 @@ Comandos:
 
     elif command == 2:
         scripts_list = str(input("\nListar scripts?[y/n]")).lower()
+
         if scripts_list == "y":
             subprocess.call("wfuzz -e scripts", shell=True)
         elif not scripts_list:
             pass
 
         script = str(input("\nDigite o 'name' do script: "))
-        print(
-            f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
-            shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     elif command == 3:
         threads = int(input("Número de threads: "))
-        print(
-            f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
         subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
-            shell=True)
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     elif command == 4:
-        print(
-            f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
-            shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     elif command == 5:
         m_tod = str(input("HEAD or FUZZ: "))
 
-        print(
-            f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
-            shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     elif command == 6:
         dates = str(input("Dates: "))
 
-        print(
-            f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
-            shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     else:
         shell = str(input("Shell: "))
@@ -457,8 +440,8 @@ Comandos:
 -s: Ignora as sondagens padrão (http:80 e https:443)
 -t int: Timeout (milissegundos) (padrão 10000)
 -v: Erros de saída para stderr\n""")
-
     command = int(input("Comando: "))
+
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_chosen = str(input("Caminho ou nome do arquivo: "))

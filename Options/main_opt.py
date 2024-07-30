@@ -389,6 +389,62 @@ def prepare_folder(domain):
         time.sleep(2)
         subprocess.call(f"mkdir {directory}/{domain}/lists | mkdir {directory}/{domain}/images | mkdir {directory}/{domain}/js | mkdir {directory}/{domain}/infos | mkdir {directory}/{domain}/vuls", shell=True)
         subprocess.call(f"cd {directory}/{domain}/infos | leafpad infos.txt", shell=True)
-        print("Tudo pronto!")
+        print("Tudo pronto! Agora copie esse texto dentro do arquivo infos:")
+        print(step_by_step)
     except:
         print("Algo deu errado!")
+
+
+def other(domain):
+    print("""
+    
+  ___  _   _               
+ / _ \\| |_| |_  ___ _ _ ___
+| (_) |  _| ' \\/ -_) '_(_-<
+ \\___/ \\__|_||_\\___|_| /__/
+ 
+ Algums comandos de bug bounty que você pode testar:
+ 
+[0] Open redirect: echo \"domain\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew
+[1] Asn - Amass: amass intel -org domain -max-dns-queries 2500 | awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''
+[2] Asn - Metabigor: echo \"ip\" | metabigor net --asn -o metabigor_result_01 | anew
+[3] Shodan + xargs: shodan domain <domain>| awk '{print $3}'|  httpx -silent | anew | xargs -I@ jaeles scan -c 100 -s /jaeles-signatures/ -u @
+[4] Shodan + nuclei: shodan domain <domain> | awk '{print $3}' | httpx -silent | nuclei -t /root/nuclei-templates
+[5] Chaos Search Js: chaos -d <domain> | httpx -silent | xargs -I@ -P20 sh -c 'gospider -a -s "@" -d 2' | grep -Eo "(http|https)://[^/"].*.js+" | sed "s#]
+[6] Subdomain with gospider: gospider -d 0 -s "<domain>" -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt | grep -Eo '(http|https)://[^/"]+' | anew
+[7] Gospider + chaos: chaos -d <domain> -bbq -filter-wildcard -http-url | xargs -I@ -P5 sh -c 'gospider -a -s "@" -d 3'
+""")
+    command = int(input("Comando:"))
+
+    if command == 0:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew")
+        subprocess.call(f"echo \"{domain}\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew", shell=True)
+    elif command == 1:
+        org = str(input("Org: "))
+        awk = " awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''"
+        subprocess.call(f"amass intel -org {org} -max-dns-queries 2500 | {awk}", shell=True)
+    elif command == 2:
+        ip = str(input("Digite o ip: "))
+        print(f"Comando executado: echo \"{ip}\" | metabigor net --asn -o metabigor_result_01 | anew")
+        subprocess.call(f"echo \"{ip}\" | metabigor net --asn -o metabigor_result_01 | anew", shell=True)
+    elif command == 3:
+        awk = "awk '{print $3}'|  httpx -silent | anew | xargs -I@ jaeles scan -c 100 -s /jaeles-signatures/ -u @"
+        print(f"Comando executado: shodan domain {domain} | {awk}")
+        subprocess.call(f"shodan domain {domain} | {awk}", shell=True)
+    elif command == 4:
+        awk = "shodan domain <domain> | awk '{print $3}' | httpx -silent | nuclei -t /root/nuclei-templates"
+        print(f"Comando executado: shodan domain {domain} | {awk}")
+        subprocess.call(f" shodan domain {domain} | {awk}", shell=True)
+    elif command == 5:
+        print(f"""Comando executado: chaos -d {domain} | httpx -silent | xargs -I@ -P20 sh -c 'gospider -a -s "@" -d 2' | grep -Eo "(http|https)://[^/"].*.js+" | sed "s#]""")
+        subprocess.call(f""" chaos -d {domain} | httpx -silent | xargs -I@ -P20 sh -c 'gospider -a -s "@" -d 2' | grep -Eo "(http|https)://[^/"].*.js+" | sed "s#]""", shell=True)
+    elif command == 6:
+        print(f"""comando executado: gospider -d 0 -s "{domain}" -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt | grep -Eo '(http|https)://[^/"]+' | anew""")
+        subprocess.call(f"""gospider -d 0 -s "{domain}" -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt | grep -Eo '(http|https)://[^/"]+' | anew""", shell=True)
+    elif command == 7:
+        print(f"""Comando executado: chaos -d {domain} -bbq -filter-wildcard -http-url | xargs -I@ -P5 sh -c 'gospider -a -s "@" -d 3'""")
+        subprocess.call(f"""chaos -d {domain} -bbq -filter-wildcard -http-url | xargs -I@ -P5 sh -c 'gospider -a -s "@" -d 3'""", shell=True)
+    else:
+        shell = str(input("Monte seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)

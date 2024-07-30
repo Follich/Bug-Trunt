@@ -216,16 +216,18 @@ while stop == 1:
                 elif tool == 4:
                     print(Options.main_opt.sites)
                 elif tool == 5:
-                    print(Options.main_opt.report)
+                    Options.main_opt.other(domain)
                 elif tool == 6:
-                    print(Options.main_opt.step_by_step)
+                    print(Options.main_opt.report)
                 elif tool == 7:
-                    Options.main_opt.options_install_tools()
+                    print(Options.main_opt.step_by_step)
                 elif tool == 8:
+                    Options.main_opt.options_install_tools()
+                elif tool == 9:
                     Options.main_opt.prepare_folder(domain)
 
                 num = int(input("Deseja continuar?[0/1] "))
-                os.system("cear")
+                os.system("clear")
                 stop += num
 
                 if stop:
