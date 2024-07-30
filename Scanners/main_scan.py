@@ -94,7 +94,7 @@ Comandos:
         subprocess.call(
             f"wpscan --proxy SOCKS5://127.0.0.1:9050 --stealthy --url {domain} --force -t 1 -f {formato} -o wp.txt",
             shell=True)
-    elif command == 5:
+    else:
         shell = str(input("Shell:"))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -144,8 +144,8 @@ dotdotpwn -k root -m <módulo> -u <url=TRAVERSAL>
 
 Comandos:
 
-[1] Padrão = Sinopse
-[2] Monte seu comando
+[0] Padrão = Sinopse
+[1] Monte seu comando
 
 -m: Módulo [http | http-url | ftp | tftp | payload | stdout]
 -O: Detecção do sistema operacional para fuzzing inteligente (nmap)
@@ -165,15 +165,13 @@ Como é bem simples é preferível que você monte seu comando ou use o padrão.
     command = int(input("Comando: "))
     url = str(input("Digite a url completa faltando o valor do parametro."))
 
-    if command == 1:
+    if command == 0:
         print(f"Comando executado: dotdotpwn -k root -m http-url -u {url}=TRAVERSAL")
         subprocess.call(f"dotdotpwn -k root -m http-url -u {url}=TRAVERSAL", shell=True)
-    elif command == 2:
+    else:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
-    else:
-        pass
 
 
 def jsql():

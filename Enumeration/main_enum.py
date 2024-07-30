@@ -17,7 +17,8 @@ echo "domain" | <crawler> | gf <patterns>
 
 Comandos:
 
-[1] Pré-pronto = Sinopse
+[0] Pré-pronto = Sinopse
+[1] Open redirect: echo \"domain\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew
 [2] Monte seu comando
 
 Patterns disponiveis:
@@ -35,7 +36,10 @@ Patterns disponiveis:
 
         print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern}")
         subprocess.call(f"echo \"{domain}\" | {crawler} | gf {pattern}", shell=True)
-    else:
+    elif command == 3:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew")
+        subprocess.call(f"echo \"{domain}\" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf redirect | anew", shell=True)
+    elif command == 2:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -282,8 +286,8 @@ Comandos:
         subprocess.call(f"amass -d {domain} -o amass_scan_01 | anew", shell=True)
     elif command == 1:
         org = str(input("Org: "))
-        awk = "'{print $1}'"
-        subprocess.call(f"proxychains amass intel -org {org} -max-dns-queries 2500 | awk -F, {awk} ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''", shell=True)
+        awk = " awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''"
+        subprocess.call(f"amass intel -org {org} -max-dns-queries 2500 | {awk}", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")

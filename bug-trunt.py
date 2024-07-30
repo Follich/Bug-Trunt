@@ -146,7 +146,7 @@ while stop == 1:
                 elif tool == 8:
                     Subdomain.main_sub.wfuzz(domain)
                 elif tool == 9:
-                    Subdomain.main_sub.httpx()
+                    Subdomain.main_sub.httpx(domain)
                 elif tool == 10:
                     Subdomain.main_sub.httprobe()
                 elif tool == 11:
@@ -175,7 +175,7 @@ while stop == 1:
                 os.system("clear")
 
                 if tool == 1:
-                    Structure.main_struct.xargs()
+                    Structure.main_struct.xargs(domain)
                 elif tool == 2:
                     Structure.main_struct.nuclei()
                 elif tool == 3:

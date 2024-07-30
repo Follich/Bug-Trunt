@@ -37,7 +37,7 @@ wordlist: Olha suas listas de palavras em cache e listas de palavras remotas\n""
     elif command == 1:
         print(f"Comando executado: kr brute {domain} -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt")
         subprocess.call(f"kr brute {domain} -A=raft-large-words -A=apiroutes-210228:20000 -x 10 -d=0 --ignore-length=34 -ejson,txt")
-    else:
+    elif command == 2:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -53,6 +53,10 @@ def git_api(domain):
 O git search é uma ferramenta simples que serve para procurar api's de sites
 dentro do github.
 
+[0] Pré-pronto: python3 /usr/bin/github-search/<file> -t <keu> -d <domain>
+[1] Github:python3 /usr/bin/github-search/github-subdomains.py -t <key> -d domaintosearch | httpx --title
+[2] Monte seu comando
+
 Opções:
 
 1 - github-secrets.py      6 - github-users.py
@@ -60,9 +64,21 @@ Opções:
 3 - github-employees.py    8 - github-survey.py  
 4 - github-endpoints.py    9 - github-survey2.py
 5 - github-contributors.py\n """)
-    token = str(input("Informe seu token: "))
-    file_choosen = str(input("Digite qual das opções executar: "))
-    subprocess.call(f"python3 /usr/bin/github-search/{file_choosen} -t {token} -d {domain}", shell=True)
+    command = int(input("Comando:"))
+
+    if command == 0:
+        token = str(input("Informe seu token: "))
+        file_choosen = str(input("Digite qual das opções executar: "))
+        print(f"Comando executado: python3 /usr/bin/github-search/{file_choosen} -t {token} -d {domain}")
+        subprocess.call(f"python3 /usr/bin/github-search/{file_choosen} -t {token} -d {domain}", shell=True)
+    elif command == 1:
+        token = str(input("Informe seu token: "))
+        print(f"Comando executado: python3 /usr/bin/github-search/github-subdomains.py -t {token} -d {domain}| httpx --title")
+        subprocess.call(f"python3 /usr/bin/github-search/github-subdomains.py -t {token} -d {domain}| httpx --title", shell=True)
+    elif command == 2:
+        shell = str(input("Shell: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
 
 
 def git_dorker(domain):
@@ -221,7 +237,7 @@ O waybackurl é uma ferramenta que busca por subdiretórios dentro do web archiv
     elif command == 4:
         print(f"Comando executado: echo \"{domain}\" | waybackurls -no-subs | anew")
         subprocess.call(f"echo \"{domain}\" | waybackurls -no-subs | anew", shell=True)
-    elif command == 5:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -266,7 +282,7 @@ Comandos:
         print(f"Comando executado: feroxbuster --dont-scan {url} -u {domain}")
         subprocess.call(f"feroxbuster --dont-scan {url} -u {domain}", shell=True)
 
-    elif command == 4:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -360,13 +376,13 @@ Comandos:
             f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ",
             shell=True)
 
-    elif command == 7:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
 
 
-def httpx():
+def httpx(domain):
     print("""
     __    __  __       _  __
    / /_  / /_/ /_____ | |/ /
@@ -381,7 +397,10 @@ com um número maior de threads.
 
 Comandos: 
 [0] Pré-pronto: httpx -l <archive_list>
-[1] Monte seu comando.
+[1] Domain: curl -s https://dns.bufferover.run/dns?q=<domain> |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew
+[2] Shodan: domain="<domain>";shodan domain $domain | awk -v domain="$domain" '{print $1"."domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts 
+[3] Xss-SQLI: httpx -l master.txt -silent -no-color -threads 300 -location 301,302 | awk '{print $2}' | grep -Eo '(http|https)://[^/"].*' | tr -d '[]' | anew  | xargs -I@ sh -c 'gospider -d 0 -s @' | tr ' ' '\n' | grep -Eo '(http|https)://[^/"].*' | grep "=" | qsreplace "<svg onload=alert(1)>" "'
+[4] Monte seu comando.
 
 -l, -list string: arquivo de entrada de string contendo a lista de hosts para processar 
 -rr, -request string: Arquivo contendo solicitação de "brute" 
@@ -393,7 +412,24 @@ Comandos:
         archive_choosen = str(input("Caminho ou nome do arquivo: "))
         print(f"Comando executado: httpx -l {archive_choosen}")
         subprocess.call(f"httpx -l {archive_choosen}", shell=True)
+
     elif command == 1:
+        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q=.{domain} |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew")
+        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q=.{domain} |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew", shell=True)
+
+    elif command == 2:
+        awk = " awk -v domain=\"$domain\" '{print $1\".\"domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts "
+        print(f"Comando executado: domain=\"{domain}\";shodan domain $domain | {awk}")
+        subprocess.call(f"domain=\"{domain}\";shodan domain $domain | {awk}")
+
+    elif command == 3:
+        subprocess.call("ls", shell=True)
+        lista_01 = str(input("Informe o nome ou caminho da lista:"))
+        awk = "awk '{print $2}' | grep -Eo \'(http|https)://[^/\"].*\' | tr -d \'[]\' | anew  | xargs -I@ sh -c \'gospider -d 0 -s @\' | tr \' \' \'\n\' | grep -Eo \'(http|https)://[^/\"].*\' | grep \"=\" | qsreplace \"<svg onload=alert(1)>\" \"\'"
+        print(f"Comando executado: httpx -l {lista_01} -silent -no-color -threads 300 -location 301,302 | {awk}")
+        subprocess.call(f"httpx -l {lista_01} -silent -no-color -threads 300 -location 301,302 | {awk}", shell=True)
+
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -428,7 +464,7 @@ Comandos:
         archive_chosen = str(input("Caminho ou nome do arquivo: "))
         print(f"Comando executado: cat {archive_chosen} | httprobe")
         subprocess.call(f"cat {archive_chosen} | httprobe", shell=True)
-    elif command == 1:
+    else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
@@ -478,9 +514,8 @@ Comandos:
 
         print(f"Comando executado: cat {archive_choosen} | aquatone -template-path {directory_save} -proxy 127.0.0.1:9050 -threads {threads}")
         subprocess.call(f"cat {archive_choosen} | aquatone -template-path {directory_save} -proxy 127.0.0.1:9050 -threads {threads}", shell=True)
-    elif command == 1:
+    else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
-
