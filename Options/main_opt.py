@@ -1,5 +1,6 @@
 import subprocess
 
+man = "Dentro desse diretório tem os man's da ferramenta. Acessa-lá"
 order = """
 Aqui vai uma recomendação de qual ordem seguir de execução das ferramentas:
 
@@ -220,11 +221,6 @@ apt install leafpad
 apt install jsql -y
 apt update -y
 apt upgrade -y"""
-
-
-def man():
-    man_choosen = str(input("Digite o nome da ferramenta (tudo minúsculo): "))
-    subprocess.call(f"leafpad Man/{man_choosen}")
 
 
 def options_install_tools():

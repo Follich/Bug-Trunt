@@ -107,7 +107,8 @@ Comandos:
 msfdb init: inicia o banco de dados
 help: Menu de Ajuda
 exit: Sai do console\n""")
-    subprocess.call("msfconsole", shell=True)
+    print("Depois de: service postgresql stop")
+    subprocess.call("service postgresql start | msfdb init | msfconsole", shell=True)
 
 
 def dotdotpwn():

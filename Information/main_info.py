@@ -317,7 +317,7 @@ trazer uma lista de portas abertas, suas informações, e sistemas operacionais.
 
 Dê o comando: "service tor start", Para que os comandos funcionem.
 
-[0] Pré-Pronto (proxychains nmap -v -sS -sV -F <domain> --script=vuln -oN nmap.txt)
+[0] Pré-Pronto (nmap -v -sS -sV -F <domain> --script=vuln -oN nmap.txt)
 [1] -r: Verificação sequencial rápida.
 [2] -sO: Verificação do IP.
 [3] -sV: Investiga portas abertas para determinar informações de serviço.
@@ -329,35 +329,35 @@ Dê o comando: "service tor start", Para que os comandos funcionem.
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"\nComando executado: proxychains nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt")
+        print(f"\nComando executado: nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt")
         subprocess.call(f"proxychains nmap -v -sS -sV -F {domain} --script=vuln -oN nmap.txt ", shell=True)
 
     elif command == 1:
-        print(f"\nComando executado: proxychains nmap -sS -Pn -r -F {domain}")
+        print(f"\nComando executado:  nmap -sS -Pn -r -F {domain}")
         subprocess.call(f"proxychains nmap -sS -Pn -r -F {domain}", shell=True)
 
     elif command == 2:
-        print(f"\nComando executado: proxychains nmap -sO {domain}")
+        print(f"\nComando executado: nmap -sO {domain}")
         subprocess.call(f"proxychains nmap -sO {domain}", shell=True)
 
     elif command == 3:
-        print(f"\nComando executado: proxychains -sS -Pn -sV {domain}")
-        subprocess.call(f"proxychains -sS -Pn -sV {domain}", shell=True)
+        print(f"\nComando executado: nmap -sS -Pn -sV {domain}")
+        subprocess.call(f"nmap -sS -Pn -sV {domain}", shell=True)
 
     elif command == 4:
         ports = str(input("Portas (21,21,80,8080): "))
-        print(f"\nComando executado: proxychains nmap -sS -Pn -p{ports} {domain}")
-        subprocess.call(f"proxychains nmap -sS -Pn -p{ports} {domain}")
+        print(f"\nComando executado: nmap -sS -Pn -p{ports} {domain}")
+        subprocess.call(f"nmap -sS -Pn -p{ports} {domain}")
 
     elif command == 5:
         print("Site: https://nmap.org/nsedoc/scripts/")
         script = str(input("Script a ser usado: "))
-        print(f"\nComando executado: proxychains nmap -sS -Pn --script={script} {domain}")
-        subprocess.call(f"proxychains nmap -sS -Pn --script={script} {domain}", shell=True)
+        print(f"\nComando executado:nmap -sS -Pn --script={script} {domain}")
+        subprocess.call(f"nmap -sS -Pn --script={script} {domain}", shell=True)
 
     elif command == 6:
-        print(f"\nComando executado: proxychains nmap -sS -Pn -oN scan_info.txt {domain}")
-        subprocess.call(f"proxychains nmap -sS -Pn -oN scan_info.txt {domain}", shell=True)
+        print(f"\nComando executado: nmap -sS -Pn -oN scan_info.txt {domain}")
+        subprocess.call(f"nmap -sS -Pn -oN scan_info.txt {domain}", shell=True)
 
     else:
         shell = str(input("\nShell: "))

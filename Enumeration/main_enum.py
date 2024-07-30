@@ -9,28 +9,28 @@ def gf(domain):
 (___/ (_/ (_(/_   _/  / (_(_(/_/ / /_(_/_ 
 
 Gf é uma ferramenta de enumeração de vulnerabilidades por parametros em diversas
-urls psssadas.
+urls passadas.
 
 Sinopse:
 
 echo "domain" | <crawler> | gf <patterns>
+
+Comandos:
+
+[1] Pré-pronto = Sinopse
+[2] Monte seu comando
 
 Patterns disponiveis:
 
 1 - debug_logic     5 - interestingparams  9 - sqli  13 - ssrf
 2 - idor            6 - interestingsubs    10 - rce       
 3 - img-traversal   7 - jsvar              11 - ssti
-4 - interestingEXT  8 - lfi                12 - xss
-
-Comandos:
-
-[1] Pré-pronto = Sinopse
-[2] Monte seu comando\n""")
+4 - interestingEXT  8 - lfi                12 - xss\n """)
 
     command = int(input("Comando: "))
 
     if command == 1:
-        crawler = str(input("Digite o crowler a ser usado: "))
+        crawler = str(input("Digite o crawler a ser usado: "))
         pattern = str(input("Qual pattern listado a cima deseja usar? "))
 
         print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern}")
@@ -275,8 +275,8 @@ Comandos:
 
 [0] Pré-Pronto: amass -d domain -o amass_scan_01 | anew 
 [1] Asn: amass intel -org domain -max-dns-queries 2500 | awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500''
-[2] Monte seu comando.""")
-    command = str(input("Comando: "))
+[2] Monte seu comando.\n""")
+    command = int(input("Comando: "))
     if command == 0:
         print(f"Comando executado: amass -d {domain} -o amass_scan_01 | anew")
         subprocess.call(f"amass -d {domain} -o amass_scan_01 | anew", shell=True)
@@ -332,6 +332,7 @@ scan Wrapper: para executar varredura de porta a partir da entrada fornecida
 -T string: Pasta de saída temporária
 -v: Detalhação\n""")
     command = int(input("Comando: "))
+    
     if command == 1:
         print(f"Comando executado: echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew")
         subprocess.call(f" echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew", shell=True)

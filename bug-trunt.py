@@ -31,9 +31,9 @@ while stop == 1:
                     Information.main_info.dnsenum(domain)
                 elif tool == 5:
                     Information.main_info.dnsrecon(domain)
-                elif tool == 5:
-                    Information.main_info.nmap(domain)
                 elif tool == 6:
+                    Information.main_info.nmap(domain)
+                elif tool == 7:
                     Information.main_info.waf(domain)
 
                 num = int(input("Deseja continuar?[0/1] "))
@@ -208,7 +208,7 @@ while stop == 1:
                 os.system("clear")
 
                 if tool == 1:
-                    Options.main_opt.man()
+                    print(Options.main_opt.man)
                 elif tool == 2:
                     print(Options.main_opt.order)
                 elif tool == 3:

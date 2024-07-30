@@ -63,7 +63,7 @@ o Nuclei pode ser usado para modelar todos os tipos de verificações de seguran
 
 Comandos:
 
-[0] Pré-Pronto: proxychains cat <list_01> | nuclei -t /root/nuclei-templates -o nuclei_results
+[0] Pré-Pronto: cat <list_01> | nuclei -t /root/nuclei-templates -o nuclei_results
 [1] Monte seu comando.
 
 -u, -target string[] URLs/hosts de destino para escanear
@@ -78,8 +78,8 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         lista_01 = str(input("Caminho ou nome do arquivo: "))
-        print(f"Comando executado: proxychains cat {lista_01} | nuclei -t /root/nuclei-templates -o nuclei_results")
-        subprocess.call(f"proxychains cat {lista_01} | nuclei -t /root/nuclei-templates -o nuclei_results", shell=True)
+        print(f"Comando executado: cat {lista_01} | nuclei -t /root/nuclei-templates -o nuclei_results")
+        subprocess.call(f"cat {lista_01} | nuclei -t /root/nuclei-templates -o nuclei_results", shell=True)
     elif command == 1:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell:"))
