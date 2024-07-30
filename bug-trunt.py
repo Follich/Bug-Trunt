@@ -177,7 +177,7 @@ while stop == 1:
                 if tool == 1:
                     Structure.main_struct.xargs(domain)
                 elif tool == 2:
-                    Structure.main_struct.nuclei()
+                    Structure.main_struct.nuclei(domain)
                 elif tool == 3:
                     Structure.main_struct.dalfox()
                 elif tool == 4:
@@ -221,6 +221,8 @@ while stop == 1:
                     print(Options.main_opt.step_by_step)
                 elif tool == 7:
                     Options.main_opt.options_install_tools()
+                elif tool == 8:
+                    Options.main_opt.prepare_folder(domain)
 
                 num = int(input("Deseja continuar?[0/1] "))
                 os.system("cear")

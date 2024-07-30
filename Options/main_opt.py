@@ -382,9 +382,13 @@ mv JSScanner /usr/bin""")
 
 
 def prepare_folder(domain):
+    import time
     try:
-        subprocess.call(f"mkdir {domain} | cd {domain} | mkdir lists | mkdir images | mkdir js | mkdir infos | mkdir vuls", shell=True)
-        subprocess.call(f"cd infos | leafpad infos.txt", shell=True)
+        directory = str(input("Escolha o diretório: "))
+        subprocess.call(f"mkdir {directory}/{domain}", shell=True)
+        time.sleep(2)
+        subprocess.call(f"mkdir {directory}/{domain}/lists | mkdir {directory}/{domain}/images | mkdir {directory}/{domain}/js | mkdir {directory}/{domain}/infos | mkdir {directory}/{domain}/vuls", shell=True)
+        subprocess.call(f"cd {directory}/{domain}/infos | leafpad infos.txt", shell=True)
         print("Tudo pronto!")
     except:
         print("Algo deu errado!")
