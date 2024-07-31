@@ -81,7 +81,7 @@ https://www.croxyproxy.com/ - spys.one = Proxy
 crt.sh = certificado de dominios
 https://nmap.org/nsedoc/scripts/ = para diferentes scripts
 registro.br = consulta de infos de dominios br
-https://en.fofa.info/result?qbase64=QmFuY29jbi5jb20%3D219.73.114.130:8000 = Api
+https://en.fofa.info = Api
 
 Extensões:
 
@@ -135,9 +135,9 @@ Mapeamento:
 * Tem alguma interação? Formulários, pesquisa e etc?
 * Exibe alguma mensagem de erro?"""
 install_tools = """
-apt install gccgo-go 
+apt install gccgo-go
 apt install golang-go
-go install -v github.com/tomnomnom/anew@latest
+go install -v github.com/tomnomnom/anew@latest 
 mv /root/go/bin/anew /usr/bin
 go install github.com/tomnomnom/gf@latest && mv /root/go/bin/gf /usr/bin/
 mkdir /root/.gf 
@@ -387,10 +387,11 @@ def prepare_folder(domain):
         directory = str(input("Escolha o diretório: "))
         subprocess.call(f"mkdir {directory}/{domain}", shell=True)
         time.sleep(2)
-        subprocess.call(f"mkdir {directory}/{domain}/lists | mkdir {directory}/{domain}/images | mkdir {directory}/{domain}/js | mkdir {directory}/{domain}/infos | mkdir {directory}/{domain}/vuls", shell=True)
-        subprocess.call(f"cd {directory}/{domain}/infos | leafpad infos.txt", shell=True)
         print("Tudo pronto! Agora copie esse texto dentro do arquivo infos:")
         print(step_by_step)
+        subprocess.call(f"mkdir {directory}/{domain}/lists | mkdir {directory}/{domain}/images | mkdir {directory}/{domain}/js | mkdir {directory}/{domain}/infos | mkdir {directory}/{domain}/vuls", shell=True)
+        subprocess.call(f"cd {directory}/{domain}/infos | leafpad {directory}/{domain}/infos/infos.txt", shell=True)
+
     except:
         print("Algo deu errado!")
 

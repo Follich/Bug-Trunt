@@ -275,7 +275,7 @@ O amass é uma ferramenta de enumeração de subdominios e asn.
 
 Comandos:
 
-[0] Pré-Pronto: amass -d domain -o amass_scan_01 | anew 
+[0] Pré-Pronto: amass enum -d domain -o amass_scan_01 | anew 
 [1] Monte seu comando.
 
 amass intel - Descubra alvos para enumerações
@@ -283,8 +283,8 @@ amass enum - Execute enumerações e mapeamento de rede\n""")
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: amass -d {domain} -o amass_scan_01 | anew")
-        subprocess.call(f"amass -d {domain} -o amass_scan_01 | anew", shell=True)
+        print(f"Comando executado: amass enum -d {domain} -o amass_scan_01 | anew")
+        subprocess.call(f"amass enum -d {domain} -o amass_scan_01 | anew", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
