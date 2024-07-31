@@ -38,8 +38,8 @@ Comandos:
         lista_01 = str(input("Nome ou caminho da primeira lista: "))
         lista_02 = str(input("Nome ou caminho da segunda lista: "))
         ferramenta = str(input("Nome da ferramenta a ser usada: "))
-        print(f"\nComando executado: xargs -a {lista_01} -I@ sh -c '{ferramenta} @ | anew {lista_02}")
-        subprocess.call(f"xargs -a {lista_01} -I@ sh -c '{ferramenta} @ | anew {lista_02}", shell=True)
+        print(f"\nComando executado: xargs -a {lista_01} -I@ sh -c \'{ferramenta} @ | anew {lista_02}")
+        subprocess.call(f"xargs -a {lista_01} -I@ sh -c \'{ferramenta} @ | anew {lista_02}", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell: "))
@@ -184,4 +184,4 @@ O jsscanner é uma ferramenta para testar urls .js para ver
 se existe alguma informação sensivel lá dentro.
 
 usr/bin/JSScanner/regex.txt\n""")
-    subprocess.call("python3 /usr/bin/JSScanner", shell=True)
+    subprocess.call("python3 usr/bin/JSScanner", shell=True)

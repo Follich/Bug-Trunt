@@ -230,8 +230,8 @@ O waybackurl é uma ferramenta que busca por subdiretórios dentro do web archiv
         print(f"Comando executado: echo \"{domain}\" | waybackurls | anew > waybackurls")
         subprocess.call(f"echo \"{domain}\" | waybackurls | anew > waybackurls", shell=True)
     elif command == 1:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew > waybackurls")
-        subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew > waybackurls", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew")
+        subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew", shell=True)
     elif command == 2:
         print(f"Comando executado: echo \"{domain}\" | waybackurls -get-versions | anew")
         subprocess.call(f"echo \"{domain}\" | waybackurls -get-versions | anew", shell=True)
@@ -257,7 +257,7 @@ para ser usada!
 
 Comandos:
 
-[0] Pré-Pronto
+[0] Pré-Pronto: feroxbuster --burp -u {domain}
 [1] -a: Para definir um usuário (padrão: feroxbuster/2.10.2).
 [2] -f: Anexa / ao URL de cada solicitação.
 [3] --dont-scan <URL>: Para excluir varreduras
@@ -300,7 +300,7 @@ O Wfuzz é uma ferramenta de fuzzing para testar aplicações web de forma simpl
 
 Comandos:
 
-[0] Pré-Pronto.
+[0] Pré-Pronto: wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ
 [1] -p ip:port:type : Para uso de proxy. (SOCKS4, SOCKS5, HTTP)
 [2] --script= : para uso de scripts
 [3] -t <num> : Especifique o número de conexões simultâneas (10 padrão)
@@ -314,12 +314,12 @@ Comandos:
 
     command = int(input("\nComando: "))
     protocol = str(input("http ou https: "))
-    sub_director = str(input("Sub diretórios para fuzz (tire o primeiro /): "))
+    sub_director = str(input("Sub diretórios para fuzz (tire o ultimo /): "))
     file = str(input("Digite o arquivo para fuzzing: "))
 
     if command == 0:
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p 127.0.0.1:9050:SOCKS5 --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz -p 127.0.0.1:9050:SOCKS5 --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        subprocess.call(f"wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
 
     elif command == 1:
         proxy_config = str(input("IP:PORT:TYPE = "))
@@ -382,7 +382,7 @@ usando a biblioteca retryablehttp. Ele foi projetado para manter a confiabilidad
 com um número maior de threads.
 
 Comandos: 
-[0] Pré-pronto: httpx -l <archive_list>
+[0] Pré-pronto: httpx -l <archive_list> | anew <archive>
 [1] Domain: curl -s https://dns.bufferover.run/dns?q=<domain> |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew
 [2] Shodan: domain="<domain>";shodan domain $domain | awk -v domain="$domain" '{print $1"."domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts 
 [3] Xss-SQLI: httpx -l master.txt -silent -no-color -threads 300 -location 301,302 | awk '{print $2}' | grep -Eo '(http|https)://[^/"].*' | tr -d '[]' | anew  | xargs -I@ sh -c 'gospider -d 0 -s @' | tr ' ' '\n' | grep -Eo '(http|https)://[^/"].*' | grep "=" | qsreplace "<svg onload=alert(1)>" "'
@@ -396,12 +396,13 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_choosen = str(input("Caminho ou nome do arquivo: "))
-        print(f"Comando executado: httpx -l {archive_choosen}")
-        subprocess.call(f"httpx -l {archive_choosen}", shell=True)
+        directory_choosen = str(input("Nome e onde o arquivo irá ficar salvo: "))
+        print(f"Comando executado: httpx -l {archive_choosen} | anew > {directory_choosen}")
+        subprocess.call(f"httpx -l {archive_choosen} | anew > {directory_choosen}", shell=True)
 
     elif command == 1:
-        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q=.{domain} |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew")
-        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q=.{domain} |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew", shell=True)
+        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew")
+        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew", shell=True)
 
     elif command == 2:
         awk = " awk -v domain=\"$domain\" '{print $1\".\"domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts "
@@ -472,7 +473,7 @@ e é conveniente para obter rapidamente uma visão geral da superfície de ataqu
 
 Comandos:
 
-[0] Pré-pronto: cat <list_archive> | aquatone -template-path <directory> -proxy 127.0.0.1:9050 -threads <int>
+[0] Pré-pronto: cat <list> | aquatone 
 [1] Monte seu comando.
 
 -chrome-path string: Caminho completo para o executável Chrome/Chromium a ser usado.
@@ -494,12 +495,11 @@ Comandos:
 
     if command == 0:
         subprocess.call("ls", shell=True)
-        archive_choosen = str(input("Diretório ou nome do arquivo: "))
-        directory_save = str(input("Diretório onde será salvo: "))
-        threads = int(input("Informe o número de threads a serem usados: \n"))
+        archive_choosen = str(input("Diretório ou nome da lista: "))
+        threads = int(input("Informe o número de threads a serem usados: "))
 
-        print(f"Comando executado: cat {archive_choosen} | aquatone -template-path {directory_save} -proxy 127.0.0.1:9050 -threads {threads}")
-        subprocess.call(f"cat {archive_choosen} | aquatone -template-path {directory_save} -proxy 127.0.0.1:9050 -threads {threads}", shell=True)
+        print(f"Comando executado: cat {archive_choosen} | aquatone")
+        subprocess.call(f"cat {archive_choosen} | aquatone", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell: "))

@@ -67,6 +67,8 @@ while stop == 1:
                     Scanners.main_scan.dotdotpwn()
                 elif tool == 5:
                     Scanners.main_scan.jsql()
+                elif tool == 6:
+                    Scanners.main_scan.hacker_help()
 
                 num = int(input("Deseja continuar?[0/1] "))
                 os.system("clear")

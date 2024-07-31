@@ -177,3 +177,7 @@ O jsql é uma ferramenta que tem diversas funções de scan mas é que é focada
 príncipalmente no sql injection.Tendo também outras funções e sendo bem útil!\n""")
 
     subprocess.call("jsql", shell=True)
+
+
+def hacker_help():
+    subprocess.call("hackerhelp", shell=True)
