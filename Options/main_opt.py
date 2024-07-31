@@ -132,6 +132,15 @@ Dorks:
     inurl:security@ report vulnerability
     inurl:bugbounty reward program"""
 report = """
+
+Template:
+
+git clone https://github.com/fransr/template-generator.git
+git clone https://github.com/EdOverflow/bug-bounty-responses.git
+cp -a bug-bounty-responses/tpls/. template-generator/tpls/
+cd template-generator
+php -S localhost:8000
+
 Elementos Essenciais de um Relatório:
 
 Título Conciso e Descritivo: 
