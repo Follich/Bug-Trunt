@@ -333,7 +333,7 @@ scan Wrapper: para executar varredura de porta a partir da entrada fornecida
 -v: Detalhação\n""")
     command = int(input("Comando: "))
     
-    if command == 1:
+    if command == 0:
         print(f"Comando executado: echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew")
         subprocess.call(f" echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew", shell=True)
     else:

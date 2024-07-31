@@ -183,7 +183,7 @@ o.      O O   o  o   O  O   o O  o   O  `Ooo.
 
 Comandos: 
 
-[0] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew 
+[0] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs -o gauplus | anew
 [1] Monte seu comando:
 
 -b string: extensões para pular, ex: ttf,woff,svg,png,jpg
@@ -198,8 +198,8 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs | anew", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs -o gauplus | anew")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs -o gauplus | anew", shell=True)
     else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
@@ -219,20 +219,23 @@ def waybackurl(domain):
 
 O waybackurl é uma ferramenta que busca por subdiretórios dentro do web archive.
 
-[0] Pré-pronto: echo \"domain\" | waybackurls -dates | anew
+[0] Pré-pronto: echo \"domain\" | waybackurls | anew > waybackurls
 [1]-dates: mostra a data da busca na primeira coluna
 [2]-get-versions: lista URLs para versões rastreadas de URL(s) de entrada
 [3]-no-subs: não inclui subdomínios do domínio de destino
 [4] Monte seu comando\n""")
     command = int(input("Comando: "))
 
-    if command == 1 or command == 2:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew")
-        subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew", shell=True)
-    elif command == 3:
+    if command == 0:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls | anew > waybackurls")
+        subprocess.call(f"echo \"{domain}\" | waybackurls | anew > waybackurls", shell=True)
+    elif command == 1:
+        print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew > waybackurls")
+        subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew > waybackurls", shell=True)
+    elif command == 2:
         print(f"Comando executado: echo \"{domain}\" | waybackurls -get-versions | anew")
         subprocess.call(f"echo \"{domain}\" | waybackurls -get-versions | anew", shell=True)
-    elif command == 4:
+    elif command == 3:
         print(f"Comando executado: echo \"{domain}\" | waybackurls -no-subs | anew")
         subprocess.call(f"echo \"{domain}\" | waybackurls -no-subs | anew", shell=True)
     else:
