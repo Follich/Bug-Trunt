@@ -206,38 +206,38 @@ Comandos:
         subprocess.call(f"{shell}", shell=True)
 
 
-def waybackurl(domain):
+def waymore(domain):
     print("""
-.::        .::                   .::                       .::     
-.::        .::                   .::                       .::     
-.::   .:   .::   .::    .::   .::.::         .::       .:::.::  .::
-.::  .::   .:: .::  .::  .:: .:: .:: .::   .::  .::  .::   .:: .:: 
-.:: .: .:: .::.::   .::    .:::  .::   .::.::   .:: .::    .:.::   
-.: .:    .::::.::   .::     .::  .::   .::.::   .::  .::   .:: .:: 
-.::        .::  .:: .:::   .::   .:: .::    .:: .:::   .:::.::  .::
-                         .::
+#     #                                         
+#  #  #   ##   #   # #    #  ####  #####  ######
+#  #  #  #  #   # #  ##  ## #    # #    # #     
+#  #  # #    #   #   # ## # #    # #    # ##### 
+#  #  # ######   #   #    # #    # #####  #     
+#  #  # #    #   #   #    # #    # #   #  #     
+ ## ##  #    #   #   #    #  ####  #    # ######
 
-O waybackurl é uma ferramenta que busca por subdiretórios dentro do web archive.
+Owaymore é uma ferramenta que busca por subdiretórios dentro do web archive.
 
-[0] Pré-pronto: echo \"domain\" | waybackurls | anew > waybackurls
-[1]-dates: mostra a data da busca na primeira coluna
-[2]-get-versions: lista URLs para versões rastreadas de URL(s) de entrada
-[3]-no-subs: não inclui subdomínios do domínio de destino
+[0] Pré-pronto: echo \"domain\" | waymore | anew | tee waymore_results
+[1] -n, --no-subs: Não inclui subdomínios do domínio de destino
+[2] -mode {U,R,B} O modo de execução: U (recuperar somente URLs), R (baixar somente Respostas) ou B (Ambos).
+[3] -v: verbose 
 [4] Monte seu comando\n""")
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls | anew > waybackurls")
-        subprocess.call(f"echo \"{domain}\" | waybackurls | anew > waybackurls", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | waymore | anew | tee waymore_results")
+        subprocess.call(f"echo \"{domain}\" | waymore | anew | tee waymore_results", shell=True)
     elif command == 1:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls -dates | anew")
-        subprocess.call(f"echo \"{domain}\" | waybackurls -dates | anew", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | waymore -n | anew tee waymore_results")
+        subprocess.call(f"echo \"{domain}\" | waymore -n | anew tee waymore_results ", shell=True)
     elif command == 2:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls -get-versions | anew")
-        subprocess.call(f"echo \"{domain}\" | waybackurls -get-versions | anew", shell=True)
+        mode = str(input("Mode: "))
+        print(f"Comando executado: echo \"{domain}\" | waymore -mode {mode}| anew | tee waymore_results")
+        subprocess.call(f"echo \"{domain}\" | waymore -mode {mode}| anew | tee waymore_results", shell=True)
     elif command == 3:
-        print(f"Comando executado: echo \"{domain}\" | waybackurls -no-subs | anew")
-        subprocess.call(f"echo \"{domain}\" | waybackurls -no-subs | anew", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | waymore -v | anew | tee waymore_results")
+        subprocess.call(f"echo \"{domain}\" | waymore -v | anew tee waymore_results", shell=True)
     else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
@@ -257,7 +257,7 @@ para ser usada!
 
 Comandos:
 
-[0] Pré-Pronto: feroxbuster --burp -u {domain}
+[0] Pré-Pronto: feroxbuster --burp -u {domain} | tee ferox_result
 [1] -a: Para definir um usuário (padrão: feroxbuster/2.10.2).
 [2] -f: Anexa / ao URL de cada solicitação.
 [3] --dont-scan <URL>: Para excluir varreduras
@@ -266,22 +266,22 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: feroxbuster --burp -u {domain}")
-        subprocess.call(f"feroxbuster --burp -u {domain}", shell=True)
+        print(f"Comando executado: feroxbuster --burp -u {domain} | tee ferox_result")
+        subprocess.call(f"feroxbuster --burp -u {domain} | tee ferox_result", shell=True)
 
     elif command == 1:
         version = str(input("User: "))
-        print(f"Comando executado: feroxbuster -a {version} -u {domain}")
-        subprocess.call(f"feroxbuster -a {version} -u {domain}", shell=True)
+        print(f"Comando executado: feroxbuster -a {version} -u {domain} | tee ferox_result")
+        subprocess.call(f"feroxbuster -a {version} -u {domain} | tee ferox_result", shell=True)
 
     elif command == 4:
-        print(f"Comando executado: feroxbuster -f -u {domain}")
-        subprocess.call(f"feroxbuster -f -u {domain}", shell=True)
+        print(f"Comando executado: feroxbuster -f -u {domain} | tee ferox_result")
+        subprocess.call(f"feroxbuster -f -u {domain} | tee ferox_result", shell=True)
 
     elif command == 3:
         url = str(input("Url: "))
-        print(f"Comando executado: feroxbuster --dont-scan {url} -u {domain}")
-        subprocess.call(f"feroxbuster --dont-scan {url} -u {domain}", shell=True)
+        print(f"Comando executado: feroxbuster --dont-scan {url} -u {domain} | tee ferox_result")
+        subprocess.call(f"feroxbuster --dont-scan {url} -u {domain} | tee ferox_result", shell=True)
 
     else:
         shell = str(input("Shell: "))
@@ -300,7 +300,7 @@ O Wfuzz é uma ferramenta de fuzzing para testar aplicações web de forma simpl
 
 Comandos:
 
-[0] Pré-Pronto: wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ
+[0] Pré-Pronto: wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results
 [1] -p ip:port:type : Para uso de proxy. (SOCKS4, SOCKS5, HTTP)
 [2] --script= : para uso de scripts
 [3] -t <num> : Especifique o número de conexões simultâneas (10 padrão)
@@ -318,15 +318,15 @@ Comandos:
     file = str(input("Digite o arquivo para fuzzing: "))
 
     if command == 0:
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 1:
         proxy_config = str(input("IP:PORT:TYPE = "))
         print(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
         subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
 
     elif command == 2:
         scripts_list = str(input("\nListar scripts?[y/n]")).lower()
@@ -337,30 +337,30 @@ Comandos:
             pass
 
         script = str(input("\nDigite o 'name' do script: "))
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 3:
         threads = int(input("Número de threads: "))
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
         subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 4:
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 5:
         m_tod = str(input("HEAD or FUZZ: "))
 
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 6:
         dates = str(input("Dates: "))
 
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
 
     else:
         shell = str(input("Shell: "))
@@ -382,7 +382,7 @@ usando a biblioteca retryablehttp. Ele foi projetado para manter a confiabilidad
 com um número maior de threads.
 
 Comandos: 
-[0] Pré-pronto: httpx -l <archive_list> | anew <archive>
+[0] Pré-pronto: httpx -l <archive_list> | anew | tee httpx_results
 [1] Domain: curl -s https://dns.bufferover.run/dns?q=<domain> |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew
 [2] Shodan: domain="<domain>";shodan domain $domain | awk -v domain="$domain" '{print $1"."domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts 
 [3] Xss-SQLI: httpx -l master.txt -silent -no-color -threads 300 -location 301,302 | awk '{print $2}' | grep -Eo '(http|https)://[^/"].*' | tr -d '[]' | anew  | xargs -I@ sh -c 'gospider -d 0 -s @' | tr ' ' '\n' | grep -Eo '(http|https)://[^/"].*' | grep "=" | qsreplace "<svg onload=alert(1)>" "'
@@ -396,25 +396,24 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_choosen = str(input("Caminho ou nome do arquivo: "))
-        directory_choosen = str(input("Nome e onde o arquivo irá ficar salvo: "))
-        print(f"Comando executado: httpx -l {archive_choosen} | anew > {directory_choosen}")
-        subprocess.call(f"httpx -l {archive_choosen} | anew > {directory_choosen}", shell=True)
+        print(f"Comando executado: httpx -l {archive_choosen} | anew | tee httpx_results")
+        subprocess.call(f"httpx -l {archive_choosen} | anew | tee httpx_results", shell=True)
 
     elif command == 1:
-        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew")
-        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew", shell=True)
+        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew | tee httpx_results" )
+        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew | tee httpx_results", shell=True)
 
     elif command == 2:
-        awk = " awk -v domain=\"$domain\" '{print $1\".\"domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts "
-        print(f"Comando executado: domain=\"{domain}\";shodan domain $domain | {awk}")
-        subprocess.call(f"domain=\"{domain}\";shodan domain $domain | {awk}")
+        awk = " awk -v domain=\"$domain\" '{print $1\".\"domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts | tee httpx_results"
+        print(f"Comando executado: domain=\"{domain}\";shodan domain $domain | {awk} | tee httpx_results")
+        subprocess.call(f"domain=\"{domain}\";shodan domain $domain | {awk} | tee httpx_results")
 
     elif command == 3:
         subprocess.call("ls", shell=True)
         lista_01 = str(input("Informe o nome ou caminho da lista:"))
         awk = "awk '{print $2}' | grep -Eo \'(http|https)://[^/\"].*\' | tr -d \'[]\' | anew  | xargs -I@ sh -c \'gospider -d 0 -s @\' | tr \' \' \'\n\' | grep -Eo \'(http|https)://[^/\"].*\' | grep \"=\" | qsreplace \"<svg onload=alert(1)>\" \"\'"
-        print(f"Comando executado: httpx -l {lista_01} -silent -no-color -threads 300 -location 301,302 | {awk}")
-        subprocess.call(f"httpx -l {lista_01} -silent -no-color -threads 300 -location 301,302 | {awk}", shell=True)
+        print(f"Comando executado: httpx -l {lista_01} -silent -no-color -threads 300 -location 301,302 | {awk} | tee httpx_results")
+        subprocess.call(f"httpx -l {lista_01} -silent -no-color -threads 300 -location 301,302 | {awk} | tee httpx_results", shell=True)
 
     else:
         shell = str(input("Shell: "))
@@ -436,7 +435,7 @@ O httprobe é uma ferramenta que pega uma lista de domínios e investigua
 servidores http e https em funcionamento.
 
 Comandos:
-[0] Pré-pronto: cat <archive_file> | httprobe
+[0] Pré-pronto: cat <archive_file> | httprobe | tee results_httprobe
 [1] Monte seu comando.
 
 -c int: Define o nível de simultaneidade (padrão 20)
@@ -449,8 +448,8 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_chosen = str(input("Caminho ou nome do arquivo: "))
-        print(f"Comando executado: cat {archive_chosen} | httprobe")
-        subprocess.call(f"cat {archive_chosen} | httprobe", shell=True)
+        print(f"Comando executado: cat {archive_chosen} | httprobe | tee results_httprobe")
+        subprocess.call(f"cat {archive_chosen} | httprobe | tee results_httprobe", shell=True)
     else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
@@ -496,7 +495,6 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_choosen = str(input("Diretório ou nome da lista: "))
-        threads = int(input("Informe o número de threads a serem usados: "))
 
         print(f"Comando executado: cat {archive_choosen} | aquatone")
         subprocess.call(f"cat {archive_choosen} | aquatone", shell=True)

@@ -264,6 +264,7 @@ GO111MODULE=on go install -v github.com/lc/subjs@latest
 mv /root/go/bin/subjs /usr/bin 
 go install github.com/bp0lr/gauplus@latest
 mv /root/go/bin/gauplus /usr/bin
+pip install waymore
 go install github.com/tomnomnom/waybackurls@latest
 mv /root/go/bin/waybackurls /usr/bin
 wget https://raw.githubusercontent.com/tomnomnom/hacks/master/anti-burl/main.go
@@ -478,7 +479,11 @@ git clone https://github.com/0x240x23elu/JSScanner.git
 cd JSScanner
 pip3 install -r  requirements.txt
 cd ..
-mv JSScanner /usr/bin""")
+mv JSScanner /usr/bin
+
+[22] Waymore
+
+pip install waymore""")
     install = int(input("Deseja instalar todas as ferramentas? [0/1]"))
     if install == 0:
         subprocess.call(f"{install_tools}", shell=True)

@@ -13,11 +13,11 @@ urls passadas.
 
 Sinopse:
 
-echo "domain" | <crawler> | gf <patterns> | anew > gf_result
+echo "domain" | <crawler> | gf <patterns> | anew 
 
 Comandos:
 
-[0] Pré-pronto = echo "domain" | <crawler> | gf <patterns> | anew
+[0] Pré-pronto = echo "domain" | <crawler> | gf <patterns> | anew | tee gf_result
 [1] Monte seu comando
 
 Patterns disponiveis:
@@ -33,8 +33,8 @@ Patterns disponiveis:
         crawler = str(input("Digite o crawler a ser usado: "))
         pattern = str(input("Qual pattern listado a cima deseja usar? "))
 
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern} | anew > gf_result")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | gf {pattern} | anew > gf_result", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | gf {pattern} | anew | tee gf_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | gf {pattern} | anew | tee gf_result", shell=True)
 
     else:
         shell = str(input("Digite seu comando: "))
@@ -59,7 +59,7 @@ echo "domain" | <crawler> | unfurl <key> | anew
 
 Comandos:
 
-[0]Pré-pronto = echo "domain" | <crawler> | unfurl <key> | anew > unfurl_result
+[0]Pré-pronto = echo "domain" | <crawler> | unfurl <key> | anew | tee unfurl_result
 [1]keys: Chaves da string de consulta (uma por linha)
 [2]values: Valores da string de consulta (um por linha)
 [3]keypairs: chaves Pares chave=valor da string de consulta (um por linha)
@@ -74,29 +74,29 @@ Comandos:
     crawler = str(input("Digite o crawler a ser usado: "))
 
     if command == 0 or command == 5:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl path | anew > unfurl_result")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl path | anew > unfurl_result", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl path | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl path | anew | tee unfurl_result", shell=True)
     elif command == 1:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl keys | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl keys | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl keys | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl keys | anew | tee unfurl_result", shell=True)
     elif command == 2:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl values | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl values | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl values | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl values | anew | tee unfurl_result", shell=True)
     elif command == 3:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl keypairs | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl keypairs | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl keypairs | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl keypairs | anew | tee unfurl_result", shell=True)
     elif command == 4:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl domains | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl domains | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl domains | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl domains | anew | tee unfurl_result", shell=True)
     elif command == 6:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl apexes | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl apexes | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl apexes | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl apexes | anew | tee unfurl_result", shell=True)
     elif command == 7:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl json | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl json | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl json | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl json | anew | tee unfurl_result", shell=True)
     elif command == 8:
-        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl format | anew ")
-        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl format | anew ", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | {crawler} | unfurl format | anew | tee unfurl_result")
+        subprocess.call(f"echo \"{domain}\" | {crawler} | unfurl format | anew | tee unfurl_result", shell=True)
     else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
@@ -115,7 +115,7 @@ O paramspider é uma ferramenta de enumeração de url/vuls feita em python.
 
 Comandos:
 
-[0] Pré-Pronto: paramspider -d {domain} -s | anew > unfurl_result
+[0] Pré-Pronto: paramspider -d {domain} -s | anew | tee paramspider
 [1]-d <domain>: Nome de domínio para buscar URLs relacionados.
 [2]-l <list>: Arquivo contendo uma lista de nomes de domínio.
 [3]-s: Transmita URLs no terminal.
@@ -124,22 +124,22 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando execultado: paramspider -d {domain} -s | anew > unfurl_result")
-        subprocess.call(f"paramspider -d {domain} -s | anew > unfurl_result", shell=True)
+        print(f"Comando execultado: paramspider -d {domain} -s | anew | tee paramspider")
+        subprocess.call(f"paramspider -d {domain} -s | anew | tee paramspider", shell=True)
     elif command == 1:
-        print(f"Comando executado: paramspider -d {domain}")
-        subprocess.call(f"paramspider -d {domain}", shell=True)
+        print(f"Comando executado: paramspider -d {domain} | anew | tee paramspider")
+        subprocess.call(f"paramspider -d {domain} | anew | tee paramspider", shell=True)
     elif command == 2:
         archive_list = str(input("Caminho da lista: "))
-        print(f"Comando executado: paramspider -d {domain} -l {archive_list}")
-        subprocess.call(f"paramspider -d {domain} -l {archive_list}", shell=True)
+        print(f"Comando executado: paramspider -d {domain} -l {archive_list} | anew | tee paramspider")
+        subprocess.call(f"paramspider -d {domain} -l {archive_list} | anew | tee paramspider", shell=True)
     elif command == 3:
-        print(f"Comando executado: paramspider -s -d {domain}")
-        subprocess.call(f"paramspider -s -d {domain}", shell=True)
+        print(f"Comando executado: paramspider -s -d {domain} | anew | tee paramspider")
+        subprocess.call(f"paramspider -s -d {domain} | anew | tee paramspider", shell=True)
     elif command == 4:
         prox = str(input("Digite o proxy a ser usado: "))
-        print(f"Comando executado: paramspider -d {domain} --proxy {prox}")
-        subprocess.call(f"paramspider -d {domain} --proxy {prox}", shell=True)
+        print(f"Comando executado: paramspider -d {domain} --proxy {prox} | anew | tee paramspider")
+        subprocess.call(f"paramspider -d {domain} --proxy {prox} | anew | tee paramspider", shell=True)
     else:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: ")
@@ -195,7 +195,7 @@ A análise de arquivos javascript pode ajudá-lo a encontrar endpoints não docu
 
 Comandos:
 
-[0] Pré-Pronto: echo \"domain\" | gauplus -b png,jpg,gif -subs | subjs | anew js > subjs_result
+[0] Pré-Pronto: echo \"domain\" | gauplus -b png,jpg,gif -subs | subjs | anew js | tee subjs_result
 [1]-c int: Número de threads simultâneos (padrão 10)
 [2]-i string: Arquivo de entrada contendo URLS
 [3]-t int: Tempo limite (em segundos) para cliente http (padrão 15)
@@ -204,24 +204,24 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js > subjs_result")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js > subjs_result", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js | tee subjs_result")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js | tee subjs_result", shell=True)
     elif command == 1:
         threads = int(input("Número de threads: "))
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js | tee subjs_result")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js | tee subjs_result", shell=True)
     elif command == 2:
         archive_url = str(input("Caminho do arquivo url: "))
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -i {archive_url} | anew js")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -i {archive_url} | anew js", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -i {archive_url} | anew js | tee subjs_result")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -i {archive_url} | anew js | tee subjs_result", shell=True)
     elif command == 3:
         time_laps = int(input("Número de tempo: "))
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -t {time_laps} | anew js")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -t {time_laps} | anew js", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -t {time_laps} | anew js | tee subjs_result")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -t {time_laps} | anew js | tee subjs_result", shell=True)
     elif command == 4:
         user_agent = str(input("Número de threads: "))
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -ua {user_agent} | anew js")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -ua {user_agent} | anew js", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -ua {user_agent} | anew js | tee subjs_result")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -ua {user_agent} | anew js | tee subjs_result", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
@@ -241,15 +241,15 @@ O anti-burl é uma ferramenta de validação de arquivos js.
 
 Comandos:
 
-[0] Pré-Pronto: cat <archive_js> | anti-burl | awk '{print $4}' | anew js200 > anti_burl_result
+[0] Pré-Pronto: cat <archive_js> | anti-burl | awk '{print $4}' | anew js200 | tee anti_burl_result
 [1] Monte seu comando.\n""")
     command = int(input("Comando: "))
 
     if command == 0:
         archive_js = str(input("Diretório do arquivo com as url .js: "))
         awk = "'{print $4}'"
-        print(f"Comando executado: cat {archive_js} | anti-burl | awk {awk} | anew js200 > anti_burl_result",)
-        subprocess.call(f"cat {archive_js} | anti-burl | awk {awk} | anew js200 > anti_burl_result", shell=True)
+        print(f"Comando executado: cat {archive_js} | anti-burl | awk {awk} | anew js200 | tee anti_burl_result ",)
+        subprocess.call(f"cat {archive_js} | anti-burl | awk {awk} | anew js200 | tee anti_burl_resultt", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
@@ -275,7 +275,7 @@ O amass é uma ferramenta de enumeração de subdominios e asn.
 
 Comandos:
 
-[0] Pré-Pronto: amass enum -d domain -o amass_scan_01 | anew  > amass_result
+[0] Pré-Pronto: amass enum -d domain -o amass_scan_01 | anew | tee amass_result
 [1] Monte seu comando.
 
 amass intel - Descubra alvos para enumerações
@@ -283,8 +283,8 @@ amass enum - Execute enumerações e mapeamento de rede\n""")
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: amass enum -d {domain} -o amass_scan_01 | anew > amass_result")
-        subprocess.call(f"amass enum -d {domain} -o amass_scan_01 | anew > amass_result", shell=True)
+        print(f"Comando executado: amass enum -d {domain} -o amass_scan_01 | anew | tee amass_result")
+        subprocess.call(f"amass enum -d {domain} -o amass_scan_01 | anew | tee amass_result", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
@@ -305,7 +305,7 @@ Metabigor é uma ferramenta de Inteligência, seu objetivo é realizar tarefas O
 
 Comandos:
 
-[0] Pré-Pronto: echo \"domain\" | metabigor related -o metabigor_result_01 | anew > results_metabigor
+[0] Pré-Pronto: echo \"domain\" | metabigor related -o metabigor_result_01 | anew | tee results_metabigor
 [1] Monte seu comando.
 
 cert: Pesquisa de certificados
@@ -334,8 +334,8 @@ scan Wrapper: para executar varredura de porta a partir da entrada fornecida
     command = int(input("Comando: "))
     
     if command == 0:
-        print(f"Comando executado: echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew > results_metabigor")
-        subprocess.call(f" echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew > results_metabigor", shell=True)
+        print(f"Comando executado: echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew | tee results_metabigor")
+        subprocess.call(f" echo \"{domain}\" | metabigor related -o metabigor_result_01 | anew | tee results_metabigor", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")

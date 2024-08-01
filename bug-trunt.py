@@ -142,7 +142,7 @@ while stop == 1:
                 elif tool == 5:
                     Subdomain.main_sub.gauplus(domain)
                 elif tool == 6:
-                    Subdomain.main_sub.waybackurl(domain)
+                    Subdomain.main_sub.waymore(domain)
                 elif tool == 7:
                     Subdomain.main_sub.feroxbuster(domain)
                 elif tool == 8:
