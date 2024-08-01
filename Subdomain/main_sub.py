@@ -136,7 +136,7 @@ Um web fuzzer rápido escrito em Go.
 
 Comandos:
 
-[0] Pré-pronto: ffuf -u <domain> -w <wordlist> -t 2 -json -p 0,1 -mc 200
+[0] Pré-pronto: ffuf -u <domain> -w <wordlist> -t <int> -json -p 0,1 -mc 200 -o ffuf_result
 [1] Monte seu comando: 
 
 -mc: Corresponde aos códigos de status HTTP ou "all" para tudo. (padrão: 200-299,301,302,307,401,403,405,500)
@@ -157,8 +157,9 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t 2 -json -p 0,1 -mc 200")
-        subprocess.call(f"ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t 2 -json -p 0,1 -mc 200", shell=True)
+        threads = int(input("Threads: "))
+        print(f"Comando executado: ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t {threads} -json -p 0,1 -mc 200")
+        subprocess.call(f"ffuf -u {domain}/FUZZ -w /usr/share/wfuzz/wordlist/general/big -t {threads} -json -p 0,1 -mc 200", shell=True)
     else:
         print("Algumas listas para você usar: ")
         subprocess.call(f"wordlists", shell=True)
@@ -183,7 +184,7 @@ o.      O O   o  o   O  O   o O  o   O  `Ooo.
 
 Comandos: 
 
-[0] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs -o gauplus | anew
+[0] Pré-pronto: echo \"domain\" | gauplus -b png,jpg,gif -t <int> -random-agent -subs -o gauplus | anew
 [1] Monte seu comando:
 
 -b string: extensões para pular, ex: ttf,woff,svg,png,jpg
@@ -198,8 +199,9 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs -o gauplus | anew")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -p 127.0.0.1:9050 -random-agent -subs -o gauplus | anew", shell=True)
+        threads = int(input("Threads: "))
+        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -t {threads} -random-agent -subs -o gauplus | anew")
+        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -t {threads} -random-agent -subs -o gauplus | anew", shell=True)
     else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
@@ -382,7 +384,7 @@ usando a biblioteca retryablehttp. Ele foi projetado para manter a confiabilidad
 com um número maior de threads.
 
 Comandos: 
-[0] Pré-pronto: httpx -l <archive_list> | anew | tee httpx_results
+[0] Pré-pronto: httpx -l <archive_list> -t <int> | anew | tee httpx_results
 [1] Domain: curl -s https://dns.bufferover.run/dns?q=<domain> |jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew
 [2] Shodan: domain="<domain>";shodan domain $domain | awk -v domain="$domain" '{print $1"."domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts 
 [3] Xss-SQLI: httpx -l master.txt -silent -no-color -threads 300 -location 301,302 | awk '{print $2}' | grep -Eo '(http|https)://[^/"].*' | tr -d '[]' | anew  | xargs -I@ sh -c 'gospider -d 0 -s @' | tr ' ' '\n' | grep -Eo '(http|https)://[^/"].*' | grep "=" | qsreplace "<svg onload=alert(1)>" "'
@@ -396,12 +398,13 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_choosen = str(input("Caminho ou nome do arquivo: "))
-        print(f"Comando executado: httpx -l {archive_choosen} | anew | tee httpx_results")
-        subprocess.call(f"httpx -l {archive_choosen} | anew | tee httpx_results", shell=True)
+        threads = int(input("Threads: "))
+        print(f"Comando executado: httpx -l {archive_choosen} -t {threads} | anew | tee httpx_results")
+        subprocess.call(f"httpx -l {archive_choosen} -t {threads} | anew | tee httpx_results", shell=True)
 
     elif command == 1:
-        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew | tee httpx_results" )
-        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q=.{domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew | tee httpx_results", shell=True)
+        print(f"Comando executado: curl -s https://dns.bufferover.run/dns?q={domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew | tee httpx_results")
+        subprocess.call(f"curl -s https://dns.bufferover.run/dns?q={domain} | jq -r .FDNS_A[] | sed -s 's/,/\n/g' | httpx -silent | anew | tee httpx_results", shell=True)
 
     elif command == 2:
         awk = " awk -v domain=\"$domain\" '{print $1\".\"domain}'| httpx -threads 300 | anew shodanHostsUp | xargs -I@ -P3 sh -c 'jaeles -c 300 scan -s jaeles-signatures/ -u @'| anew JaelesShodanHosts | tee httpx_results"
@@ -472,7 +475,7 @@ e é conveniente para obter rapidamente uma visão geral da superfície de ataqu
 
 Comandos:
 
-[0] Pré-pronto: cat <list> | aquatone 
+[0] Pré-pronto: cat <list> | aquatone -threads <int>
 [1] Monte seu comando.
 
 -chrome-path string: Caminho completo para o executável Chrome/Chromium a ser usado.
@@ -495,9 +498,10 @@ Comandos:
     if command == 0:
         subprocess.call("ls", shell=True)
         archive_choosen = str(input("Diretório ou nome da lista: "))
+        threads = int(input("Threads: "))
 
-        print(f"Comando executado: cat {archive_choosen} | aquatone")
-        subprocess.call(f"cat {archive_choosen} | aquatone", shell=True)
+        print(f"Comando executado: cat {archive_choosen} | aquatone -threads {threads}")
+        subprocess.call(f"cat {archive_choosen} | aquatone -threads {threads}", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell: "))

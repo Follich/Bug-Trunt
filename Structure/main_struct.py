@@ -104,7 +104,7 @@ e verificação de vulnerabilidades.
 
 Comandos:
 
-[0] Pré-pronto: cat <list> | dalfox pipe --proxy socks5://127.0.0.1:9050
+[0] Pré-pronto: cat <list> | dalfox --delay <int> (1000= 1s) | tee dalfox_results
 [1] Monte seu comando.
 
 conclusion: Gerar o script de autocompletar para o shell especificado
@@ -126,8 +126,9 @@ version: Mostrar versão
     if command == 0:
         subprocess.call("ls", shell=True)
         lista_01 = str(input("Caminho ou nome da lista: "))
-        print(f"Comando executado: cat {lista_01} | dalfox pipe --proxy socks5://127.0.0.1:9050")
-        subprocess.call(f"cat {lista_01}| dalfox pipe --proxy socks5://127.0.0.1:9050", shell=True)
+        print(f"Comando executado: cat {lista_01} | dalfox | tee dalfox_results")
+        delay = int("Delay: ")
+        subprocess.call(f"cat {lista_01}| dalfox --delay {delay} | tee dalfox_results", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell:"))
@@ -151,7 +152,7 @@ Essa ferramenta serve para:
 
 Comandos:
 
-[0] Pré-pronto: katana -u <domain> -proxy socks5://127.0.0.1:9050
+[0] Pré-pronto: katana -u <domain> | anew | tee katana_results
 [1] Monte seu comando.
 
 -u, -list string[]: Url de destino / lista para rastrear
@@ -166,8 +167,8 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: katana -u {domain}-proxy socks5://127.0.0.1:9050")
-        subprocess.call(f"katana -u {domain} -proxy socks5://127.0.0.1:9050", shell=True)
+        print(f"Comando executado: katana -u {domain}| anew | tee katana_results")
+        subprocess.call(f"katana -u {domain}| anew | tee katana_results", shell=True)
     else:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")

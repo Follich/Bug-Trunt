@@ -156,7 +156,7 @@ Arjun serve para encontra parâmetros de endpoints de URL.
 
 Comandos:
 
-[0] Pré-Pronto: arjun -u {domain} -o arjun.txt -t 2
+[0] Pré-Pronto: arjun -u {domain} -o arjun.txt -t <int> -d 1
 [1] Monte seu comando.
  
 -u: Url de desinto
@@ -170,8 +170,9 @@ Comandos:
     command = int(input("Monte seu comando: "))
 
     if command == 0:
-        print(f"Comando executado: arjun -u {domain}  -o arjun.txt -t 2 -d 1")
-        subprocess.call(f"arjun -u {domain} -o arjun.txt -t 2 -d 1", shell=True)
+        threads = int(input("Threads: "))
+        print(f"Comando executado: arjun -u {domain} -o arjun.txt -t {threads} -d 1")
+        subprocess.call(f"arjun -u {domain} -o arjun.txt -t {threads} -d 1", shell=True)
     else:
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
@@ -195,7 +196,7 @@ A análise de arquivos javascript pode ajudá-lo a encontrar endpoints não docu
 
 Comandos:
 
-[0] Pré-Pronto: echo \"domain\" | gauplus -b png,jpg,gif -subs | subjs | anew js | tee subjs_result
+[0] Pré-Pronto: echo \"domain\" | gauplus -t <int> -b png,jpg,gif -subs | subjs | anew js | tee subjs_result
 [1]-c int: Número de threads simultâneos (padrão 10)
 [2]-i string: Arquivo de entrada contendo URLS
 [3]-t int: Tempo limite (em segundos) para cliente http (padrão 15)
@@ -204,8 +205,9 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js | tee subjs_result")
-        subprocess.call(f"echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs | anew js | tee subjs_result", shell=True)
+        threads = int(input("Threads"))
+        print(f"Comando executado: echo \"{domain}\" | gauplus -t {threads} -b png,jpg,gif -subs | subjs -c {threads}| anew js | tee subjs_result")
+        subprocess.call(f"echo \"{domain}\" | gauplus -t {threads} -b png,jpg,gif -subs | subjs -c {threads} | anew js | tee subjs_result", shell=True)
     elif command == 1:
         threads = int(input("Número de threads: "))
         print(f"Comando executado: echo \"{domain}\" | gauplus -b png,jpg,gif -subs | subjs -c {threads} | anew js | tee subjs_result")

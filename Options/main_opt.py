@@ -314,7 +314,7 @@ rm README.md
 go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 mv /root/go/bin/nuclei /usr/bin
 nuclei update-templates
-go install github.com/hahwul/dalfox/v2@latest+
+go install github.com/hahwul/dalfox/v2@latest
 mv /root/go/bin/dalfox /usr/bin
 go install github.com/projectdiscovery/katana/cmd/katana@latest
 mv /root/go/bin/katana /usr/bin
@@ -465,7 +465,7 @@ nuclei update-templates
 
 [19] Dalfox:
 
-go install github.com/hahwul/dalfox/v2@latest+
+go install github.com/hahwul/dalfox/v2@latest
 mv /root/go/bin/dalfox /usr/bin
 
 [20] Katana:
