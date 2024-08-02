@@ -1,7 +1,7 @@
 import subprocess
 
 
-def xargs(domain):
+def xargs():
     print("""
 _ _ ____ ____ ____ ____
 _X_ |--| |--< |__, ====
@@ -47,7 +47,7 @@ Comandos:
         subprocess.call(f"{shell}", shell=True)
 
 
-def nuclei(domain):
+def nuclei():
     print("""
                      __     _
    ____  __  _______/ /__  (_)
@@ -104,7 +104,7 @@ e verificação de vulnerabilidades.
 
 Comandos:
 
-[0] Pré-pronto: cat <list> | dalfox --delay <int> (1000= 1s) | tee dalfox_results
+[0] Pré-pronto: dalfox file --delay <int> (1000= 1s) | tee dalfox_results
 [1] Monte seu comando.
 
 conclusion: Gerar o script de autocompletar para o shell especificado
@@ -126,9 +126,9 @@ version: Mostrar versão
     if command == 0:
         subprocess.call("ls", shell=True)
         lista_01 = str(input("Caminho ou nome da lista: "))
-        print(f"Comando executado: cat {lista_01} | dalfox | tee dalfox_results")
-        delay = int("Delay: ")
-        subprocess.call(f"cat {lista_01}| dalfox --delay {delay} | tee dalfox_results", shell=True)
+        delay = int(input("Delay: "))
+        print(f"Comando executado: dalfox file {lista_01} --delay {delay} | tee dalfox_results")
+        subprocess.call(f"dalfox file {lista_01} --delay {delay} | tee dalfox_results", shell=True)
     else:
         subprocess.call("ls", shell=True)
         shell = str(input("Shell:"))

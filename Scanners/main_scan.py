@@ -174,9 +174,52 @@ def jsql():
 -'  `-'   `-' ` `--'
 
 O jsql é uma ferramenta que tem diversas funções de scan mas é que é focada
-príncipalmente no sql injection.Tendo também outras funções e sendo bem útil!\n""")
+príncipalmente no sql injection.Tendo também outras funções e sendo bem útil!\n
 
-    subprocess.call("jsql", shell=True)
+Decidi também adicionar o sqlmap por que ele é bem útil.
+
+[0] Pré-pronto: sqlmap -u "<url>" --current-db --tor --check-tor --random-agent --threads=<threads> -v <verbose> --risk=<risk> --level=<lvl>
+[1] Jsql.
+[2] Monte seu comando.
+
+--random-agent Use o valor de cabeçalho HTTP User-Agent selecionado aleatoriamente
+--proxy=PROXY Use um proxy para conectar-se à URL de destino
+--tor Use a rede de anonimato Tor
+--check-tor Verifique se o Tor está sendo usado corretamente
+
+-a, --all Recupera tudo
+-b, --banner Recupera banner DBMS
+--current-user Recupera usuário atual DBMS
+--current-db Recupera banco de dados atual DBMS
+--passwords Enumera hashes de senha de usuários DBMS
+--dbs Enumera bancos de dados DBMS
+--tables Enumera tabelas de banco de dados DBMS
+--columns Enumera colunas de tabela de banco de dados DBMS
+--schema Enumera esquema DBMS
+--dump Esvazia entradas de tabela de banco de dados DBMS
+--dump-all Esvazia todas as entradas de tabela de banco de dados DBMS
+-D Banco de dados DBMS a ser enumerado
+-T TBL Tabela(s) de banco de dados DBMS a ser enumerada
+-C COL Coluna(s) de tabela de banco de dados DBMS a ser enumerada
+--level=LEVEL  Level of tests to perform (1-5, default 1)
+--risk=RISK  Risk of tests to perform (1-3, default 1)\n""")
+    command = int(input("Comando:"))
+
+    if command == 0:
+        url = str(input("Url contaminada: "))
+        threads = int(input("Número de threads: "))
+        verbose = int(input("Nivel de verbose 1-6: "))
+        risk = int(input("Risk (1-3) = "))
+        level = int(input("Level (1-5) = "))
+        print(f"Comando executado: sqlmap -u {url} --current-db --tor --check-tor  --random-agent --threads={threads} -v {verbose} --risk={risk} --level={level}")
+        subprocess.call(f"sqlmap -u {url} --current-db --tor --check-tor  --random-agent --threads={threads} -v {verbose} --risk={risk} --level={level}", shell=True)
+    elif command == 1:
+        subprocess.call("jsql", shell=True)
+
+    else:
+        shell = str(input("Digite seu comando: "))
+        print(f"Comando executado: {shell}")
+        subprocess.call(f"{shell}", shell=True)
 
 
 def hacker_help():

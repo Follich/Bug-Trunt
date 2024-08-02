@@ -205,7 +205,7 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        threads = int(input("Threads"))
+        threads = int(input("Threads: "))
         print(f"Comando executado: echo \"{domain}\" | gauplus -t {threads} -b png,jpg,gif -subs | subjs -c {threads}| anew js | tee subjs_result")
         subprocess.call(f"echo \"{domain}\" | gauplus -t {threads} -b png,jpg,gif -subs | subjs -c {threads} | anew js | tee subjs_result", shell=True)
     elif command == 1:

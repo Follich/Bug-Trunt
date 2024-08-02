@@ -177,9 +177,9 @@ while stop == 1:
                 os.system("clear")
 
                 if tool == 1:
-                    Structure.main_struct.xargs(domain)
+                    Structure.main_struct.xargs()
                 elif tool == 2:
-                    Structure.main_struct.nuclei(domain)
+                    Structure.main_struct.nuclei()
                 elif tool == 3:
                     Structure.main_struct.dalfox()
                 elif tool == 4:
