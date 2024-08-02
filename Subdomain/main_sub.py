@@ -259,7 +259,7 @@ para ser usada!
 
 Comandos:
 
-[0] Pré-Pronto: feroxbuster --burp -u {domain} | tee ferox_result
+[0] Pré-Pronto: feroxbuster -u {domain} -t <threads>| tee ferox_result
 [1] -a: Para definir um usuário (padrão: feroxbuster/2.10.2).
 [2] -f: Anexa / ao URL de cada solicitação.
 [3] --dont-scan <URL>: Para excluir varreduras
@@ -268,8 +268,9 @@ Comandos:
     command = int(input("Comando: "))
 
     if command == 0:
-        print(f"Comando executado: feroxbuster --burp -u {domain} | tee ferox_result")
-        subprocess.call(f"feroxbuster --burp -u {domain} | tee ferox_result", shell=True)
+        threads = int(input("Threads: "))
+        print(f"Comando executado: feroxbuster -u {domain} -t {threads}| tee ferox_result")
+        subprocess.call(f"feroxbuster -u {domain} -t {threads}| tee ferox_result", shell=True)
 
     elif command == 1:
         version = str(input("User: "))
@@ -315,20 +316,19 @@ Comandos:
     subprocess.call("ls /usr/share/wfuzz/wordlist/general/", shell=True)
 
     command = int(input("\nComando: "))
-    protocol = str(input("http ou https: "))
-    sub_director = str(input("Sub diretórios para fuzz (tire o ultimo /): "))
     file = str(input("Digite o arquivo para fuzzing: "))
 
     if command == 0:
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
-        subprocess.call(f"wfuzz --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
+        threads = int(input("Threads: "))
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --hc 404 -u {domain}FUZZ -t {threads}| tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --hc 404 -u {domain}FUZZ -t {threads}| tee wfuzz_results", shell=True)
 
     elif command == 1:
         proxy_config = str(input("IP:PORT:TYPE = "))
         print(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {domain}FUZZ | tee wfuzz_results")
         subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -p {proxy_config} --hc 404 -u {domain}FUZZ | tee wfuzz_results")
 
     elif command == 2:
         scripts_list = str(input("\nListar scripts?[y/n]")).lower()
@@ -339,30 +339,30 @@ Comandos:
             pass
 
         script = str(input("\nDigite o 'name' do script: "))
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {domain}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} --script={script} --hc 404 -u {domain}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 3:
         threads = int(input("Número de threads: "))
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {domain}FUZZ | tee wfuzz_results")
         subprocess.call(
-            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
+            f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -t {threads} --hc 404 -u {domain}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 4:
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {domain}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -L --hc 404 -u {domain}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 5:
         m_tod = str(input("HEAD or FUZZ: "))
 
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {domain}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} {m_tod} -X --hc 404 -u {domain}FUZZ | tee wfuzz_results", shell=True)
 
     elif command == 6:
         dates = str(input("Dates: "))
 
-        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results")
-        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {protocol}://{domain}/{sub_director}FUZZ | tee wfuzz_results", shell=True)
+        print(f"Comando executado: wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {domain}FUZZ | tee wfuzz_results")
+        subprocess.call(f"wfuzz -w /usr/share/wfuzz/wordlist/general/{file} -d '{dates}' --hc 404 -u {domain}FUZZ | tee wfuzz_results", shell=True)
 
     else:
         shell = str(input("Shell: "))

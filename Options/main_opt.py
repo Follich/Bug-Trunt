@@ -239,6 +239,8 @@ Mapeamento:
 * Tem alguma interação? Formulários, pesquisa e etc?
 * Exibe alguma mensagem de erro?"""
 install_tools = """
+apt update -y
+apt upgrade -y
 apt install gccgo-go -y
 apt install golang-go -y
 pip install hackerhelp
@@ -325,8 +327,8 @@ cd ..
 mv JSScanner /usr/bin
 apt install leafpad
 apt install jsql -y
-apt update -y
-apt upgrade -y"""
+apt install feroxbuster -y
+"""
 
 
 def options_install_tools():
