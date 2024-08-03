@@ -132,7 +132,7 @@ e o parametro para ser testado.
 
 Sinopse: 
 
-dotdotpwn -k root -m <módulo> -u <url=TRAVERSAL>
+dotdotpwn -k root -m <módulo> -u <url=TRAVERSAL> -t <threads> -b | tee dotdot
 
 Comandos:
 
@@ -154,11 +154,12 @@ Comandos:
 
 Como é bem simples é preferível que você monte seu comando ou use o padrão.\n""")
     command = int(input("Comando: "))
-    url = str(input("Digite a url completa faltando o valor do parametro."))
 
     if command == 0:
-        print(f"Comando executado: dotdotpwn -k root -m http-url -u {url}=TRAVERSAL")
-        subprocess.call(f"dotdotpwn -k root -m http-url -u {url}=TRAVERSAL", shell=True)
+        threads = int(input("Threads: "))
+        url = str(input("Digite a url completa faltando o valor do parametro:"))
+        print(f"Comando executado: dotdotpwn -k root -m http-url -u {url}TRAVERSAL -t {threads} -b")
+        subprocess.call(f"dotdotpwn -k root -m http-url -u {url}TRAVERSAL -t {threads} -b", shell=True)
     else:
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: {shell}")
@@ -220,7 +221,3 @@ Decidi também adicionar o sqlmap por que ele é bem útil.
         shell = str(input("Digite seu comando: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
-
-
-def hacker_help():
-    subprocess.call("hackerhelp", shell=True)

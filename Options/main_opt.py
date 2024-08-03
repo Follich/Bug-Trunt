@@ -1,6 +1,6 @@
 import subprocess
 
-man = "Dentro desse diretório tem os man's da ferramenta. Acessa-lá"
+man = "Dentro desse diretório tem os man's das ferramentas. Acessa-lá"
 order = """
 1 - Aqui vai uma recomendação de qual ordem seguir de execução das ferramentas:
 
@@ -17,7 +17,7 @@ order = """
 10 - Amass (url / asn)
 11 - ParamSpider
 12 - Apit git
-13 - Gir Dorker
+13 - Git Dorker
 14 - Xargs (juntar todas as listas)
 15 - Nuclei
 16 - Httpx / Httprobe
@@ -28,37 +28,8 @@ order = """
 22 - GF
 23 - Wpscan
 25 - Report
-
-2 - Ferramentas com alto potencial de causar interrupções em serviços:
-
-
-    * anti_burl: PODE indiretamente levar à interrupção de um serviço:
-
-    * nmap: Uma das ferramentas de varredura de rede mais populares, capaz de identificar serviços em execução,
-    sistemas operacionais e vulnerabilidades.
-    
-    * nuclei: Um motor de varredura de vulnerabilidades poderoso, projetado para encontrar vulnerabilidades comuns
-    e personalizadas em grandes superfícies de ataque.
-    
-    * ffuf: Uma ferramenta de fuzzing HTTP flexível e poderosa, usada para encontrar diretórios, arquivos e outros
-    pontos de entrada em aplicativos web.
-    
-    feroxbuster: Uma ferramenta de varredura de diretórios e arquivos direcionada a aplicativos web,
-    capaz de encontrar rapidamente conteúdo sensível.
-    
-    * subjs: Uma ferramenta de enumeração de subdomínios rápida e eficiente, que pode ser usada para descobrir
-    subdomínios desconhecidos e expandir a superfície de ataque.
-    
-    * gauplus: Uma ferramenta de mapeamento de aplicativos web que pode ser usada para descobrir endpoints,
-    parâmetros e outros detalhes sobre aplicativos web.
-    
-    * dalfox: Uma ferramenta de fuzzing de parâmetros HTTP projetada para encontrar vulnerabilidades em aplicativos
-    web.
-    
-    * wpscan: Uma ferramenta de varredura de vulnerabilidades específica para WordPress, capaz de identificar plugins
-    e temas vulneráveis.\n
    
-3 - Analise: 
+2 - Analise: 
  
 Ferramentas de Reconhecimento (Discovery)
 
@@ -123,16 +94,8 @@ Observações:
     * Scan vs. Varredura: Embora os termos "scan" e "varredura" sejam frequentemente usados como sinônimos,
     "scan" pode ter uma conotação mais ampla, enquanto "varredura" pode ser mais específico para a busca de
      vulnerabilidades."""
-dorks = """
-Dorks:
-    
-    inurl:responsible disclosure program
-    inurl:vulnerability disclosure program
-    inurl:vulnerability program rewards
-    inurl:security@ report vulnerability
-    inurl:bugbounty reward program"""
-report = """
 
+report = """
 Template:
 
 git clone https://github.com/fransr/template-generator.git
@@ -178,66 +141,68 @@ Dicas Adicionais:
     Priorize as informações mais importantes: Destaque as informações mais relevantes para a equipe de desenvolvimento.
     Seja profissional: Mantenha um tom profissional e respeitoso em todo o relatório.
     Utilize ferramentas de relatório: Existem diversas ferramentas que podem auxiliar na criação de relatórios de bug bounty, como plataformas de bug bounty e ferramentas de gerenciamento de vulnerabilidades."""
-sites = """
-Sites:
-
-https://www.croxyproxy.com/ - spys.one = Proxy
-crt.sh = certificado de dominios
-https://nmap.org/nsedoc/scripts/ = para diferentes scripts
-registro.br = consulta de infos de dominios br
-https://en.fofa.info = Api
-
-Extensões:
-
-Wappalyzer
-Js beautify
-Mate Translate"""
 step_by_step = """
-Coleta de informações:
-* Logs:
++===========================================+
+    Recon [+] Corporação
++===========================================+
+
+Compania:
+
+Dominios:
+
+emails:
+
+Funcionarios:
+
+leaks:
+
++================================================+
+    Recon [+] INFRAESTRUTURA DE REDE
++================================================+
+
+DNS-Servers:
+
+-----------------------------
+Sub-Dominios:
 
 
-* Emails:
+-----------------------------
+NetBlocks:
+
+-----------------------------
+MX-mail-Servers
 
 
-* Números:
+-----------------------------
+WEB-SERVERS:
 
 
-* Servidores dns:
+-----------------------------
+FILE-Servers:
 
 
-* Portas abertas, IP'S:
+-----------------------------
+DB-Servers:
 
 
-* Infos Dominios / Subdominios:
+-----------------------------
+Cisco-Routers-switch:
 
 
-* Url e arquivos ocultos:
-
-* Javascript:
-
-* Asn:
+-----------------------------
 
 
-* Fluxo lógico da aplicação:
-
-Scanning:
-
-* Informações tiradas:
-
-* Quais sistemas o site usa:
-
-* Quais são os parametros do site:
++=========================================+
+       [+] Enumeração
++=========================================+
+    HOST     -       Port    -        banner        -    OS
+ 
 
 
-Mapeamento:
-
-* Acessível sem estar logado?
-* Interage com a base de dados?
-* Acessa alguma aplicação de terceiros?
-* É possível fazer upload ou download de arquivos?
-* Tem alguma interação? Formulários, pesquisa e etc?
-* Exibe alguma mensagem de erro?"""
++=========================================+
+         [+] Análise-de-vulnerabilidades
++=========================================+
+   HOST      |    OS     |     Service     |     CVE    |   Exploit   """
 install_tools = """
 apt update -y
 apt upgrade -y
@@ -487,6 +452,7 @@ mv JSScanner /usr/bin
 
 pip install waymore""")
     install = int(input("Deseja instalar todas as ferramentas? [0/1]"))
+
     if install == 0:
         subprocess.call(f"{install_tools}", shell=True)
     else:
@@ -533,9 +499,8 @@ e você não entende nada? Bom oh elas aqui! São linhas para bounty! Aproveite.
 [11] Jaeles para escanear recompensas de bug: wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt -nv ; cat domains.txt | anew | httpx -silent -threads 500 | xargs -I@ jaeles scan -s /jaeles-signatures/ -u @
 [12] Using to findomain to SQLINJECTION: findomain -t domain -q | httpx -silent | anew | waybackurls | gf sqli >> sqli ; sqlmap -m sqli -batch --random-agent --level 1
 [13] Baixe para listar os alvos de recompensa. Injetando e usando o sed .git/HEAD.
-[14] Monte seu comando.(se puder)
+[14] Monte seu comando.(se puder)\n""")
 
-""")
     command = int(input("Comando:"))
 
     if command == 0:
@@ -578,3 +543,7 @@ e você não entende nada? Bom oh elas aqui! São linhas para bounty! Aproveite.
         shell = str(input("Monte seu comando: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
+
+
+def hacker_help():
+    subprocess.call("hackerhelp", shell=True)

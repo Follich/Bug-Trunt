@@ -67,8 +67,6 @@ while stop == 1:
                     Scanners.main_scan.dotdotpwn()
                 elif tool == 5:
                     Scanners.main_scan.jsql()
-                elif tool == 6:
-                    Scanners.main_scan.hacker_help()
 
                 num = int(input("Deseja continuar?[0/1] "))
                 os.system("clear")
@@ -184,8 +182,6 @@ while stop == 1:
                     Structure.main_struct.dalfox()
                 elif tool == 4:
                     Structure.main_struct.katana(domain)
-                elif tool == 5:
-                    Structure.main_struct.jsscanner()
 
                 num = int(input("Deseja continuar?[0/1] "))
                 os.system("cear")
@@ -214,18 +210,16 @@ while stop == 1:
                 elif tool == 2:
                     print(Options.main_opt.order)
                 elif tool == 3:
-                    print(Options.main_opt.dorks)
-                elif tool == 4:
-                    print(Options.main_opt.sites)
-                elif tool == 5:
                     Options.main_opt.other(domain)
-                elif tool == 6:
+                elif tool == 4:
                     print(Options.main_opt.report)
-                elif tool == 7:
+                elif tool == 5:
+                    Options.main_opt.hacker_help()
+                elif tool == 6:
                     print(Options.main_opt.step_by_step)
-                elif tool == 8:
+                elif tool == 7:
                     Options.main_opt.options_install_tools()
-                elif tool == 9:
+                elif tool == 8:
                     Options.main_opt.prepare_folder(domain)
 
                 num = int(input("Deseja continuar?[0/1] "))
@@ -237,6 +231,7 @@ while stop == 1:
                 else:
                     break
     except:
+
         print("\nErro de internet: 500 Network Error\nTente novamente mais tarde. (kk brinqs :3)")
         num = int(input("Deseja continuar?[0/1] "))
         stop += num

@@ -10,9 +10,6 @@ O xargs é O xargs é um comando usado para construir e executar linhas de coman
 
 Comandos: 
 
-[0] Pré-Pronto: xargs -a <list> -I@ sh -c '<ferramenta> @ | anew <list_2>' = chama o bash para concatenar uma lista a outra.
-[1] Monte seu comando.
-
 -a, --arg-file=FILE: Lê argumentos de FILE, não da entrada padrão
 -d, --delimiter=CHARACTER: Os itens no fluxo de entrada são separados por CHARACTER, não por espaço em branco;
 -E END: Define a sequência EOF lógica se END ocorrer como uma linha de entrada, o restante da entrada será ignorado (ignorado se -0 ou -d for especificado)
@@ -31,20 +28,11 @@ Comandos:
 --show-limits: Mostra limites no comprimento da linha de comando 
 -t, --verbose: Imprime comandos antes de executá-los 
 -x, --exit: Sai se o tamanho (veja -s) for excedido\n""")
-    command = int(input("Comando: "))
 
-    if command == 0:
-        subprocess.call("ls", shell=True)
-        lista_01 = str(input("Nome ou caminho da primeira lista: "))
-        lista_02 = str(input("Nome ou caminho da segunda lista: "))
-        ferramenta = str(input("Nome da ferramenta a ser usada: "))
-        print(f"\nComando executado: xargs -a {lista_01} -I@ sh -c \'{ferramenta} @ | anew {lista_02}")
-        subprocess.call(f"xargs -a {lista_01} -I@ sh -c \'{ferramenta} @ | anew {lista_02}", shell=True)
-    else:
-        subprocess.call("ls", shell=True)
-        shell = str(input("Shell: "))
-        print(f"Comando executado: {shell}")
-        subprocess.call(f"{shell}", shell=True)
+    subprocess.call("ls", shell=True)
+    shell = str(input("Monte seu comando: "))
+    print(f"Comando executado: {shell}")
+    subprocess.call(f"{shell}", shell=True)
 
 
 def nuclei():
@@ -173,16 +161,3 @@ Comandos:
         shell = str(input("Shell: "))
         print(f"Comando executado: {shell}")
         subprocess.call(f"{shell}", shell=True)
-
-
-def jsscanner():
-    print("""
-/**
-* ;_][ ((5 ((5 << //-\\ ][\\][ ][\\][ ]E ][2
-*/
-
-O jsscanner é uma ferramenta para testar urls .js para ver
-se existe alguma informação sensivel lá dentro.
-
-usr/bin/JSScanner/regex.txt\n""")
-    subprocess.call("python3 usr/bin/JSScanner", shell=True)
